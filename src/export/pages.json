@@ -1,0 +1,292 @@
+{
+  "homepage": {
+    "uk": {
+      "name": "Головна",
+      "title": "Lansot – Cучасні меблі для дому",
+      "meta": {
+        "title": "Lansot – Cучасні меблі для дому",
+        "description": "Купуйте сучасні меблі в мінімалістичному стилі від Lansot. Ми пропонуємо стильні рішення для спальні, вітальні та всього дому. Висока якість, швидка доставка і доступні ціни. Високий рівень виконання та якісні матеріали. Великий вибір оздоблень та гнучкі розмірні сітки.",
+        "keywords": "меблі, купити, сучасні, мінімалістичний стиль, Lansot"
+      },
+      "herotext": {
+        "title": "Естетика сучасних меблів для вишуканого життя",
+        "content": "Наші меблі, розроблені з використанням новітніх технологічних рішень та найсучасніших матеріалів де кожен предмет є втіленням елегантності та зручності. Крім того, ми пропонуємо налаштувати меблі під свої потреби та персональний стиль. Ви можете обирати різні розміри та матеріали, щоб ідеально вписати наші вироби у ваш простір."
+      },
+      "service": {
+        "title": "Індивідуальний підхід",
+        "content": "Ми розуміємо, що кожен простір унікальний, тому пропонуємо рішення, які відповідають вашим потребам і бажанням."
+      }
+    },
+    "en": {
+      "name": "Home",
+      "title": "Lansot – Modern Furniture For Home",
+      "meta": {
+        "title": "Lansot – Modern Furniture For Home",
+        "description": "Buy modern minimalist style furniture from Lansot. We offer stylish solutions for bedroom, living room and entire home. High quality, fast delivery and affordable prices. High level of performance and quality materials. Wide selection of finishes and flexible size grids.",
+        "keywords": "furniture, buy, modern, minimalist style, Lansot"
+      },
+      "herotext": {
+        "title": "Aesthetics Of Modern Furniture For Sophisticated Living",
+        "content": "Our furniture, designed using the latest technological solutions and the most modern materials where each item is an embodiment of elegance and convenience. In addition, we offer to customize furniture to your needs and personal style. You can choose different sizes and materials to perfectly fit our products into your space."
+      },
+      "service": {
+        "title": "Individual Approach",
+        "content": "We understand that every space is unique, so we offer solutions that meet your needs and desires."
+      }
+    }
+  },
+  "products": {
+    "uk": {
+      "name": "Каталог меблів",
+      "title": "Каталог меблів",
+      "meta": {
+        "title": "Каталог меблів",
+        "description": "Ознайомтеся з нашим каталогом меблів, щоб знайти стильні та функціональні рішення для вашого інтер'єру. Висока якість та сучасний дизайн.",
+        "keywords": "меблі, каталог, стильні, сучасні"
+      }
+    },
+    "en": {
+      "name": "Catalog of products",
+      "title": "Catalog of products",
+      "meta": {
+        "title": "Catalog of products",
+        "description": "Explore our catalog of furniture to find stylish and functional solutions for your interior. High quality and modern design.",
+        "keywords": "furniture, catalog, stylish, modern"
+      }
+    }
+  },
+  "finishes": {
+    "uk": {
+      "name": "Матеріали",
+      "title": "Матеріали",
+      "subtitle": "Матеріали для виробництва меблів",
+      "meta": {
+        "title": "Матеріали",
+        "description": "Матеріали для виробництва меблів від Lansot. Високий рівень виконання та якісні матеріали. Великий вибір оздоблень та гнучкі розмірні сітки.",
+        "keywords": "матеріали, меблі, Lansot, високий рівень виконання, якісні матеріали"
+      },
+
+      "info": "Всі представлені декори є репродукціями. Вибір придатного за кольором декору можливий тільки за допомогою оригінального зразка."
+    },
+    "en": {
+      "name": "Finishes",
+      "title": "Finishes",
+      "subtitle": "Finishes for furniture production",
+      "meta": {
+        "title": "Finishes",
+        "description": "Finishes for furniture production from Lansot. High level of performance and quality materials. Wide selection of finishes and flexible size grids.",
+        "keywords": "finishes, furniture, Lansot, high level of performance, quality materials"
+      },
+      "info": "All presented finishes are reproductions. The choice of a suitable color decor is possible only with the the original sample."
+    }
+  },
+
+  "collections": {
+    "uk": {
+      "name": "Колекції",
+      "title": "Колекції",
+      "subtitle": "Колекції меблів для дому",
+      "meta": {
+        "title": "Колекції",
+        "description": "Колекції меблів для дому від Lansot. Сучасні рішення для спальні, вітальні та всього дому. Висока якість, швидка доставка і доступні ціни. Високий рівень виконання та якісні матеріали. Великий вибір оздоблень та гнучкі розмірні сітки.",
+        "keywords": "колекції, меблі, Lansot, сучасні, мінімалістичний стиль, спальня, вітальня"
+      }
+    },
+    "en": {
+      "name": "Collections",
+      "title": "Collections",
+      "subtitle": "Furniture collections",
+      "meta": {
+        "title": "Collections",
+        "description": "Furniture collections for home from Lansot. Modern solutions for bedroom, living room and entire home. High quality, fast delivery and affordable prices. High level of performance and quality materials. Wide selection of finishes and flexible size grids.",
+        "keywords": "collections, furniture, Lansot, modern, minimalist style, bedroom, living room"
+      }
+    }
+  },
+  "delivery": {
+    "uk": {
+      "name": "Оплата та доставка",
+      "title": "Оплата та доставка",
+      "subtitle": "Умови оплати замовлення та доставки меблів",
+      "meta": {
+        "title": "Оплата та доставка",
+        "description": "Інформація про оплату та доставку меблів від Lansot. Висока якість, швидка доставка і доступні ціни.",
+        "keywords": "оплата, доставка, умови"
+      },
+      "info": {
+        "payment": {
+          "title": "Оплата",
+          "description": [
+            "Оформлення замовлення здійснюється тільки за умови <strong>повної (100%) оплати</strong> рахунку.",
+            "Оплата здійснюється тільки в національній валюті (грн.) на розрахунковий рахунок."
+          ]
+        },
+        "delivery": {
+          "title": "Доставка",
+          "description": [
+            "Вартість доставки по Києву: малогабаритні товари до 30кг. - <strong>400 грн.</strong>, великогабаритні від <strong>600 грн.</strong> У вартість доставки включено занесення.",
+            "За відсутності ліфта вартість підйому - <strong>40 грн./поверх.</strong>",
+            "Доставка по Україні розраховується за тарифами транспортної компанії.",
+            "Вартість збирання габаритних виробів розраховується індивідуально.",
+            "Послуги монтажу виробів, ми <strong><u>не надаємо</u></strong>."
+          ]
+        }
+      }
+    },
+    "en": {
+      "name": "Payment and Delivery",
+      "title": "Payment and Delivery",
+      "subtitle": "Information about payment and delivery",
+      "meta": {
+        "title": "Payment and Delivery",
+        "description": "Information about payment and delivery of furniture from Lansot. High quality, fast delivery and affordable prices.",
+        "keywords": "payment, delivery, terms"
+      },
+      "info": {
+        "payment": {
+          "title": "Payment",
+          "description": [
+            "Order processing is carried out only upon <strong>full (100%) payment</strong> of the invoice.",
+            "Payment is made only in the national currency (UAH) to the current account."
+          ]
+        },
+        "delivery": {
+          "title": "Delivery",
+          "description": [
+            "Delivery cost in Kyiv: small-sized goods up to 30kg - <strong>400 UAH</strong>, large-sized goods from <strong>600 UAH</strong>. Delivery cost includes carrying.",
+            "In the absence of an elevator, the cost of lifting is <strong>40 UAH per floor</strong>.",
+            "Delivery across Ukraine is calculated according to the tariffs of the transport company.",
+            "The cost of assembling large-sized products is calculated individually.",
+            "We <strong><u>do not provide</u></strong> installation services for products."
+          ]
+        }
+      }
+    }
+  },
+  "about": {
+    "uk": {
+      "title": "Про нас",
+      "name": "Про нас",  
+      "subtitle": "Сучасні інтер'єрні рішення в стилі мінімалізму",
+      "content_p1": "<p>Якість та турбота про клієнта – головні цінності нашого бренду. Ми створюємо меблі, що відповідають високим стандартам, поєднуючи сучасний дизайн із практичністю. Мінімалізм, який не втрачає актуальності з часом, – основа наших колекцій.</p>",
+      "content_p2": "<p>Ми спеціалізуємося на меблях для зберігання: стильні комоди та тумби, обідні та письмові столи, журнальні столики, полиці та стелажі. Усі моделі створені з урахуванням ергономіки та підходять як для компактних квартир, так і для просторих будинків. Ми постійно вдосконалюємо наші продукти, щоб вони були зручними, надійними та безпечними.</p>",
+      "features": [
+        {
+          "title": "Мінімалізм у дизайні",
+          "text": "Ми створюємо меблі з чистими лініями та продуманими формами, які гармонійно доповнюють будь-який інтер’єр."
+        },
+        {
+          "title": "Інновації та стиль",
+          "text": "Ми використовуємо тільки перевірені матеріали та технології, щоб забезпечити довговічність і надійність."
+        },
+        {
+          "title": "Екологічність та відповідальність",
+          "text": "Наша продукція створюється з турботою про природу – ми обираємо екологічні матеріали та раціональні процеси виробництва."
+        },
+
+        {
+          "title": "Індивідуальний підхід",
+          "text": "Ми розуміємо, що кожен простір унікальний, тому пропонуємо рішення, які відповідають вашим потребам і бажанням."
+        },
+        {
+          "title": "Якість, яка триває роками",
+          "text": "Ми слідкуємо за новими тенденціями в дизайні, щоб пропонувати сучасні та функціональні рішення для вашої оселі."
+        }
+      ],
+
+      "meta": {
+        "title": "Про нас",
+        "description": "Дізнайтеся більше про нас, наші цінності та підхід до створення меблів. Ми пропонуємо сучасні інтер'єрні рішення в стилі мінімалізму, що поєднують високу якість та турботу про клієнта.",
+        "keywords": "про нас, меблі, мінімалізм, Lansot"
+      }
+    },
+    "en": {
+      "title": "About Us",
+      "name": "About Us",
+      "subtitle": "Modern interior solutions in the style of minimalism",
+      "content_p1": "<p>Quality and customer care are the main values of our brand. We create furniture that meets high standards, combining modern design with practicality. Minimalism that does not lose relevance over time is the basis of our collections.</p>",
+      "content_p2": "<p>We specialize in storage furniture: stylish chests of drawers and bedside tables, dining and writing tables, coffee tables, shelves and racks. All models are created with ergonomics in mind and are suitable for both compact apartments and spacious houses. We constantly improve our products to make them convenient, reliable and safe.</p>",
+      "features": [
+        {
+          "title": "Minimalism in design",
+          "text": "We create furniture with clean lines and thoughtful shapes that harmoniously complement any interior."
+        },
+        {
+          "title": "Innovations and style",
+          "text": "We use only proven materials and technologies to ensure durability and reliability."
+        },
+        {
+          "title": "Ecology and responsibility",
+          "text": "Our products are created with care for nature - we choose ecological materials and rational production processes."
+        },
+        {
+          "title": "Individual approach",
+          "text": "We understand that every space is unique, so we offer solutions that meet your needs and desires."
+        },
+        {
+          "title": "Quality that lasts for years",
+          "text": "We keep up with new design trends to offer modern and functional solutions for your home."
+        }
+      ],
+      "meta": {
+        "title": "About Us",
+        "description": "Learn more about us, our values and approach to creating furniture. We offer modern interior solutions in the style of minimalism that combine high quality and customer care.",
+        "keywords": "about us, furniture, minimalism, Lansot"
+      }
+    }
+  },
+  "contacts": {
+    "uk": {
+      "name": "Контакти",
+      "title": "Контакти",
+      "subtitle": "Контактна інформація",
+      "meta": {
+        "title": "Контакти",
+        "description": "Контактна інформація. Зв'яжіться з нами для отримання додаткової інформації про наші продукти та послуги.",
+        "keywords": "контакти"
+      },
+      "info": {
+        "office": {
+          "title": "Офіс",
+          "content": "Київ, вул. Туманяна, 1 (шоурум тимчасово зачинений)"
+        },
+        "phone": "+38 097 112 26 16",
+        "email": "info@lansot.com",
+        "schedule": {
+          "title": "Графік роботи",
+          "content": "Пн-Пт: 10:00 - 20:00, Сб-Нд: Вихідний"
+        },
+        "production": {
+          "title": "Виробництво",
+          "content": "Київ, вул. Віскозна, 8"
+        }
+      }
+    },
+    "en": {
+      "name": "Contacts",
+      "title": "Contacts",
+      "subtitle": "Contact information",
+      "meta": {
+        "title": "Contacts",
+        "description": "Contact information. Contact us for more information about our products and services.",
+        "keywords": "contacts"
+      },
+      "info": {
+        "office": {
+          "title": "Office",
+          "content": "Kyiv, Tumanyan St., 1 (showroom temporarily closed)"
+        },
+        "phone": "+38 097 112 26 16",
+        "email": "info@lansot.com",
+        "schedule": {
+          "title": "Working hours",
+          "content": "Mon-Fri: 10:00 - 20:00, Sat-Sun: Closed"
+        },
+        "production": {
+          "title": "Production",
+          "content": "Kyiv, Viskozna St., 8"
+        }
+      }
+    }
+  }
+}

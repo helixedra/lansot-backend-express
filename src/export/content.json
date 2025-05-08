@@ -1,0 +1,209 @@
+[
+    {
+        "name": "Intro",
+        "slug": "intro",
+        "en": {
+        "title": "Aesthetics Of Modern Furniture For Sophisticated Living",
+        "content": "Our furniture, designed using the latest technological solutions and the most modern materials where each item is an embodiment of elegance and convenience. In addition, we offer to customize furniture to your needs and personal style. You can choose different sizes and materials to perfectly fit our products into your space."
+      },
+        "uk": {
+        "title": "Естетика сучасних меблів для вишуканого життя",
+        "content": "Наші меблі, розроблені з використанням новітніх технологічних рішень та найсучасніших матеріалів де кожен предмет є втіленням елегантності та зручності. Крім того, ми пропонуємо налаштувати меблі під свої потреби та персональний стиль. Ви можете обирати різні розміри та матеріали, щоб ідеально вписати наші вироби у ваш простір."
+      }
+    },
+    {
+        "name": "Service",
+        "slug": "service",
+        "en": {
+        "title": "Individual Approach",
+        "content": "We understand that every space is unique, so we offer solutions that meet your needs and desires."
+      },
+        "uk": {
+        "title": "Індивідуальний підхід",
+        "content": "Ми розуміємо, що кожен простір унікальний, тому пропонуємо рішення, які відповідають вашим потребам і бажанням."
+      }
+    },
+    {
+        "name": "Finishes info",
+        "slug": "finishes-info",
+        "en": {
+        "title": "",
+        "content": "All presented finishes are reproductions. The choice of a suitable color decor is possible only with the the original sample."
+      },
+        "uk": {
+        "title": "",
+        "content": "Всі представлені декори є репродукціями. Вибір придатного за кольором декору можливий тільки за допомогою оригінального зразка."
+      }
+    },
+    {
+        "name": "Payment",
+        "slug": "payment",
+        "uk": {
+        "title": "Payment",
+        "content": 
+            "<p>Оформлення замовлення здійснюється тільки за умови <strong>повної (100%) оплати</strong> рахунку.</p><p>Оплата здійснюється тільки в національній валюті (грн.) на розрахунковий рахунок.</p>"
+        },
+        "en": {
+          "title": "Payment",
+          "content": "<p>Order processing is carried out only upon <strong>full (100%) payment</strong> of the invoice.</p><p>Payment is made only in the national currency (UAH) to the current account.</p>"
+        }
+    },
+    {
+        "name": "Delivery",
+        "slug": "delivery",
+        "uk": {
+          "title": "Доставка",
+          "content": 
+            "<p>Вартість доставки по Києву: малогабаритні товари до 30кг. - <strong>400 грн.</strong>, великогабаритні від <strong>600 грн.</strong> У вартість доставки включено занесення.</p><p>За відсутності ліфта вартість підйому - <strong>40 грн./поверх.</strong></p><p>Доставка по Україні розраховується за тарифами транспортної компанії.</p><p>Вартість збирання габаритних виробів розраховується індивідуально.</p><p>Послуги монтажу виробів, ми <strong><u>не надаємо</u></strong>.</p>"
+        },
+        "en": {
+          "title": "Delivery",
+          "content": 
+            "<p>Delivery cost in Kyiv: small-sized goods up to 30kg - <strong>400 UAH</strong>, large-sized goods from <strong>600 UAH</strong>. Delivery cost includes carrying.</p><p>In the absence of an elevator, the cost of lifting is <strong>40 UAH per floor</strong>.</p><p>Delivery across Ukraine is calculated according to the tariffs of the transport company.</p><p>The cost of assembling large-sized products is calculated individually.</p><p>We <strong><u>do not provide</u></strong> installation services for products.</p>"
+        }
+    },
+    {
+        "name": "About Us p1",
+        "slug": "about-us-p1",
+        "en": {
+            "title": "",
+          "content": "<p>Quality and customer care are the main values of our brand. We create furniture that meets high standards, combining modern design with practicality. Minimalism that does not lose relevance over time is the basis of our collections.</p>"
+        },
+        "uk": {
+            "title": "",
+          "content": "<p>Якість та турбота про клієнта – головні цінності нашого бренду. Ми створюємо меблі, що відповідають високим стандартам, поєднуючи сучасний дизайн із практичністю. Мінімалізм, який не втрачає актуальності з часом, – основа наших колекцій.</p>"
+        }
+    },
+    {
+        "name": "About Us p2",
+        "slug": "about-us-p2",
+        "en": {
+            "title": "",
+          "content": "<p>We specialize in storage furniture: stylish chests of drawers and bedside tables, dining and writing tables, coffee tables, shelves and racks. All models are created with ergonomics in mind and are suitable for both compact apartments and spacious houses. We constantly improve our products to make them convenient, reliable and safe.</p>"
+        },
+        "uk": {
+            "title": "",
+          "content": "<p>Ми спеціалізуємося на меблях для зберігання: стильні комоди та тумби, обідні та письмові столи, журнальні столики, полиці та стелажі. Усі моделі створені з урахуванням ергономіки та підходять як для компактних квартир, так і для просторих будинків. Ми постійно вдосконалюємо наші продукти, щоб вони були зручними, надійними та безпечними.</p>"
+        }
+    },
+    {
+        "name": "feature-minimalism-in-design",
+        "slug": "feature-minimalism-in-design",
+        "en": {
+          "title": "Minimalism in design",
+          "content": "We create furniture with clean lines and thoughtful shapes that harmoniously complement any interior."
+        },
+        "uk": {
+          "title": "Мінімалізм у дизайні",
+          "content": "Ми створюємо меблі з чіткими лініями та продуманими формами, які гармонійно доповнюють будь-який інтер'єр."
+        }
+      },
+      {
+        "name": "feature-innovations-and-style",
+        "slug": "feature-innovations-and-style",
+        "en": {
+          "title": "Innovations and style",
+          "content": "We use only proven materials and technologies to ensure durability and reliability."
+        },
+        "uk": {
+          "title": "Інновації та стиль",
+          "content": "Ми використовуємо лише перевірені матеріали та технології, щоб гарантувати довговічність і надійність."
+        }
+      },
+      {
+        "name": "feature-ecology-and-responsibility",
+        "slug": "feature-ecology-and-responsibility",
+        "en": {
+          "title": "Ecology and responsibility",
+          "content": "Our products are created with care for nature - we choose ecological materials and rational production processes."
+        },
+        "uk": {
+          "title": "Екологія та відповідальність",
+          "content": "Наша продукція створюється з турботою про природу — ми обираємо екологічні матеріали та раціональні виробничі процеси."
+        }
+      },
+      {
+        "name": "feature-individual-approach",
+        "slug": "feature-individual-approach",
+        "en": {
+          "title": "Individual approach",
+          "content": "We understand that every space is unique, so we offer solutions that meet your needs and desires."
+        },
+        "uk": {
+          "title": "Індивідуальний підхід",
+          "content": "Ми розуміємо, що кожен простір унікальний, тому пропонуємо рішення, які відповідають вашим потребам і побажанням."
+        }
+      },
+      {
+        "name": "feature-quality-that-lasts-for-years",
+        "slug": "feature-quality-that-lasts-for-years",
+        "en": {
+          "title": "Quality that lasts for years",
+          "content": "We keep up with new design trends to offer modern and functional solutions for your home."
+        },
+        "uk": {
+          "title": "Якість на роки",
+          "content": "Ми слідкуємо за новими тенденціями дизайну, щоб запропонувати сучасні та функціональні рішення для вашого дому."
+        }
+      },
+      {
+        "name": "info-office",
+        "slug": "info-office",
+        "en": {
+          "title": "Office",
+          "content": "Kyiv, Tumanyana St, 1 (showroom temporarily closed)"
+        },
+        "uk": {
+          "title": "Офіс",
+          "content": "Київ, вул. Туманяна, 1 (шоурум тимчасово зачинений)"
+        }
+      },
+      {
+        "name": "info-phone",
+        "slug": "info-phone",
+        "en": {
+          "title": "Phone",
+          "content": "+38 097 112 26 16"
+        },
+        "uk": {
+          "title": "Телефон",
+          "content": "+38 097 112 26 16"
+        }
+      },
+      {
+        "name": "info-email",
+        "slug": "info-email",
+        "en": {
+          "title": "Email",
+          "content": "info@lansot.com"
+        },
+        "uk": {
+          "title": "Email",
+          "content": "info@lansot.com"
+        }
+      },
+      {
+        "name": "info-schedule",
+        "slug": "info-schedule",
+        "en": {
+          "title": "Working hours",
+          "content": "Mon–Fri: 10:00 – 20:00, Sat–Sun: Closed"
+        },
+        "uk": {
+          "title": "Графік роботи",
+          "content": "Пн-Пт: 10:00 - 20:00, Сб-Нд: Вихідний"
+        }
+      },
+      {
+        "name": "info-production",
+        "slug": "info-production",
+        "en": {
+          "title": "Production",
+          "content": "Kyiv, Viskozna St, 8"
+        },
+        "uk": {
+          "title": "Виробництво",
+          "content": "Київ, вул. Віскозна, 8"
+        }
+      }
+    ]
