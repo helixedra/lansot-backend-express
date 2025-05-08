@@ -34,6 +34,38 @@ router.get("/", async (req, res) => {
   });
   res.json(pages);
 });
+router.get("/:locale", async (req, res) => {
+  const { locale } = req.params;
+  const page = await prisma.product.findMany({
+    include: {
+      cover: {
+        include: {
+          imageMeta: true,
+        },
+      },
+      meta: true,
+      category: true,
+      collection: true,
+      promotion: {
+        include: {
+          images: {
+            include: {
+              imageMeta: true,
+            },
+          },
+        },
+      },
+      technical: {
+        include: {
+          imageMeta: true,
+        },
+      },
+      files: true,
+    },
+    where: { locale },
+  });
+  res.json(page);
+});
 
 router.get("/:slug", async (req, res) => {
   const { slug } = req.params;
