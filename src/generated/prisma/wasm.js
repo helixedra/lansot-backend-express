@@ -150,6 +150,7 @@ exports.Prisma.ContentScalarFieldEnum = {
   title: 'title',
   content: 'content',
   pageId: 'pageId',
+  collectionId: 'collectionId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -193,7 +194,9 @@ exports.Prisma.ImageScalarFieldEnum = {
   path: 'path',
   imageMetaId: 'imageMetaId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  sectionId: 'sectionId',
+  collectionId: 'collectionId'
 };
 
 exports.Prisma.ImageMetaScalarFieldEnum = {
@@ -210,6 +213,8 @@ exports.Prisma.CollectionScalarFieldEnum = {
   locale: 'locale',
   name: 'name',
   slug: 'slug',
+  metaId: 'metaId',
+  coverId: 'coverId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -231,6 +236,19 @@ exports.Prisma.GalleryScalarFieldEnum = {
   locale: 'locale',
   name: 'name',
   slug: 'slug',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SectionScalarFieldEnum = {
+  id: 'id',
+  locale: 'locale',
+  name: 'name',
+  slug: 'slug',
+  layout: 'layout',
+  title: 'title',
+  content: 'content',
+  collectionId: 'collectionId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -262,7 +280,8 @@ exports.Prisma.ModelName = {
   ImageMeta: 'ImageMeta',
   Collection: 'Collection',
   Page: 'Page',
-  Gallery: 'Gallery'
+  Gallery: 'Gallery',
+  Section: 'Section'
 };
 
 /**

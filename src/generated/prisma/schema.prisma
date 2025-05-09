@@ -24,32 +24,35 @@ model Category {
 }
 
 model Meta {
-  id          String     @id @default(cuid())
+  id          String       @id @default(cuid())
   locale      String
   title       String?
   description String?
   keywords    String?
-  robots      Boolean    @default(true)
+  robots      Boolean      @default(true)
   categories  Category[]
   pages       Page[]
   products    Product[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @default(now())
+  collections Collection[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @default(now())
 
   @@unique([id])
 }
 
 model Content {
-  id        String   @id @default(cuid())
-  locale    String
-  name      String
-  slug      String
-  title     String?
-  content   String?
-  page      Page?    @relation(fields: [pageId], references: [id])
-  pageId    String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  id           String      @id @default(cuid())
+  locale       String
+  name         String
+  slug         String
+  title        String?
+  content      String?
+  page         Page?       @relation(fields: [pageId], references: [id])
+  pageId       String?
+  collection   Collection? @relation("CollectionContent", fields: [collectionId], references: [id], onDelete: Cascade)
+  collectionId String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @default(now())
 
   @@unique([slug, locale])
 }
@@ -111,6 +114,10 @@ model Image {
   GalleryImages     Gallery[]          @relation("GalleryImages")
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @default(now())
+  section           Section?           @relation(fields: [sectionId], references: [id])
+  sectionId         String?
+  CollectionCover   Collection?        @relation("CollectionCover")
+  collectionId      String?
 
   @@unique([id, imageMetaId])
 }
@@ -133,8 +140,14 @@ model Collection {
   name      String
   slug      String
   products  Product[]
+  meta      Meta      @relation(fields: [metaId], references: [id], onDelete: Cascade)
+  metaId    String
+  cover     Image?    @relation("CollectionCover", fields: [coverId], references: [id], onDelete: Cascade)
+  coverId   String?   @unique
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now())
+  section   Section[]
+  contents  Content[] @relation("CollectionContent")
 
   @@unique([id])
 }
@@ -163,6 +176,23 @@ model Gallery {
   images    Image[]  @relation("GalleryImages")
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+
+  @@unique([id])
+}
+
+model Section {
+  id           String      @id @default(cuid())
+  locale       String
+  name         String
+  slug         String
+  layout       String?
+  title        String?
+  content      String?
+  collectionId String?
+  collection   Collection? @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @default(now())
+  images       Image[]
 
   @@unique([id])
 }

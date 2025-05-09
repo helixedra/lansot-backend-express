@@ -68,6 +68,11 @@ export type Page = $Result.DefaultSelection<Prisma.$PagePayload>
  * 
  */
 export type Gallery = $Result.DefaultSelection<Prisma.$GalleryPayload>
+/**
+ * Model Section
+ * 
+ */
+export type Section = $Result.DefaultSelection<Prisma.$SectionPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -303,6 +308,16 @@ export class PrismaClient<
     * ```
     */
   get gallery(): Prisma.GalleryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.section`: Exposes CRUD operations for the **Section** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Sections
+    * const sections = await prisma.section.findMany()
+    * ```
+    */
+  get section(): Prisma.SectionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -753,7 +768,8 @@ export namespace Prisma {
     ImageMeta: 'ImageMeta',
     Collection: 'Collection',
     Page: 'Page',
-    Gallery: 'Gallery'
+    Gallery: 'Gallery',
+    Section: 'Section'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -772,7 +788,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "category" | "meta" | "content" | "product" | "productPromotion" | "file" | "image" | "imageMeta" | "collection" | "page" | "gallery"
+      modelProps: "category" | "meta" | "content" | "product" | "productPromotion" | "file" | "image" | "imageMeta" | "collection" | "page" | "gallery" | "section"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1590,6 +1606,80 @@ export namespace Prisma {
           }
         }
       }
+      Section: {
+        payload: Prisma.$SectionPayload<ExtArgs>
+        fields: Prisma.SectionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SectionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SectionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>
+          }
+          findFirst: {
+            args: Prisma.SectionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SectionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>
+          }
+          findMany: {
+            args: Prisma.SectionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>[]
+          }
+          create: {
+            args: Prisma.SectionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>
+          }
+          createMany: {
+            args: Prisma.SectionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SectionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>[]
+          }
+          delete: {
+            args: Prisma.SectionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>
+          }
+          update: {
+            args: Prisma.SectionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>
+          }
+          deleteMany: {
+            args: Prisma.SectionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SectionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SectionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>[]
+          }
+          upsert: {
+            args: Prisma.SectionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectionPayload>
+          }
+          aggregate: {
+            args: Prisma.SectionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSection>
+          }
+          groupBy: {
+            args: Prisma.SectionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SectionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SectionCountArgs<ExtArgs>
+            result: $Utils.Optional<SectionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1685,6 +1775,7 @@ export namespace Prisma {
     collection?: CollectionOmit
     page?: PageOmit
     gallery?: GalleryOmit
+    section?: SectionOmit
   }
 
   /* Types for Logging */
@@ -1813,12 +1904,14 @@ export namespace Prisma {
     categories: number
     pages: number
     products: number
+    collections: number
   }
 
   export type MetaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     categories?: boolean | MetaCountOutputTypeCountCategoriesArgs
     pages?: boolean | MetaCountOutputTypeCountPagesArgs
     products?: boolean | MetaCountOutputTypeCountProductsArgs
+    collections?: boolean | MetaCountOutputTypeCountCollectionsArgs
   }
 
   // Custom InputTypes
@@ -1851,6 +1944,13 @@ export namespace Prisma {
    */
   export type MetaCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProductWhereInput
+  }
+
+  /**
+   * MetaCountOutputType without action
+   */
+  export type MetaCountOutputTypeCountCollectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CollectionWhereInput
   }
 
 
@@ -2020,10 +2120,14 @@ export namespace Prisma {
 
   export type CollectionCountOutputType = {
     products: number
+    section: number
+    contents: number
   }
 
   export type CollectionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | CollectionCountOutputTypeCountProductsArgs
+    section?: boolean | CollectionCountOutputTypeCountSectionArgs
+    contents?: boolean | CollectionCountOutputTypeCountContentsArgs
   }
 
   // Custom InputTypes
@@ -2042,6 +2146,20 @@ export namespace Prisma {
    */
   export type CollectionCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProductWhereInput
+  }
+
+  /**
+   * CollectionCountOutputType without action
+   */
+  export type CollectionCountOutputTypeCountSectionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SectionWhereInput
+  }
+
+  /**
+   * CollectionCountOutputType without action
+   */
+  export type CollectionCountOutputTypeCountContentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContentWhereInput
   }
 
 
@@ -2103,6 +2221,37 @@ export namespace Prisma {
    * GalleryCountOutputType without action
    */
   export type GalleryCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ImageWhereInput
+  }
+
+
+  /**
+   * Count Type SectionCountOutputType
+   */
+
+  export type SectionCountOutputType = {
+    images: number
+  }
+
+  export type SectionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    images?: boolean | SectionCountOutputTypeCountImagesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SectionCountOutputType without action
+   */
+  export type SectionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SectionCountOutputType
+     */
+    select?: SectionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SectionCountOutputType without action
+   */
+  export type SectionCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ImageWhereInput
   }
 
@@ -3429,6 +3578,7 @@ export namespace Prisma {
     categories?: boolean | Meta$categoriesArgs<ExtArgs>
     pages?: boolean | Meta$pagesArgs<ExtArgs>
     products?: boolean | Meta$productsArgs<ExtArgs>
+    collections?: boolean | Meta$collectionsArgs<ExtArgs>
     _count?: boolean | MetaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["meta"]>
 
@@ -3470,6 +3620,7 @@ export namespace Prisma {
     categories?: boolean | Meta$categoriesArgs<ExtArgs>
     pages?: boolean | Meta$pagesArgs<ExtArgs>
     products?: boolean | Meta$productsArgs<ExtArgs>
+    collections?: boolean | Meta$collectionsArgs<ExtArgs>
     _count?: boolean | MetaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type MetaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3481,6 +3632,7 @@ export namespace Prisma {
       categories: Prisma.$CategoryPayload<ExtArgs>[]
       pages: Prisma.$PagePayload<ExtArgs>[]
       products: Prisma.$ProductPayload<ExtArgs>[]
+      collections: Prisma.$CollectionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3888,6 +4040,7 @@ export namespace Prisma {
     categories<T extends Meta$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, Meta$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     pages<T extends Meta$pagesArgs<ExtArgs> = {}>(args?: Subset<T, Meta$pagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     products<T extends Meta$productsArgs<ExtArgs> = {}>(args?: Subset<T, Meta$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    collections<T extends Meta$collectionsArgs<ExtArgs> = {}>(args?: Subset<T, Meta$collectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4385,6 +4538,30 @@ export namespace Prisma {
   }
 
   /**
+   * Meta.collections
+   */
+  export type Meta$collectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Collection
+     */
+    select?: CollectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Collection
+     */
+    omit?: CollectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CollectionInclude<ExtArgs> | null
+    where?: CollectionWhereInput
+    orderBy?: CollectionOrderByWithRelationInput | CollectionOrderByWithRelationInput[]
+    cursor?: CollectionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CollectionScalarFieldEnum | CollectionScalarFieldEnum[]
+  }
+
+  /**
    * Meta without action
    */
   export type MetaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4421,6 +4598,7 @@ export namespace Prisma {
     title: string | null
     content: string | null
     pageId: string | null
+    collectionId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4433,6 +4611,7 @@ export namespace Prisma {
     title: string | null
     content: string | null
     pageId: string | null
+    collectionId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4445,6 +4624,7 @@ export namespace Prisma {
     title: number
     content: number
     pageId: number
+    collectionId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -4459,6 +4639,7 @@ export namespace Prisma {
     title?: true
     content?: true
     pageId?: true
+    collectionId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -4471,6 +4652,7 @@ export namespace Prisma {
     title?: true
     content?: true
     pageId?: true
+    collectionId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -4483,6 +4665,7 @@ export namespace Prisma {
     title?: true
     content?: true
     pageId?: true
+    collectionId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -4568,6 +4751,7 @@ export namespace Prisma {
     title: string | null
     content: string | null
     pageId: string | null
+    collectionId: string | null
     createdAt: Date
     updatedAt: Date
     _count: ContentCountAggregateOutputType | null
@@ -4597,9 +4781,11 @@ export namespace Prisma {
     title?: boolean
     content?: boolean
     pageId?: boolean
+    collectionId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     page?: boolean | Content$pageArgs<ExtArgs>
+    collection?: boolean | Content$collectionArgs<ExtArgs>
   }, ExtArgs["result"]["content"]>
 
   export type ContentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4610,9 +4796,11 @@ export namespace Prisma {
     title?: boolean
     content?: boolean
     pageId?: boolean
+    collectionId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     page?: boolean | Content$pageArgs<ExtArgs>
+    collection?: boolean | Content$collectionArgs<ExtArgs>
   }, ExtArgs["result"]["content"]>
 
   export type ContentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4623,9 +4811,11 @@ export namespace Prisma {
     title?: boolean
     content?: boolean
     pageId?: boolean
+    collectionId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     page?: boolean | Content$pageArgs<ExtArgs>
+    collection?: boolean | Content$collectionArgs<ExtArgs>
   }, ExtArgs["result"]["content"]>
 
   export type ContentSelectScalar = {
@@ -4636,25 +4826,30 @@ export namespace Prisma {
     title?: boolean
     content?: boolean
     pageId?: boolean
+    collectionId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locale" | "name" | "slug" | "title" | "content" | "pageId" | "createdAt" | "updatedAt", ExtArgs["result"]["content"]>
+  export type ContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locale" | "name" | "slug" | "title" | "content" | "pageId" | "collectionId" | "createdAt" | "updatedAt", ExtArgs["result"]["content"]>
   export type ContentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     page?: boolean | Content$pageArgs<ExtArgs>
+    collection?: boolean | Content$collectionArgs<ExtArgs>
   }
   export type ContentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     page?: boolean | Content$pageArgs<ExtArgs>
+    collection?: boolean | Content$collectionArgs<ExtArgs>
   }
   export type ContentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     page?: boolean | Content$pageArgs<ExtArgs>
+    collection?: boolean | Content$collectionArgs<ExtArgs>
   }
 
   export type $ContentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Content"
     objects: {
       page: Prisma.$PagePayload<ExtArgs> | null
+      collection: Prisma.$CollectionPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4664,6 +4859,7 @@ export namespace Prisma {
       title: string | null
       content: string | null
       pageId: string | null
+      collectionId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["content"]>
@@ -5061,6 +5257,7 @@ export namespace Prisma {
   export interface Prisma__ContentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     page<T extends Content$pageArgs<ExtArgs> = {}>(args?: Subset<T, Content$pageArgs<ExtArgs>>): Prisma__PageClient<$Result.GetResult<Prisma.$PagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    collection<T extends Content$collectionArgs<ExtArgs> = {}>(args?: Subset<T, Content$collectionArgs<ExtArgs>>): Prisma__CollectionClient<$Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5097,6 +5294,7 @@ export namespace Prisma {
     readonly title: FieldRef<"Content", 'String'>
     readonly content: FieldRef<"Content", 'String'>
     readonly pageId: FieldRef<"Content", 'String'>
+    readonly collectionId: FieldRef<"Content", 'String'>
     readonly createdAt: FieldRef<"Content", 'DateTime'>
     readonly updatedAt: FieldRef<"Content", 'DateTime'>
   }
@@ -5511,6 +5709,25 @@ export namespace Prisma {
      */
     include?: PageInclude<ExtArgs> | null
     where?: PageWhereInput
+  }
+
+  /**
+   * Content.collection
+   */
+  export type Content$collectionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Collection
+     */
+    select?: CollectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Collection
+     */
+    omit?: CollectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CollectionInclude<ExtArgs> | null
+    where?: CollectionWhereInput
   }
 
   /**
@@ -9140,6 +9357,8 @@ export namespace Prisma {
     imageMetaId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    sectionId: string | null
+    collectionId: string | null
   }
 
   export type ImageMaxAggregateOutputType = {
@@ -9148,6 +9367,8 @@ export namespace Prisma {
     imageMetaId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    sectionId: string | null
+    collectionId: string | null
   }
 
   export type ImageCountAggregateOutputType = {
@@ -9156,6 +9377,8 @@ export namespace Prisma {
     imageMetaId: number
     createdAt: number
     updatedAt: number
+    sectionId: number
+    collectionId: number
     _all: number
   }
 
@@ -9166,6 +9389,8 @@ export namespace Prisma {
     imageMetaId?: true
     createdAt?: true
     updatedAt?: true
+    sectionId?: true
+    collectionId?: true
   }
 
   export type ImageMaxAggregateInputType = {
@@ -9174,6 +9399,8 @@ export namespace Prisma {
     imageMetaId?: true
     createdAt?: true
     updatedAt?: true
+    sectionId?: true
+    collectionId?: true
   }
 
   export type ImageCountAggregateInputType = {
@@ -9182,6 +9409,8 @@ export namespace Prisma {
     imageMetaId?: true
     createdAt?: true
     updatedAt?: true
+    sectionId?: true
+    collectionId?: true
     _all?: true
   }
 
@@ -9263,6 +9492,8 @@ export namespace Prisma {
     imageMetaId: string
     createdAt: Date
     updatedAt: Date
+    sectionId: string | null
+    collectionId: string | null
     _count: ImageCountAggregateOutputType | null
     _min: ImageMinAggregateOutputType | null
     _max: ImageMaxAggregateOutputType | null
@@ -9288,11 +9519,15 @@ export namespace Prisma {
     imageMetaId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    sectionId?: boolean
+    collectionId?: boolean
     imageMeta?: boolean | ImageMetaDefaultArgs<ExtArgs>
     ProductCover?: boolean | Image$ProductCoverArgs<ExtArgs>
     TechnicalProducts?: boolean | Image$TechnicalProductsArgs<ExtArgs>
     ProductPromotions?: boolean | Image$ProductPromotionsArgs<ExtArgs>
     GalleryImages?: boolean | Image$GalleryImagesArgs<ExtArgs>
+    section?: boolean | Image$sectionArgs<ExtArgs>
+    CollectionCover?: boolean | Image$CollectionCoverArgs<ExtArgs>
     _count?: boolean | ImageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["image"]>
 
@@ -9302,7 +9537,10 @@ export namespace Prisma {
     imageMetaId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    sectionId?: boolean
+    collectionId?: boolean
     imageMeta?: boolean | ImageMetaDefaultArgs<ExtArgs>
+    section?: boolean | Image$sectionArgs<ExtArgs>
   }, ExtArgs["result"]["image"]>
 
   export type ImageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9311,7 +9549,10 @@ export namespace Prisma {
     imageMetaId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    sectionId?: boolean
+    collectionId?: boolean
     imageMeta?: boolean | ImageMetaDefaultArgs<ExtArgs>
+    section?: boolean | Image$sectionArgs<ExtArgs>
   }, ExtArgs["result"]["image"]>
 
   export type ImageSelectScalar = {
@@ -9320,22 +9561,28 @@ export namespace Prisma {
     imageMetaId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    sectionId?: boolean
+    collectionId?: boolean
   }
 
-  export type ImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "path" | "imageMetaId" | "createdAt" | "updatedAt", ExtArgs["result"]["image"]>
+  export type ImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "path" | "imageMetaId" | "createdAt" | "updatedAt" | "sectionId" | "collectionId", ExtArgs["result"]["image"]>
   export type ImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     imageMeta?: boolean | ImageMetaDefaultArgs<ExtArgs>
     ProductCover?: boolean | Image$ProductCoverArgs<ExtArgs>
     TechnicalProducts?: boolean | Image$TechnicalProductsArgs<ExtArgs>
     ProductPromotions?: boolean | Image$ProductPromotionsArgs<ExtArgs>
     GalleryImages?: boolean | Image$GalleryImagesArgs<ExtArgs>
+    section?: boolean | Image$sectionArgs<ExtArgs>
+    CollectionCover?: boolean | Image$CollectionCoverArgs<ExtArgs>
     _count?: boolean | ImageCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ImageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     imageMeta?: boolean | ImageMetaDefaultArgs<ExtArgs>
+    section?: boolean | Image$sectionArgs<ExtArgs>
   }
   export type ImageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     imageMeta?: boolean | ImageMetaDefaultArgs<ExtArgs>
+    section?: boolean | Image$sectionArgs<ExtArgs>
   }
 
   export type $ImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9346,6 +9593,8 @@ export namespace Prisma {
       TechnicalProducts: Prisma.$ProductPayload<ExtArgs>[]
       ProductPromotions: Prisma.$ProductPromotionPayload<ExtArgs>[]
       GalleryImages: Prisma.$GalleryPayload<ExtArgs>[]
+      section: Prisma.$SectionPayload<ExtArgs> | null
+      CollectionCover: Prisma.$CollectionPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9353,6 +9602,8 @@ export namespace Prisma {
       imageMetaId: string
       createdAt: Date
       updatedAt: Date
+      sectionId: string | null
+      collectionId: string | null
     }, ExtArgs["result"]["image"]>
     composites: {}
   }
@@ -9752,6 +10003,8 @@ export namespace Prisma {
     TechnicalProducts<T extends Image$TechnicalProductsArgs<ExtArgs> = {}>(args?: Subset<T, Image$TechnicalProductsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ProductPromotions<T extends Image$ProductPromotionsArgs<ExtArgs> = {}>(args?: Subset<T, Image$ProductPromotionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPromotionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     GalleryImages<T extends Image$GalleryImagesArgs<ExtArgs> = {}>(args?: Subset<T, Image$GalleryImagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GalleryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    section<T extends Image$sectionArgs<ExtArgs> = {}>(args?: Subset<T, Image$sectionArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    CollectionCover<T extends Image$CollectionCoverArgs<ExtArgs> = {}>(args?: Subset<T, Image$CollectionCoverArgs<ExtArgs>>): Prisma__CollectionClient<$Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9786,6 +10039,8 @@ export namespace Prisma {
     readonly imageMetaId: FieldRef<"Image", 'String'>
     readonly createdAt: FieldRef<"Image", 'DateTime'>
     readonly updatedAt: FieldRef<"Image", 'DateTime'>
+    readonly sectionId: FieldRef<"Image", 'String'>
+    readonly collectionId: FieldRef<"Image", 'String'>
   }
     
 
@@ -10270,6 +10525,44 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: GalleryScalarFieldEnum | GalleryScalarFieldEnum[]
+  }
+
+  /**
+   * Image.section
+   */
+  export type Image$sectionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Section
+     */
+    select?: SectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Section
+     */
+    omit?: SectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SectionInclude<ExtArgs> | null
+    where?: SectionWhereInput
+  }
+
+  /**
+   * Image.CollectionCover
+   */
+  export type Image$CollectionCoverArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Collection
+     */
+    select?: CollectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Collection
+     */
+    omit?: CollectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CollectionInclude<ExtArgs> | null
+    where?: CollectionWhereInput
   }
 
   /**
@@ -11389,6 +11682,8 @@ export namespace Prisma {
     locale: string | null
     name: string | null
     slug: string | null
+    metaId: string | null
+    coverId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -11398,6 +11693,8 @@ export namespace Prisma {
     locale: string | null
     name: string | null
     slug: string | null
+    metaId: string | null
+    coverId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -11407,6 +11704,8 @@ export namespace Prisma {
     locale: number
     name: number
     slug: number
+    metaId: number
+    coverId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -11418,6 +11717,8 @@ export namespace Prisma {
     locale?: true
     name?: true
     slug?: true
+    metaId?: true
+    coverId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -11427,6 +11728,8 @@ export namespace Prisma {
     locale?: true
     name?: true
     slug?: true
+    metaId?: true
+    coverId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -11436,6 +11739,8 @@ export namespace Prisma {
     locale?: true
     name?: true
     slug?: true
+    metaId?: true
+    coverId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -11518,6 +11823,8 @@ export namespace Prisma {
     locale: string
     name: string
     slug: string
+    metaId: string
+    coverId: string | null
     createdAt: Date
     updatedAt: Date
     _count: CollectionCountAggregateOutputType | null
@@ -11544,9 +11851,15 @@ export namespace Prisma {
     locale?: boolean
     name?: boolean
     slug?: boolean
+    metaId?: boolean
+    coverId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     products?: boolean | Collection$productsArgs<ExtArgs>
+    meta?: boolean | MetaDefaultArgs<ExtArgs>
+    cover?: boolean | Collection$coverArgs<ExtArgs>
+    section?: boolean | Collection$sectionArgs<ExtArgs>
+    contents?: boolean | Collection$contentsArgs<ExtArgs>
     _count?: boolean | CollectionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["collection"]>
 
@@ -11555,8 +11868,12 @@ export namespace Prisma {
     locale?: boolean
     name?: boolean
     slug?: boolean
+    metaId?: boolean
+    coverId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    meta?: boolean | MetaDefaultArgs<ExtArgs>
+    cover?: boolean | Collection$coverArgs<ExtArgs>
   }, ExtArgs["result"]["collection"]>
 
   export type CollectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -11564,8 +11881,12 @@ export namespace Prisma {
     locale?: boolean
     name?: boolean
     slug?: boolean
+    metaId?: boolean
+    coverId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    meta?: boolean | MetaDefaultArgs<ExtArgs>
+    cover?: boolean | Collection$coverArgs<ExtArgs>
   }, ExtArgs["result"]["collection"]>
 
   export type CollectionSelectScalar = {
@@ -11573,28 +11894,46 @@ export namespace Prisma {
     locale?: boolean
     name?: boolean
     slug?: boolean
+    metaId?: boolean
+    coverId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CollectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locale" | "name" | "slug" | "createdAt" | "updatedAt", ExtArgs["result"]["collection"]>
+  export type CollectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locale" | "name" | "slug" | "metaId" | "coverId" | "createdAt" | "updatedAt", ExtArgs["result"]["collection"]>
   export type CollectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | Collection$productsArgs<ExtArgs>
+    meta?: boolean | MetaDefaultArgs<ExtArgs>
+    cover?: boolean | Collection$coverArgs<ExtArgs>
+    section?: boolean | Collection$sectionArgs<ExtArgs>
+    contents?: boolean | Collection$contentsArgs<ExtArgs>
     _count?: boolean | CollectionCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type CollectionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type CollectionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type CollectionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    meta?: boolean | MetaDefaultArgs<ExtArgs>
+    cover?: boolean | Collection$coverArgs<ExtArgs>
+  }
+  export type CollectionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    meta?: boolean | MetaDefaultArgs<ExtArgs>
+    cover?: boolean | Collection$coverArgs<ExtArgs>
+  }
 
   export type $CollectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Collection"
     objects: {
       products: Prisma.$ProductPayload<ExtArgs>[]
+      meta: Prisma.$MetaPayload<ExtArgs>
+      cover: Prisma.$ImagePayload<ExtArgs> | null
+      section: Prisma.$SectionPayload<ExtArgs>[]
+      contents: Prisma.$ContentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       locale: string
       name: string
       slug: string
+      metaId: string
+      coverId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["collection"]>
@@ -11992,6 +12331,10 @@ export namespace Prisma {
   export interface Prisma__CollectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     products<T extends Collection$productsArgs<ExtArgs> = {}>(args?: Subset<T, Collection$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    meta<T extends MetaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MetaDefaultArgs<ExtArgs>>): Prisma__MetaClient<$Result.GetResult<Prisma.$MetaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    cover<T extends Collection$coverArgs<ExtArgs> = {}>(args?: Subset<T, Collection$coverArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    section<T extends Collection$sectionArgs<ExtArgs> = {}>(args?: Subset<T, Collection$sectionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    contents<T extends Collection$contentsArgs<ExtArgs> = {}>(args?: Subset<T, Collection$contentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12025,6 +12368,8 @@ export namespace Prisma {
     readonly locale: FieldRef<"Collection", 'String'>
     readonly name: FieldRef<"Collection", 'String'>
     readonly slug: FieldRef<"Collection", 'String'>
+    readonly metaId: FieldRef<"Collection", 'String'>
+    readonly coverId: FieldRef<"Collection", 'String'>
     readonly createdAt: FieldRef<"Collection", 'DateTime'>
     readonly updatedAt: FieldRef<"Collection", 'DateTime'>
   }
@@ -12276,6 +12621,10 @@ export namespace Prisma {
      */
     data: CollectionCreateManyInput | CollectionCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CollectionIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -12346,6 +12695,10 @@ export namespace Prisma {
      * Limit how many Collections to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CollectionIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -12436,6 +12789,73 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
+  }
+
+  /**
+   * Collection.cover
+   */
+  export type Collection$coverArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    where?: ImageWhereInput
+  }
+
+  /**
+   * Collection.section
+   */
+  export type Collection$sectionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Section
+     */
+    select?: SectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Section
+     */
+    omit?: SectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SectionInclude<ExtArgs> | null
+    where?: SectionWhereInput
+    orderBy?: SectionOrderByWithRelationInput | SectionOrderByWithRelationInput[]
+    cursor?: SectionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SectionScalarFieldEnum | SectionScalarFieldEnum[]
+  }
+
+  /**
+   * Collection.contents
+   */
+  export type Collection$contentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Content
+     */
+    select?: ContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Content
+     */
+    omit?: ContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContentInclude<ExtArgs> | null
+    where?: ContentWhereInput
+    orderBy?: ContentOrderByWithRelationInput | ContentOrderByWithRelationInput[]
+    cursor?: ContentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContentScalarFieldEnum | ContentScalarFieldEnum[]
   }
 
   /**
@@ -14681,6 +15101,1178 @@ export namespace Prisma {
 
 
   /**
+   * Model Section
+   */
+
+  export type AggregateSection = {
+    _count: SectionCountAggregateOutputType | null
+    _min: SectionMinAggregateOutputType | null
+    _max: SectionMaxAggregateOutputType | null
+  }
+
+  export type SectionMinAggregateOutputType = {
+    id: string | null
+    locale: string | null
+    name: string | null
+    slug: string | null
+    layout: string | null
+    title: string | null
+    content: string | null
+    collectionId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SectionMaxAggregateOutputType = {
+    id: string | null
+    locale: string | null
+    name: string | null
+    slug: string | null
+    layout: string | null
+    title: string | null
+    content: string | null
+    collectionId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SectionCountAggregateOutputType = {
+    id: number
+    locale: number
+    name: number
+    slug: number
+    layout: number
+    title: number
+    content: number
+    collectionId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SectionMinAggregateInputType = {
+    id?: true
+    locale?: true
+    name?: true
+    slug?: true
+    layout?: true
+    title?: true
+    content?: true
+    collectionId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SectionMaxAggregateInputType = {
+    id?: true
+    locale?: true
+    name?: true
+    slug?: true
+    layout?: true
+    title?: true
+    content?: true
+    collectionId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SectionCountAggregateInputType = {
+    id?: true
+    locale?: true
+    name?: true
+    slug?: true
+    layout?: true
+    title?: true
+    content?: true
+    collectionId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SectionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Section to aggregate.
+     */
+    where?: SectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sections to fetch.
+     */
+    orderBy?: SectionOrderByWithRelationInput | SectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Sections
+    **/
+    _count?: true | SectionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SectionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SectionMaxAggregateInputType
+  }
+
+  export type GetSectionAggregateType<T extends SectionAggregateArgs> = {
+        [P in keyof T & keyof AggregateSection]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSection[P]>
+      : GetScalarType<T[P], AggregateSection[P]>
+  }
+
+
+
+
+  export type SectionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SectionWhereInput
+    orderBy?: SectionOrderByWithAggregationInput | SectionOrderByWithAggregationInput[]
+    by: SectionScalarFieldEnum[] | SectionScalarFieldEnum
+    having?: SectionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SectionCountAggregateInputType | true
+    _min?: SectionMinAggregateInputType
+    _max?: SectionMaxAggregateInputType
+  }
+
+  export type SectionGroupByOutputType = {
+    id: string
+    locale: string
+    name: string
+    slug: string
+    layout: string | null
+    title: string | null
+    content: string | null
+    collectionId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: SectionCountAggregateOutputType | null
+    _min: SectionMinAggregateOutputType | null
+    _max: SectionMaxAggregateOutputType | null
+  }
+
+  type GetSectionGroupByPayload<T extends SectionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SectionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SectionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SectionGroupByOutputType[P]>
+            : GetScalarType<T[P], SectionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    locale?: boolean
+    name?: boolean
+    slug?: boolean
+    layout?: boolean
+    title?: boolean
+    content?: boolean
+    collectionId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    collection?: boolean | Section$collectionArgs<ExtArgs>
+    images?: boolean | Section$imagesArgs<ExtArgs>
+    _count?: boolean | SectionCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["section"]>
+
+  export type SectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    locale?: boolean
+    name?: boolean
+    slug?: boolean
+    layout?: boolean
+    title?: boolean
+    content?: boolean
+    collectionId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    collection?: boolean | Section$collectionArgs<ExtArgs>
+  }, ExtArgs["result"]["section"]>
+
+  export type SectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    locale?: boolean
+    name?: boolean
+    slug?: boolean
+    layout?: boolean
+    title?: boolean
+    content?: boolean
+    collectionId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    collection?: boolean | Section$collectionArgs<ExtArgs>
+  }, ExtArgs["result"]["section"]>
+
+  export type SectionSelectScalar = {
+    id?: boolean
+    locale?: boolean
+    name?: boolean
+    slug?: boolean
+    layout?: boolean
+    title?: boolean
+    content?: boolean
+    collectionId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locale" | "name" | "slug" | "layout" | "title" | "content" | "collectionId" | "createdAt" | "updatedAt", ExtArgs["result"]["section"]>
+  export type SectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    collection?: boolean | Section$collectionArgs<ExtArgs>
+    images?: boolean | Section$imagesArgs<ExtArgs>
+    _count?: boolean | SectionCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SectionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    collection?: boolean | Section$collectionArgs<ExtArgs>
+  }
+  export type SectionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    collection?: boolean | Section$collectionArgs<ExtArgs>
+  }
+
+  export type $SectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Section"
+    objects: {
+      collection: Prisma.$CollectionPayload<ExtArgs> | null
+      images: Prisma.$ImagePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      locale: string
+      name: string
+      slug: string
+      layout: string | null
+      title: string | null
+      content: string | null
+      collectionId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["section"]>
+    composites: {}
+  }
+
+  type SectionGetPayload<S extends boolean | null | undefined | SectionDefaultArgs> = $Result.GetResult<Prisma.$SectionPayload, S>
+
+  type SectionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SectionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SectionCountAggregateInputType | true
+    }
+
+  export interface SectionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Section'], meta: { name: 'Section' } }
+    /**
+     * Find zero or one Section that matches the filter.
+     * @param {SectionFindUniqueArgs} args - Arguments to find a Section
+     * @example
+     * // Get one Section
+     * const section = await prisma.section.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SectionFindUniqueArgs>(args: SelectSubset<T, SectionFindUniqueArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Section that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SectionFindUniqueOrThrowArgs} args - Arguments to find a Section
+     * @example
+     * // Get one Section
+     * const section = await prisma.section.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SectionFindUniqueOrThrowArgs>(args: SelectSubset<T, SectionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Section that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SectionFindFirstArgs} args - Arguments to find a Section
+     * @example
+     * // Get one Section
+     * const section = await prisma.section.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SectionFindFirstArgs>(args?: SelectSubset<T, SectionFindFirstArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Section that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SectionFindFirstOrThrowArgs} args - Arguments to find a Section
+     * @example
+     * // Get one Section
+     * const section = await prisma.section.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SectionFindFirstOrThrowArgs>(args?: SelectSubset<T, SectionFindFirstOrThrowArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Sections that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SectionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Sections
+     * const sections = await prisma.section.findMany()
+     * 
+     * // Get first 10 Sections
+     * const sections = await prisma.section.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sectionWithIdOnly = await prisma.section.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SectionFindManyArgs>(args?: SelectSubset<T, SectionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Section.
+     * @param {SectionCreateArgs} args - Arguments to create a Section.
+     * @example
+     * // Create one Section
+     * const Section = await prisma.section.create({
+     *   data: {
+     *     // ... data to create a Section
+     *   }
+     * })
+     * 
+     */
+    create<T extends SectionCreateArgs>(args: SelectSubset<T, SectionCreateArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Sections.
+     * @param {SectionCreateManyArgs} args - Arguments to create many Sections.
+     * @example
+     * // Create many Sections
+     * const section = await prisma.section.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SectionCreateManyArgs>(args?: SelectSubset<T, SectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Sections and returns the data saved in the database.
+     * @param {SectionCreateManyAndReturnArgs} args - Arguments to create many Sections.
+     * @example
+     * // Create many Sections
+     * const section = await prisma.section.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Sections and only return the `id`
+     * const sectionWithIdOnly = await prisma.section.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SectionCreateManyAndReturnArgs>(args?: SelectSubset<T, SectionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Section.
+     * @param {SectionDeleteArgs} args - Arguments to delete one Section.
+     * @example
+     * // Delete one Section
+     * const Section = await prisma.section.delete({
+     *   where: {
+     *     // ... filter to delete one Section
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SectionDeleteArgs>(args: SelectSubset<T, SectionDeleteArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Section.
+     * @param {SectionUpdateArgs} args - Arguments to update one Section.
+     * @example
+     * // Update one Section
+     * const section = await prisma.section.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SectionUpdateArgs>(args: SelectSubset<T, SectionUpdateArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Sections.
+     * @param {SectionDeleteManyArgs} args - Arguments to filter Sections to delete.
+     * @example
+     * // Delete a few Sections
+     * const { count } = await prisma.section.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SectionDeleteManyArgs>(args?: SelectSubset<T, SectionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SectionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Sections
+     * const section = await prisma.section.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SectionUpdateManyArgs>(args: SelectSubset<T, SectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sections and returns the data updated in the database.
+     * @param {SectionUpdateManyAndReturnArgs} args - Arguments to update many Sections.
+     * @example
+     * // Update many Sections
+     * const section = await prisma.section.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Sections and only return the `id`
+     * const sectionWithIdOnly = await prisma.section.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SectionUpdateManyAndReturnArgs>(args: SelectSubset<T, SectionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Section.
+     * @param {SectionUpsertArgs} args - Arguments to update or create a Section.
+     * @example
+     * // Update or create a Section
+     * const section = await prisma.section.upsert({
+     *   create: {
+     *     // ... data to create a Section
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Section we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SectionUpsertArgs>(args: SelectSubset<T, SectionUpsertArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Sections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SectionCountArgs} args - Arguments to filter Sections to count.
+     * @example
+     * // Count the number of Sections
+     * const count = await prisma.section.count({
+     *   where: {
+     *     // ... the filter for the Sections we want to count
+     *   }
+     * })
+    **/
+    count<T extends SectionCountArgs>(
+      args?: Subset<T, SectionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SectionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Section.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SectionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SectionAggregateArgs>(args: Subset<T, SectionAggregateArgs>): Prisma.PrismaPromise<GetSectionAggregateType<T>>
+
+    /**
+     * Group by Section.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SectionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SectionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SectionGroupByArgs['orderBy'] }
+        : { orderBy?: SectionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SectionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSectionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Section model
+   */
+  readonly fields: SectionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Section.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    collection<T extends Section$collectionArgs<ExtArgs> = {}>(args?: Subset<T, Section$collectionArgs<ExtArgs>>): Prisma__CollectionClient<$Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    images<T extends Section$imagesArgs<ExtArgs> = {}>(args?: Subset<T, Section$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Section model
+   */
+  interface SectionFieldRefs {
+    readonly id: FieldRef<"Section", 'String'>
+    readonly locale: FieldRef<"Section", 'String'>
+    readonly name: FieldRef<"Section", 'String'>
+    readonly slug: FieldRef<"Section", 'String'>
+    readonly layout: FieldRef<"Section", 'String'>
+    readonly title: FieldRef<"Section", 'String'>
+    readonly content: FieldRef<"Section", 'String'>
+    readonly collectionId: FieldRef<"Section", 'String'>
+    readonly createdAt: FieldRef<"Section", 'DateTime'>
+    readonly updatedAt: FieldRef<"Section", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Section findUnique
+   */
+  export type SectionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Section
+     */
+    select?: SectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Section
+     */
+    omit?: SectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SectionInclude<ExtArgs> | null
+    /**
+     * Filter, which Section to fetch.
+     */
+    where: SectionWhereUniqueInput
+  }
+
+  /**
+   * Section findUniqueOrThrow
+   */
+  export type SectionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Section
+     */
+    select?: SectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Section
+     */
+    omit?: SectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SectionInclude<ExtArgs> | null
+    /**
+     * Filter, which Section to fetch.
+     */
+    where: SectionWhereUniqueInput
+  }
+
+  /**
+   * Section findFirst
+   */
+  export type SectionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Section
+     */
+    select?: SectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Section
+     */
+    omit?: SectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SectionInclude<ExtArgs> | null
+    /**
+     * Filter, which Section to fetch.
+     */
+    where?: SectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sections to fetch.
+     */
+    orderBy?: SectionOrderByWithRelationInput | SectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Sections.
+     */
+    cursor?: SectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Sections.
+     */
+    distinct?: SectionScalarFieldEnum | SectionScalarFieldEnum[]
+  }
+
+  /**
+   * Section findFirstOrThrow
+   */
+  export type SectionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Section
+     */
+    select?: SectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Section
+     */
+    omit?: SectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SectionInclude<ExtArgs> | null
+    /**
+     * Filter, which Section to fetch.
+     */
+    where?: SectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sections to fetch.
+     */
+    orderBy?: SectionOrderByWithRelationInput | SectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Sections.
+     */
+    cursor?: SectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Sections.
+     */
+    distinct?: SectionScalarFieldEnum | SectionScalarFieldEnum[]
+  }
+
+  /**
+   * Section findMany
+   */
+  export type SectionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Section
+     */
+    select?: SectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Section
+     */
+    omit?: SectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SectionInclude<ExtArgs> | null
+    /**
+     * Filter, which Sections to fetch.
+     */
+    where?: SectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sections to fetch.
+     */
+    orderBy?: SectionOrderByWithRelationInput | SectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Sections.
+     */
+    cursor?: SectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sections.
+     */
+    skip?: number
+    distinct?: SectionScalarFieldEnum | SectionScalarFieldEnum[]
+  }
+
+  /**
+   * Section create
+   */
+  export type SectionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Section
+     */
+    select?: SectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Section
+     */
+    omit?: SectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SectionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Section.
+     */
+    data: XOR<SectionCreateInput, SectionUncheckedCreateInput>
+  }
+
+  /**
+   * Section createMany
+   */
+  export type SectionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Sections.
+     */
+    data: SectionCreateManyInput | SectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Section createManyAndReturn
+   */
+  export type SectionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Section
+     */
+    select?: SectionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Section
+     */
+    omit?: SectionOmit<ExtArgs> | null
+    /**
+     * The data used to create many Sections.
+     */
+    data: SectionCreateManyInput | SectionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SectionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Section update
+   */
+  export type SectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Section
+     */
+    select?: SectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Section
+     */
+    omit?: SectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SectionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Section.
+     */
+    data: XOR<SectionUpdateInput, SectionUncheckedUpdateInput>
+    /**
+     * Choose, which Section to update.
+     */
+    where: SectionWhereUniqueInput
+  }
+
+  /**
+   * Section updateMany
+   */
+  export type SectionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Sections.
+     */
+    data: XOR<SectionUpdateManyMutationInput, SectionUncheckedUpdateManyInput>
+    /**
+     * Filter which Sections to update
+     */
+    where?: SectionWhereInput
+    /**
+     * Limit how many Sections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Section updateManyAndReturn
+   */
+  export type SectionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Section
+     */
+    select?: SectionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Section
+     */
+    omit?: SectionOmit<ExtArgs> | null
+    /**
+     * The data used to update Sections.
+     */
+    data: XOR<SectionUpdateManyMutationInput, SectionUncheckedUpdateManyInput>
+    /**
+     * Filter which Sections to update
+     */
+    where?: SectionWhereInput
+    /**
+     * Limit how many Sections to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SectionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Section upsert
+   */
+  export type SectionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Section
+     */
+    select?: SectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Section
+     */
+    omit?: SectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SectionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Section to update in case it exists.
+     */
+    where: SectionWhereUniqueInput
+    /**
+     * In case the Section found by the `where` argument doesn't exist, create a new Section with this data.
+     */
+    create: XOR<SectionCreateInput, SectionUncheckedCreateInput>
+    /**
+     * In case the Section was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SectionUpdateInput, SectionUncheckedUpdateInput>
+  }
+
+  /**
+   * Section delete
+   */
+  export type SectionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Section
+     */
+    select?: SectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Section
+     */
+    omit?: SectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SectionInclude<ExtArgs> | null
+    /**
+     * Filter which Section to delete.
+     */
+    where: SectionWhereUniqueInput
+  }
+
+  /**
+   * Section deleteMany
+   */
+  export type SectionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Sections to delete
+     */
+    where?: SectionWhereInput
+    /**
+     * Limit how many Sections to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Section.collection
+   */
+  export type Section$collectionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Collection
+     */
+    select?: CollectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Collection
+     */
+    omit?: CollectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CollectionInclude<ExtArgs> | null
+    where?: CollectionWhereInput
+  }
+
+  /**
+   * Section.images
+   */
+  export type Section$imagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    where?: ImageWhereInput
+    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[]
+    cursor?: ImageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[]
+  }
+
+  /**
+   * Section without action
+   */
+  export type SectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Section
+     */
+    select?: SectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Section
+     */
+    omit?: SectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SectionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -14730,6 +16322,7 @@ export namespace Prisma {
     title: 'title',
     content: 'content',
     pageId: 'pageId',
+    collectionId: 'collectionId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -14785,7 +16378,9 @@ export namespace Prisma {
     path: 'path',
     imageMetaId: 'imageMetaId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    sectionId: 'sectionId',
+    collectionId: 'collectionId'
   };
 
   export type ImageScalarFieldEnum = (typeof ImageScalarFieldEnum)[keyof typeof ImageScalarFieldEnum]
@@ -14808,6 +16403,8 @@ export namespace Prisma {
     locale: 'locale',
     name: 'name',
     slug: 'slug',
+    metaId: 'metaId',
+    coverId: 'coverId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -14840,6 +16437,22 @@ export namespace Prisma {
   };
 
   export type GalleryScalarFieldEnum = (typeof GalleryScalarFieldEnum)[keyof typeof GalleryScalarFieldEnum]
+
+
+  export const SectionScalarFieldEnum: {
+    id: 'id',
+    locale: 'locale',
+    name: 'name',
+    slug: 'slug',
+    layout: 'layout',
+    title: 'title',
+    content: 'content',
+    collectionId: 'collectionId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SectionScalarFieldEnum = (typeof SectionScalarFieldEnum)[keyof typeof SectionScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -15025,6 +16638,7 @@ export namespace Prisma {
     categories?: CategoryListRelationFilter
     pages?: PageListRelationFilter
     products?: ProductListRelationFilter
+    collections?: CollectionListRelationFilter
   }
 
   export type MetaOrderByWithRelationInput = {
@@ -15039,6 +16653,7 @@ export namespace Prisma {
     categories?: CategoryOrderByRelationAggregateInput
     pages?: PageOrderByRelationAggregateInput
     products?: ProductOrderByRelationAggregateInput
+    collections?: CollectionOrderByRelationAggregateInput
   }
 
   export type MetaWhereUniqueInput = Prisma.AtLeast<{
@@ -15056,6 +16671,7 @@ export namespace Prisma {
     categories?: CategoryListRelationFilter
     pages?: PageListRelationFilter
     products?: ProductListRelationFilter
+    collections?: CollectionListRelationFilter
   }, "id" | "id">
 
   export type MetaOrderByWithAggregationInput = {
@@ -15097,9 +16713,11 @@ export namespace Prisma {
     title?: StringNullableFilter<"Content"> | string | null
     content?: StringNullableFilter<"Content"> | string | null
     pageId?: StringNullableFilter<"Content"> | string | null
+    collectionId?: StringNullableFilter<"Content"> | string | null
     createdAt?: DateTimeFilter<"Content"> | Date | string
     updatedAt?: DateTimeFilter<"Content"> | Date | string
     page?: XOR<PageNullableScalarRelationFilter, PageWhereInput> | null
+    collection?: XOR<CollectionNullableScalarRelationFilter, CollectionWhereInput> | null
   }
 
   export type ContentOrderByWithRelationInput = {
@@ -15110,9 +16728,11 @@ export namespace Prisma {
     title?: SortOrderInput | SortOrder
     content?: SortOrderInput | SortOrder
     pageId?: SortOrderInput | SortOrder
+    collectionId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     page?: PageOrderByWithRelationInput
+    collection?: CollectionOrderByWithRelationInput
   }
 
   export type ContentWhereUniqueInput = Prisma.AtLeast<{
@@ -15127,9 +16747,11 @@ export namespace Prisma {
     title?: StringNullableFilter<"Content"> | string | null
     content?: StringNullableFilter<"Content"> | string | null
     pageId?: StringNullableFilter<"Content"> | string | null
+    collectionId?: StringNullableFilter<"Content"> | string | null
     createdAt?: DateTimeFilter<"Content"> | Date | string
     updatedAt?: DateTimeFilter<"Content"> | Date | string
     page?: XOR<PageNullableScalarRelationFilter, PageWhereInput> | null
+    collection?: XOR<CollectionNullableScalarRelationFilter, CollectionWhereInput> | null
   }, "id" | "slug_locale">
 
   export type ContentOrderByWithAggregationInput = {
@@ -15140,6 +16762,7 @@ export namespace Prisma {
     title?: SortOrderInput | SortOrder
     content?: SortOrderInput | SortOrder
     pageId?: SortOrderInput | SortOrder
+    collectionId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ContentCountOrderByAggregateInput
@@ -15158,6 +16781,7 @@ export namespace Prisma {
     title?: StringNullableWithAggregatesFilter<"Content"> | string | null
     content?: StringNullableWithAggregatesFilter<"Content"> | string | null
     pageId?: StringNullableWithAggregatesFilter<"Content"> | string | null
+    collectionId?: StringNullableWithAggregatesFilter<"Content"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Content"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Content"> | Date | string
   }
@@ -15410,11 +17034,15 @@ export namespace Prisma {
     imageMetaId?: StringFilter<"Image"> | string
     createdAt?: DateTimeFilter<"Image"> | Date | string
     updatedAt?: DateTimeFilter<"Image"> | Date | string
+    sectionId?: StringNullableFilter<"Image"> | string | null
+    collectionId?: StringNullableFilter<"Image"> | string | null
     imageMeta?: XOR<ImageMetaScalarRelationFilter, ImageMetaWhereInput>
     ProductCover?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
     TechnicalProducts?: ProductListRelationFilter
     ProductPromotions?: ProductPromotionListRelationFilter
     GalleryImages?: GalleryListRelationFilter
+    section?: XOR<SectionNullableScalarRelationFilter, SectionWhereInput> | null
+    CollectionCover?: XOR<CollectionNullableScalarRelationFilter, CollectionWhereInput> | null
   }
 
   export type ImageOrderByWithRelationInput = {
@@ -15423,11 +17051,15 @@ export namespace Prisma {
     imageMetaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    sectionId?: SortOrderInput | SortOrder
+    collectionId?: SortOrderInput | SortOrder
     imageMeta?: ImageMetaOrderByWithRelationInput
     ProductCover?: ProductOrderByWithRelationInput
     TechnicalProducts?: ProductOrderByRelationAggregateInput
     ProductPromotions?: ProductPromotionOrderByRelationAggregateInput
     GalleryImages?: GalleryOrderByRelationAggregateInput
+    section?: SectionOrderByWithRelationInput
+    CollectionCover?: CollectionOrderByWithRelationInput
   }
 
   export type ImageWhereUniqueInput = Prisma.AtLeast<{
@@ -15440,11 +17072,15 @@ export namespace Prisma {
     imageMetaId?: StringFilter<"Image"> | string
     createdAt?: DateTimeFilter<"Image"> | Date | string
     updatedAt?: DateTimeFilter<"Image"> | Date | string
+    sectionId?: StringNullableFilter<"Image"> | string | null
+    collectionId?: StringNullableFilter<"Image"> | string | null
     imageMeta?: XOR<ImageMetaScalarRelationFilter, ImageMetaWhereInput>
     ProductCover?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
     TechnicalProducts?: ProductListRelationFilter
     ProductPromotions?: ProductPromotionListRelationFilter
     GalleryImages?: GalleryListRelationFilter
+    section?: XOR<SectionNullableScalarRelationFilter, SectionWhereInput> | null
+    CollectionCover?: XOR<CollectionNullableScalarRelationFilter, CollectionWhereInput> | null
   }, "id" | "id_imageMetaId">
 
   export type ImageOrderByWithAggregationInput = {
@@ -15453,6 +17089,8 @@ export namespace Prisma {
     imageMetaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    sectionId?: SortOrderInput | SortOrder
+    collectionId?: SortOrderInput | SortOrder
     _count?: ImageCountOrderByAggregateInput
     _max?: ImageMaxOrderByAggregateInput
     _min?: ImageMinOrderByAggregateInput
@@ -15467,6 +17105,8 @@ export namespace Prisma {
     imageMetaId?: StringWithAggregatesFilter<"Image"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Image"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Image"> | Date | string
+    sectionId?: StringNullableWithAggregatesFilter<"Image"> | string | null
+    collectionId?: StringNullableWithAggregatesFilter<"Image"> | string | null
   }
 
   export type ImageMetaWhereInput = {
@@ -15537,9 +17177,15 @@ export namespace Prisma {
     locale?: StringFilter<"Collection"> | string
     name?: StringFilter<"Collection"> | string
     slug?: StringFilter<"Collection"> | string
+    metaId?: StringFilter<"Collection"> | string
+    coverId?: StringNullableFilter<"Collection"> | string | null
     createdAt?: DateTimeFilter<"Collection"> | Date | string
     updatedAt?: DateTimeFilter<"Collection"> | Date | string
     products?: ProductListRelationFilter
+    meta?: XOR<MetaScalarRelationFilter, MetaWhereInput>
+    cover?: XOR<ImageNullableScalarRelationFilter, ImageWhereInput> | null
+    section?: SectionListRelationFilter
+    contents?: ContentListRelationFilter
   }
 
   export type CollectionOrderByWithRelationInput = {
@@ -15547,29 +17193,43 @@ export namespace Prisma {
     locale?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    metaId?: SortOrder
+    coverId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     products?: ProductOrderByRelationAggregateInput
+    meta?: MetaOrderByWithRelationInput
+    cover?: ImageOrderByWithRelationInput
+    section?: SectionOrderByRelationAggregateInput
+    contents?: ContentOrderByRelationAggregateInput
   }
 
   export type CollectionWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    coverId?: string
     AND?: CollectionWhereInput | CollectionWhereInput[]
     OR?: CollectionWhereInput[]
     NOT?: CollectionWhereInput | CollectionWhereInput[]
     locale?: StringFilter<"Collection"> | string
     name?: StringFilter<"Collection"> | string
     slug?: StringFilter<"Collection"> | string
+    metaId?: StringFilter<"Collection"> | string
     createdAt?: DateTimeFilter<"Collection"> | Date | string
     updatedAt?: DateTimeFilter<"Collection"> | Date | string
     products?: ProductListRelationFilter
-  }, "id" | "id">
+    meta?: XOR<MetaScalarRelationFilter, MetaWhereInput>
+    cover?: XOR<ImageNullableScalarRelationFilter, ImageWhereInput> | null
+    section?: SectionListRelationFilter
+    contents?: ContentListRelationFilter
+  }, "id" | "coverId" | "id">
 
   export type CollectionOrderByWithAggregationInput = {
     id?: SortOrder
     locale?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    metaId?: SortOrder
+    coverId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: CollectionCountOrderByAggregateInput
@@ -15585,6 +17245,8 @@ export namespace Prisma {
     locale?: StringWithAggregatesFilter<"Collection"> | string
     name?: StringWithAggregatesFilter<"Collection"> | string
     slug?: StringWithAggregatesFilter<"Collection"> | string
+    metaId?: StringWithAggregatesFilter<"Collection"> | string
+    coverId?: StringNullableWithAggregatesFilter<"Collection"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Collection"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Collection"> | Date | string
   }
@@ -15727,6 +17389,89 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Gallery"> | Date | string
   }
 
+  export type SectionWhereInput = {
+    AND?: SectionWhereInput | SectionWhereInput[]
+    OR?: SectionWhereInput[]
+    NOT?: SectionWhereInput | SectionWhereInput[]
+    id?: StringFilter<"Section"> | string
+    locale?: StringFilter<"Section"> | string
+    name?: StringFilter<"Section"> | string
+    slug?: StringFilter<"Section"> | string
+    layout?: StringNullableFilter<"Section"> | string | null
+    title?: StringNullableFilter<"Section"> | string | null
+    content?: StringNullableFilter<"Section"> | string | null
+    collectionId?: StringNullableFilter<"Section"> | string | null
+    createdAt?: DateTimeFilter<"Section"> | Date | string
+    updatedAt?: DateTimeFilter<"Section"> | Date | string
+    collection?: XOR<CollectionNullableScalarRelationFilter, CollectionWhereInput> | null
+    images?: ImageListRelationFilter
+  }
+
+  export type SectionOrderByWithRelationInput = {
+    id?: SortOrder
+    locale?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    layout?: SortOrderInput | SortOrder
+    title?: SortOrderInput | SortOrder
+    content?: SortOrderInput | SortOrder
+    collectionId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    collection?: CollectionOrderByWithRelationInput
+    images?: ImageOrderByRelationAggregateInput
+  }
+
+  export type SectionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SectionWhereInput | SectionWhereInput[]
+    OR?: SectionWhereInput[]
+    NOT?: SectionWhereInput | SectionWhereInput[]
+    locale?: StringFilter<"Section"> | string
+    name?: StringFilter<"Section"> | string
+    slug?: StringFilter<"Section"> | string
+    layout?: StringNullableFilter<"Section"> | string | null
+    title?: StringNullableFilter<"Section"> | string | null
+    content?: StringNullableFilter<"Section"> | string | null
+    collectionId?: StringNullableFilter<"Section"> | string | null
+    createdAt?: DateTimeFilter<"Section"> | Date | string
+    updatedAt?: DateTimeFilter<"Section"> | Date | string
+    collection?: XOR<CollectionNullableScalarRelationFilter, CollectionWhereInput> | null
+    images?: ImageListRelationFilter
+  }, "id" | "id">
+
+  export type SectionOrderByWithAggregationInput = {
+    id?: SortOrder
+    locale?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    layout?: SortOrderInput | SortOrder
+    title?: SortOrderInput | SortOrder
+    content?: SortOrderInput | SortOrder
+    collectionId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SectionCountOrderByAggregateInput
+    _max?: SectionMaxOrderByAggregateInput
+    _min?: SectionMinOrderByAggregateInput
+  }
+
+  export type SectionScalarWhereWithAggregatesInput = {
+    AND?: SectionScalarWhereWithAggregatesInput | SectionScalarWhereWithAggregatesInput[]
+    OR?: SectionScalarWhereWithAggregatesInput[]
+    NOT?: SectionScalarWhereWithAggregatesInput | SectionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Section"> | string
+    locale?: StringWithAggregatesFilter<"Section"> | string
+    name?: StringWithAggregatesFilter<"Section"> | string
+    slug?: StringWithAggregatesFilter<"Section"> | string
+    layout?: StringNullableWithAggregatesFilter<"Section"> | string | null
+    title?: StringNullableWithAggregatesFilter<"Section"> | string | null
+    content?: StringNullableWithAggregatesFilter<"Section"> | string | null
+    collectionId?: StringNullableWithAggregatesFilter<"Section"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Section"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Section"> | Date | string
+  }
+
   export type CategoryCreateInput = {
     id?: string
     locale: string
@@ -15819,6 +17564,7 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutMetaInput
     pages?: PageCreateNestedManyWithoutMetaInput
     products?: ProductCreateNestedManyWithoutMetaInput
+    collections?: CollectionCreateNestedManyWithoutMetaInput
   }
 
   export type MetaUncheckedCreateInput = {
@@ -15833,6 +17579,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedCreateNestedManyWithoutMetaInput
     pages?: PageUncheckedCreateNestedManyWithoutMetaInput
     products?: ProductUncheckedCreateNestedManyWithoutMetaInput
+    collections?: CollectionUncheckedCreateNestedManyWithoutMetaInput
   }
 
   export type MetaUpdateInput = {
@@ -15847,6 +17594,7 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutMetaNestedInput
     pages?: PageUpdateManyWithoutMetaNestedInput
     products?: ProductUpdateManyWithoutMetaNestedInput
+    collections?: CollectionUpdateManyWithoutMetaNestedInput
   }
 
   export type MetaUncheckedUpdateInput = {
@@ -15861,6 +17609,7 @@ export namespace Prisma {
     categories?: CategoryUncheckedUpdateManyWithoutMetaNestedInput
     pages?: PageUncheckedUpdateManyWithoutMetaNestedInput
     products?: ProductUncheckedUpdateManyWithoutMetaNestedInput
+    collections?: CollectionUncheckedUpdateManyWithoutMetaNestedInput
   }
 
   export type MetaCreateManyInput = {
@@ -15906,6 +17655,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     page?: PageCreateNestedOneWithoutContentInput
+    collection?: CollectionCreateNestedOneWithoutContentsInput
   }
 
   export type ContentUncheckedCreateInput = {
@@ -15916,6 +17666,7 @@ export namespace Prisma {
     title?: string | null
     content?: string | null
     pageId?: string | null
+    collectionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15930,6 +17681,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     page?: PageUpdateOneWithoutContentNestedInput
+    collection?: CollectionUpdateOneWithoutContentsNestedInput
   }
 
   export type ContentUncheckedUpdateInput = {
@@ -15940,6 +17692,7 @@ export namespace Prisma {
     title?: NullableStringFieldUpdateOperationsInput | string | null
     content?: NullableStringFieldUpdateOperationsInput | string | null
     pageId?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15952,6 +17705,7 @@ export namespace Prisma {
     title?: string | null
     content?: string | null
     pageId?: string | null
+    collectionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15975,6 +17729,7 @@ export namespace Prisma {
     title?: NullableStringFieldUpdateOperationsInput | string | null
     content?: NullableStringFieldUpdateOperationsInput | string | null
     pageId?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16232,11 +17987,14 @@ export namespace Prisma {
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    collectionId?: string | null
     imageMeta: ImageMetaCreateNestedOneWithoutImageInput
     ProductCover?: ProductCreateNestedOneWithoutCoverInput
     TechnicalProducts?: ProductCreateNestedManyWithoutTechnicalInput
     ProductPromotions?: ProductPromotionCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryCreateNestedManyWithoutImagesInput
+    section?: SectionCreateNestedOneWithoutImagesInput
+    CollectionCover?: CollectionCreateNestedOneWithoutCoverInput
   }
 
   export type ImageUncheckedCreateInput = {
@@ -16245,10 +18003,13 @@ export namespace Prisma {
     imageMetaId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    sectionId?: string | null
+    collectionId?: string | null
     ProductCover?: ProductUncheckedCreateNestedOneWithoutCoverInput
     TechnicalProducts?: ProductUncheckedCreateNestedManyWithoutTechnicalInput
     ProductPromotions?: ProductPromotionUncheckedCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryUncheckedCreateNestedManyWithoutImagesInput
+    CollectionCover?: CollectionUncheckedCreateNestedOneWithoutCoverInput
   }
 
   export type ImageUpdateInput = {
@@ -16256,11 +18017,14 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     imageMeta?: ImageMetaUpdateOneRequiredWithoutImageNestedInput
     ProductCover?: ProductUpdateOneWithoutCoverNestedInput
     TechnicalProducts?: ProductUpdateManyWithoutTechnicalNestedInput
     ProductPromotions?: ProductPromotionUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUpdateManyWithoutImagesNestedInput
+    section?: SectionUpdateOneWithoutImagesNestedInput
+    CollectionCover?: CollectionUpdateOneWithoutCoverNestedInput
   }
 
   export type ImageUncheckedUpdateInput = {
@@ -16269,10 +18033,13 @@ export namespace Prisma {
     imageMetaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     ProductCover?: ProductUncheckedUpdateOneWithoutCoverNestedInput
     TechnicalProducts?: ProductUncheckedUpdateManyWithoutTechnicalNestedInput
     ProductPromotions?: ProductPromotionUncheckedUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUncheckedUpdateManyWithoutImagesNestedInput
+    CollectionCover?: CollectionUncheckedUpdateOneWithoutCoverNestedInput
   }
 
   export type ImageCreateManyInput = {
@@ -16281,6 +18048,8 @@ export namespace Prisma {
     imageMetaId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    sectionId?: string | null
+    collectionId?: string | null
   }
 
   export type ImageUpdateManyMutationInput = {
@@ -16288,6 +18057,7 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ImageUncheckedUpdateManyInput = {
@@ -16296,6 +18066,8 @@ export namespace Prisma {
     imageMetaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ImageMetaCreateInput = {
@@ -16373,6 +18145,10 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductCreateNestedManyWithoutCollectionInput
+    meta: MetaCreateNestedOneWithoutCollectionsInput
+    cover?: ImageCreateNestedOneWithoutCollectionCoverInput
+    section?: SectionCreateNestedManyWithoutCollectionInput
+    contents?: ContentCreateNestedManyWithoutCollectionInput
   }
 
   export type CollectionUncheckedCreateInput = {
@@ -16380,9 +18156,13 @@ export namespace Prisma {
     locale: string
     name: string
     slug: string
+    metaId: string
+    coverId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products?: ProductUncheckedCreateNestedManyWithoutCollectionInput
+    section?: SectionUncheckedCreateNestedManyWithoutCollectionInput
+    contents?: ContentUncheckedCreateNestedManyWithoutCollectionInput
   }
 
   export type CollectionUpdateInput = {
@@ -16393,6 +18173,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUpdateManyWithoutCollectionNestedInput
+    meta?: MetaUpdateOneRequiredWithoutCollectionsNestedInput
+    cover?: ImageUpdateOneWithoutCollectionCoverNestedInput
+    section?: SectionUpdateManyWithoutCollectionNestedInput
+    contents?: ContentUpdateManyWithoutCollectionNestedInput
   }
 
   export type CollectionUncheckedUpdateInput = {
@@ -16400,9 +18184,13 @@ export namespace Prisma {
     locale?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    metaId?: StringFieldUpdateOperationsInput | string
+    coverId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUncheckedUpdateManyWithoutCollectionNestedInput
+    section?: SectionUncheckedUpdateManyWithoutCollectionNestedInput
+    contents?: ContentUncheckedUpdateManyWithoutCollectionNestedInput
   }
 
   export type CollectionCreateManyInput = {
@@ -16410,6 +18198,8 @@ export namespace Prisma {
     locale: string
     name: string
     slug: string
+    metaId: string
+    coverId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -16428,6 +18218,8 @@ export namespace Prisma {
     locale?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    metaId?: StringFieldUpdateOperationsInput | string
+    coverId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16582,6 +18374,100 @@ export namespace Prisma {
     locale?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SectionCreateInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    layout?: string | null
+    title?: string | null
+    content?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    collection?: CollectionCreateNestedOneWithoutSectionInput
+    images?: ImageCreateNestedManyWithoutSectionInput
+  }
+
+  export type SectionUncheckedCreateInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    layout?: string | null
+    title?: string | null
+    content?: string | null
+    collectionId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    images?: ImageUncheckedCreateNestedManyWithoutSectionInput
+  }
+
+  export type SectionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    layout?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collection?: CollectionUpdateOneWithoutSectionNestedInput
+    images?: ImageUpdateManyWithoutSectionNestedInput
+  }
+
+  export type SectionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    layout?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    images?: ImageUncheckedUpdateManyWithoutSectionNestedInput
+  }
+
+  export type SectionCreateManyInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    layout?: string | null
+    title?: string | null
+    content?: string | null
+    collectionId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SectionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    layout?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SectionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    layout?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16747,11 +18633,21 @@ export namespace Prisma {
     none?: PageWhereInput
   }
 
+  export type CollectionListRelationFilter = {
+    every?: CollectionWhereInput
+    some?: CollectionWhereInput
+    none?: CollectionWhereInput
+  }
+
   export type CategoryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type PageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CollectionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -16801,6 +18697,11 @@ export namespace Prisma {
     isNot?: PageWhereInput | null
   }
 
+  export type CollectionNullableScalarRelationFilter = {
+    is?: CollectionWhereInput | null
+    isNot?: CollectionWhereInput | null
+  }
+
   export type ContentSlugLocaleCompoundUniqueInput = {
     slug: string
     locale: string
@@ -16814,6 +18715,7 @@ export namespace Prisma {
     title?: SortOrder
     content?: SortOrder
     pageId?: SortOrder
+    collectionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -16826,6 +18728,7 @@ export namespace Prisma {
     title?: SortOrder
     content?: SortOrder
     pageId?: SortOrder
+    collectionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -16838,6 +18741,7 @@ export namespace Prisma {
     title?: SortOrder
     content?: SortOrder
     pageId?: SortOrder
+    collectionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -16856,11 +18760,6 @@ export namespace Prisma {
   export type CategoryNullableScalarRelationFilter = {
     is?: CategoryWhereInput | null
     isNot?: CategoryWhereInput | null
-  }
-
-  export type CollectionNullableScalarRelationFilter = {
-    is?: CollectionWhereInput | null
-    isNot?: CollectionWhereInput | null
   }
 
   export type ImageNullableScalarRelationFilter = {
@@ -17050,6 +18949,11 @@ export namespace Prisma {
     none?: GalleryWhereInput
   }
 
+  export type SectionNullableScalarRelationFilter = {
+    is?: SectionWhereInput | null
+    isNot?: SectionWhereInput | null
+  }
+
   export type GalleryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -17065,6 +18969,8 @@ export namespace Prisma {
     imageMetaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    sectionId?: SortOrder
+    collectionId?: SortOrder
   }
 
   export type ImageMaxOrderByAggregateInput = {
@@ -17073,6 +18979,8 @@ export namespace Prisma {
     imageMetaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    sectionId?: SortOrder
+    collectionId?: SortOrder
   }
 
   export type ImageMinOrderByAggregateInput = {
@@ -17081,6 +18989,8 @@ export namespace Prisma {
     imageMetaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    sectionId?: SortOrder
+    collectionId?: SortOrder
   }
 
   export type ImageMetaCountOrderByAggregateInput = {
@@ -17110,11 +19020,33 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type SectionListRelationFilter = {
+    every?: SectionWhereInput
+    some?: SectionWhereInput
+    none?: SectionWhereInput
+  }
+
+  export type ContentListRelationFilter = {
+    every?: ContentWhereInput
+    some?: ContentWhereInput
+    none?: ContentWhereInput
+  }
+
+  export type SectionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ContentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type CollectionCountOrderByAggregateInput = {
     id?: SortOrder
     locale?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    metaId?: SortOrder
+    coverId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17124,6 +19056,8 @@ export namespace Prisma {
     locale?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    metaId?: SortOrder
+    coverId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17133,18 +19067,10 @@ export namespace Prisma {
     locale?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    metaId?: SortOrder
+    coverId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type ContentListRelationFilter = {
-    every?: ContentWhereInput
-    some?: ContentWhereInput
-    none?: ContentWhereInput
-  }
-
-  export type ContentOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type PageCountOrderByAggregateInput = {
@@ -17206,6 +19132,45 @@ export namespace Prisma {
     locale?: SortOrder
     name?: SortOrder
     slug?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SectionCountOrderByAggregateInput = {
+    id?: SortOrder
+    locale?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    layout?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    collectionId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SectionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    locale?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    layout?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    collectionId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SectionMinOrderByAggregateInput = {
+    id?: SortOrder
+    locale?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    layout?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    collectionId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17299,6 +19264,13 @@ export namespace Prisma {
     connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
   }
 
+  export type CollectionCreateNestedManyWithoutMetaInput = {
+    create?: XOR<CollectionCreateWithoutMetaInput, CollectionUncheckedCreateWithoutMetaInput> | CollectionCreateWithoutMetaInput[] | CollectionUncheckedCreateWithoutMetaInput[]
+    connectOrCreate?: CollectionCreateOrConnectWithoutMetaInput | CollectionCreateOrConnectWithoutMetaInput[]
+    createMany?: CollectionCreateManyMetaInputEnvelope
+    connect?: CollectionWhereUniqueInput | CollectionWhereUniqueInput[]
+  }
+
   export type CategoryUncheckedCreateNestedManyWithoutMetaInput = {
     create?: XOR<CategoryCreateWithoutMetaInput, CategoryUncheckedCreateWithoutMetaInput> | CategoryCreateWithoutMetaInput[] | CategoryUncheckedCreateWithoutMetaInput[]
     connectOrCreate?: CategoryCreateOrConnectWithoutMetaInput | CategoryCreateOrConnectWithoutMetaInput[]
@@ -17318,6 +19290,13 @@ export namespace Prisma {
     connectOrCreate?: ProductCreateOrConnectWithoutMetaInput | ProductCreateOrConnectWithoutMetaInput[]
     createMany?: ProductCreateManyMetaInputEnvelope
     connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  }
+
+  export type CollectionUncheckedCreateNestedManyWithoutMetaInput = {
+    create?: XOR<CollectionCreateWithoutMetaInput, CollectionUncheckedCreateWithoutMetaInput> | CollectionCreateWithoutMetaInput[] | CollectionUncheckedCreateWithoutMetaInput[]
+    connectOrCreate?: CollectionCreateOrConnectWithoutMetaInput | CollectionCreateOrConnectWithoutMetaInput[]
+    createMany?: CollectionCreateManyMetaInputEnvelope
+    connect?: CollectionWhereUniqueInput | CollectionWhereUniqueInput[]
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -17366,6 +19345,20 @@ export namespace Prisma {
     deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
   }
 
+  export type CollectionUpdateManyWithoutMetaNestedInput = {
+    create?: XOR<CollectionCreateWithoutMetaInput, CollectionUncheckedCreateWithoutMetaInput> | CollectionCreateWithoutMetaInput[] | CollectionUncheckedCreateWithoutMetaInput[]
+    connectOrCreate?: CollectionCreateOrConnectWithoutMetaInput | CollectionCreateOrConnectWithoutMetaInput[]
+    upsert?: CollectionUpsertWithWhereUniqueWithoutMetaInput | CollectionUpsertWithWhereUniqueWithoutMetaInput[]
+    createMany?: CollectionCreateManyMetaInputEnvelope
+    set?: CollectionWhereUniqueInput | CollectionWhereUniqueInput[]
+    disconnect?: CollectionWhereUniqueInput | CollectionWhereUniqueInput[]
+    delete?: CollectionWhereUniqueInput | CollectionWhereUniqueInput[]
+    connect?: CollectionWhereUniqueInput | CollectionWhereUniqueInput[]
+    update?: CollectionUpdateWithWhereUniqueWithoutMetaInput | CollectionUpdateWithWhereUniqueWithoutMetaInput[]
+    updateMany?: CollectionUpdateManyWithWhereWithoutMetaInput | CollectionUpdateManyWithWhereWithoutMetaInput[]
+    deleteMany?: CollectionScalarWhereInput | CollectionScalarWhereInput[]
+  }
+
   export type CategoryUncheckedUpdateManyWithoutMetaNestedInput = {
     create?: XOR<CategoryCreateWithoutMetaInput, CategoryUncheckedCreateWithoutMetaInput> | CategoryCreateWithoutMetaInput[] | CategoryUncheckedCreateWithoutMetaInput[]
     connectOrCreate?: CategoryCreateOrConnectWithoutMetaInput | CategoryCreateOrConnectWithoutMetaInput[]
@@ -17408,10 +19401,30 @@ export namespace Prisma {
     deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
   }
 
+  export type CollectionUncheckedUpdateManyWithoutMetaNestedInput = {
+    create?: XOR<CollectionCreateWithoutMetaInput, CollectionUncheckedCreateWithoutMetaInput> | CollectionCreateWithoutMetaInput[] | CollectionUncheckedCreateWithoutMetaInput[]
+    connectOrCreate?: CollectionCreateOrConnectWithoutMetaInput | CollectionCreateOrConnectWithoutMetaInput[]
+    upsert?: CollectionUpsertWithWhereUniqueWithoutMetaInput | CollectionUpsertWithWhereUniqueWithoutMetaInput[]
+    createMany?: CollectionCreateManyMetaInputEnvelope
+    set?: CollectionWhereUniqueInput | CollectionWhereUniqueInput[]
+    disconnect?: CollectionWhereUniqueInput | CollectionWhereUniqueInput[]
+    delete?: CollectionWhereUniqueInput | CollectionWhereUniqueInput[]
+    connect?: CollectionWhereUniqueInput | CollectionWhereUniqueInput[]
+    update?: CollectionUpdateWithWhereUniqueWithoutMetaInput | CollectionUpdateWithWhereUniqueWithoutMetaInput[]
+    updateMany?: CollectionUpdateManyWithWhereWithoutMetaInput | CollectionUpdateManyWithWhereWithoutMetaInput[]
+    deleteMany?: CollectionScalarWhereInput | CollectionScalarWhereInput[]
+  }
+
   export type PageCreateNestedOneWithoutContentInput = {
     create?: XOR<PageCreateWithoutContentInput, PageUncheckedCreateWithoutContentInput>
     connectOrCreate?: PageCreateOrConnectWithoutContentInput
     connect?: PageWhereUniqueInput
+  }
+
+  export type CollectionCreateNestedOneWithoutContentsInput = {
+    create?: XOR<CollectionCreateWithoutContentsInput, CollectionUncheckedCreateWithoutContentsInput>
+    connectOrCreate?: CollectionCreateOrConnectWithoutContentsInput
+    connect?: CollectionWhereUniqueInput
   }
 
   export type PageUpdateOneWithoutContentNestedInput = {
@@ -17422,6 +19435,16 @@ export namespace Prisma {
     delete?: PageWhereInput | boolean
     connect?: PageWhereUniqueInput
     update?: XOR<XOR<PageUpdateToOneWithWhereWithoutContentInput, PageUpdateWithoutContentInput>, PageUncheckedUpdateWithoutContentInput>
+  }
+
+  export type CollectionUpdateOneWithoutContentsNestedInput = {
+    create?: XOR<CollectionCreateWithoutContentsInput, CollectionUncheckedCreateWithoutContentsInput>
+    connectOrCreate?: CollectionCreateOrConnectWithoutContentsInput
+    upsert?: CollectionUpsertWithoutContentsInput
+    disconnect?: CollectionWhereInput | boolean
+    delete?: CollectionWhereInput | boolean
+    connect?: CollectionWhereUniqueInput
+    update?: XOR<XOR<CollectionUpdateToOneWithWhereWithoutContentsInput, CollectionUpdateWithoutContentsInput>, CollectionUncheckedUpdateWithoutContentsInput>
   }
 
   export type CategoryCreateNestedOneWithoutProductsInput = {
@@ -17718,6 +19741,18 @@ export namespace Prisma {
     connect?: GalleryWhereUniqueInput | GalleryWhereUniqueInput[]
   }
 
+  export type SectionCreateNestedOneWithoutImagesInput = {
+    create?: XOR<SectionCreateWithoutImagesInput, SectionUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: SectionCreateOrConnectWithoutImagesInput
+    connect?: SectionWhereUniqueInput
+  }
+
+  export type CollectionCreateNestedOneWithoutCoverInput = {
+    create?: XOR<CollectionCreateWithoutCoverInput, CollectionUncheckedCreateWithoutCoverInput>
+    connectOrCreate?: CollectionCreateOrConnectWithoutCoverInput
+    connect?: CollectionWhereUniqueInput
+  }
+
   export type ProductUncheckedCreateNestedOneWithoutCoverInput = {
     create?: XOR<ProductCreateWithoutCoverInput, ProductUncheckedCreateWithoutCoverInput>
     connectOrCreate?: ProductCreateOrConnectWithoutCoverInput
@@ -17740,6 +19775,12 @@ export namespace Prisma {
     create?: XOR<GalleryCreateWithoutImagesInput, GalleryUncheckedCreateWithoutImagesInput> | GalleryCreateWithoutImagesInput[] | GalleryUncheckedCreateWithoutImagesInput[]
     connectOrCreate?: GalleryCreateOrConnectWithoutImagesInput | GalleryCreateOrConnectWithoutImagesInput[]
     connect?: GalleryWhereUniqueInput | GalleryWhereUniqueInput[]
+  }
+
+  export type CollectionUncheckedCreateNestedOneWithoutCoverInput = {
+    create?: XOR<CollectionCreateWithoutCoverInput, CollectionUncheckedCreateWithoutCoverInput>
+    connectOrCreate?: CollectionCreateOrConnectWithoutCoverInput
+    connect?: CollectionWhereUniqueInput
   }
 
   export type ImageMetaUpdateOneRequiredWithoutImageNestedInput = {
@@ -17799,6 +19840,26 @@ export namespace Prisma {
     deleteMany?: GalleryScalarWhereInput | GalleryScalarWhereInput[]
   }
 
+  export type SectionUpdateOneWithoutImagesNestedInput = {
+    create?: XOR<SectionCreateWithoutImagesInput, SectionUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: SectionCreateOrConnectWithoutImagesInput
+    upsert?: SectionUpsertWithoutImagesInput
+    disconnect?: SectionWhereInput | boolean
+    delete?: SectionWhereInput | boolean
+    connect?: SectionWhereUniqueInput
+    update?: XOR<XOR<SectionUpdateToOneWithWhereWithoutImagesInput, SectionUpdateWithoutImagesInput>, SectionUncheckedUpdateWithoutImagesInput>
+  }
+
+  export type CollectionUpdateOneWithoutCoverNestedInput = {
+    create?: XOR<CollectionCreateWithoutCoverInput, CollectionUncheckedCreateWithoutCoverInput>
+    connectOrCreate?: CollectionCreateOrConnectWithoutCoverInput
+    upsert?: CollectionUpsertWithoutCoverInput
+    disconnect?: CollectionWhereInput | boolean
+    delete?: CollectionWhereInput | boolean
+    connect?: CollectionWhereUniqueInput
+    update?: XOR<XOR<CollectionUpdateToOneWithWhereWithoutCoverInput, CollectionUpdateWithoutCoverInput>, CollectionUncheckedUpdateWithoutCoverInput>
+  }
+
   export type ProductUncheckedUpdateOneWithoutCoverNestedInput = {
     create?: XOR<ProductCreateWithoutCoverInput, ProductUncheckedCreateWithoutCoverInput>
     connectOrCreate?: ProductCreateOrConnectWithoutCoverInput
@@ -17846,6 +19907,16 @@ export namespace Prisma {
     update?: GalleryUpdateWithWhereUniqueWithoutImagesInput | GalleryUpdateWithWhereUniqueWithoutImagesInput[]
     updateMany?: GalleryUpdateManyWithWhereWithoutImagesInput | GalleryUpdateManyWithWhereWithoutImagesInput[]
     deleteMany?: GalleryScalarWhereInput | GalleryScalarWhereInput[]
+  }
+
+  export type CollectionUncheckedUpdateOneWithoutCoverNestedInput = {
+    create?: XOR<CollectionCreateWithoutCoverInput, CollectionUncheckedCreateWithoutCoverInput>
+    connectOrCreate?: CollectionCreateOrConnectWithoutCoverInput
+    upsert?: CollectionUpsertWithoutCoverInput
+    disconnect?: CollectionWhereInput | boolean
+    delete?: CollectionWhereInput | boolean
+    connect?: CollectionWhereUniqueInput
+    update?: XOR<XOR<CollectionUpdateToOneWithWhereWithoutCoverInput, CollectionUpdateWithoutCoverInput>, CollectionUncheckedUpdateWithoutCoverInput>
   }
 
   export type ImageCreateNestedManyWithoutImageMetaInput = {
@@ -17897,11 +19968,51 @@ export namespace Prisma {
     connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
   }
 
+  export type MetaCreateNestedOneWithoutCollectionsInput = {
+    create?: XOR<MetaCreateWithoutCollectionsInput, MetaUncheckedCreateWithoutCollectionsInput>
+    connectOrCreate?: MetaCreateOrConnectWithoutCollectionsInput
+    connect?: MetaWhereUniqueInput
+  }
+
+  export type ImageCreateNestedOneWithoutCollectionCoverInput = {
+    create?: XOR<ImageCreateWithoutCollectionCoverInput, ImageUncheckedCreateWithoutCollectionCoverInput>
+    connectOrCreate?: ImageCreateOrConnectWithoutCollectionCoverInput
+    connect?: ImageWhereUniqueInput
+  }
+
+  export type SectionCreateNestedManyWithoutCollectionInput = {
+    create?: XOR<SectionCreateWithoutCollectionInput, SectionUncheckedCreateWithoutCollectionInput> | SectionCreateWithoutCollectionInput[] | SectionUncheckedCreateWithoutCollectionInput[]
+    connectOrCreate?: SectionCreateOrConnectWithoutCollectionInput | SectionCreateOrConnectWithoutCollectionInput[]
+    createMany?: SectionCreateManyCollectionInputEnvelope
+    connect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+  }
+
+  export type ContentCreateNestedManyWithoutCollectionInput = {
+    create?: XOR<ContentCreateWithoutCollectionInput, ContentUncheckedCreateWithoutCollectionInput> | ContentCreateWithoutCollectionInput[] | ContentUncheckedCreateWithoutCollectionInput[]
+    connectOrCreate?: ContentCreateOrConnectWithoutCollectionInput | ContentCreateOrConnectWithoutCollectionInput[]
+    createMany?: ContentCreateManyCollectionInputEnvelope
+    connect?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+  }
+
   export type ProductUncheckedCreateNestedManyWithoutCollectionInput = {
     create?: XOR<ProductCreateWithoutCollectionInput, ProductUncheckedCreateWithoutCollectionInput> | ProductCreateWithoutCollectionInput[] | ProductUncheckedCreateWithoutCollectionInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutCollectionInput | ProductCreateOrConnectWithoutCollectionInput[]
     createMany?: ProductCreateManyCollectionInputEnvelope
     connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  }
+
+  export type SectionUncheckedCreateNestedManyWithoutCollectionInput = {
+    create?: XOR<SectionCreateWithoutCollectionInput, SectionUncheckedCreateWithoutCollectionInput> | SectionCreateWithoutCollectionInput[] | SectionUncheckedCreateWithoutCollectionInput[]
+    connectOrCreate?: SectionCreateOrConnectWithoutCollectionInput | SectionCreateOrConnectWithoutCollectionInput[]
+    createMany?: SectionCreateManyCollectionInputEnvelope
+    connect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+  }
+
+  export type ContentUncheckedCreateNestedManyWithoutCollectionInput = {
+    create?: XOR<ContentCreateWithoutCollectionInput, ContentUncheckedCreateWithoutCollectionInput> | ContentCreateWithoutCollectionInput[] | ContentUncheckedCreateWithoutCollectionInput[]
+    connectOrCreate?: ContentCreateOrConnectWithoutCollectionInput | ContentCreateOrConnectWithoutCollectionInput[]
+    createMany?: ContentCreateManyCollectionInputEnvelope
+    connect?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
   }
 
   export type ProductUpdateManyWithoutCollectionNestedInput = {
@@ -17918,6 +20029,52 @@ export namespace Prisma {
     deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
   }
 
+  export type MetaUpdateOneRequiredWithoutCollectionsNestedInput = {
+    create?: XOR<MetaCreateWithoutCollectionsInput, MetaUncheckedCreateWithoutCollectionsInput>
+    connectOrCreate?: MetaCreateOrConnectWithoutCollectionsInput
+    upsert?: MetaUpsertWithoutCollectionsInput
+    connect?: MetaWhereUniqueInput
+    update?: XOR<XOR<MetaUpdateToOneWithWhereWithoutCollectionsInput, MetaUpdateWithoutCollectionsInput>, MetaUncheckedUpdateWithoutCollectionsInput>
+  }
+
+  export type ImageUpdateOneWithoutCollectionCoverNestedInput = {
+    create?: XOR<ImageCreateWithoutCollectionCoverInput, ImageUncheckedCreateWithoutCollectionCoverInput>
+    connectOrCreate?: ImageCreateOrConnectWithoutCollectionCoverInput
+    upsert?: ImageUpsertWithoutCollectionCoverInput
+    disconnect?: ImageWhereInput | boolean
+    delete?: ImageWhereInput | boolean
+    connect?: ImageWhereUniqueInput
+    update?: XOR<XOR<ImageUpdateToOneWithWhereWithoutCollectionCoverInput, ImageUpdateWithoutCollectionCoverInput>, ImageUncheckedUpdateWithoutCollectionCoverInput>
+  }
+
+  export type SectionUpdateManyWithoutCollectionNestedInput = {
+    create?: XOR<SectionCreateWithoutCollectionInput, SectionUncheckedCreateWithoutCollectionInput> | SectionCreateWithoutCollectionInput[] | SectionUncheckedCreateWithoutCollectionInput[]
+    connectOrCreate?: SectionCreateOrConnectWithoutCollectionInput | SectionCreateOrConnectWithoutCollectionInput[]
+    upsert?: SectionUpsertWithWhereUniqueWithoutCollectionInput | SectionUpsertWithWhereUniqueWithoutCollectionInput[]
+    createMany?: SectionCreateManyCollectionInputEnvelope
+    set?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    disconnect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    delete?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    connect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    update?: SectionUpdateWithWhereUniqueWithoutCollectionInput | SectionUpdateWithWhereUniqueWithoutCollectionInput[]
+    updateMany?: SectionUpdateManyWithWhereWithoutCollectionInput | SectionUpdateManyWithWhereWithoutCollectionInput[]
+    deleteMany?: SectionScalarWhereInput | SectionScalarWhereInput[]
+  }
+
+  export type ContentUpdateManyWithoutCollectionNestedInput = {
+    create?: XOR<ContentCreateWithoutCollectionInput, ContentUncheckedCreateWithoutCollectionInput> | ContentCreateWithoutCollectionInput[] | ContentUncheckedCreateWithoutCollectionInput[]
+    connectOrCreate?: ContentCreateOrConnectWithoutCollectionInput | ContentCreateOrConnectWithoutCollectionInput[]
+    upsert?: ContentUpsertWithWhereUniqueWithoutCollectionInput | ContentUpsertWithWhereUniqueWithoutCollectionInput[]
+    createMany?: ContentCreateManyCollectionInputEnvelope
+    set?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    disconnect?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    delete?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    connect?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    update?: ContentUpdateWithWhereUniqueWithoutCollectionInput | ContentUpdateWithWhereUniqueWithoutCollectionInput[]
+    updateMany?: ContentUpdateManyWithWhereWithoutCollectionInput | ContentUpdateManyWithWhereWithoutCollectionInput[]
+    deleteMany?: ContentScalarWhereInput | ContentScalarWhereInput[]
+  }
+
   export type ProductUncheckedUpdateManyWithoutCollectionNestedInput = {
     create?: XOR<ProductCreateWithoutCollectionInput, ProductUncheckedCreateWithoutCollectionInput> | ProductCreateWithoutCollectionInput[] | ProductUncheckedCreateWithoutCollectionInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutCollectionInput | ProductCreateOrConnectWithoutCollectionInput[]
@@ -17930,6 +20087,34 @@ export namespace Prisma {
     update?: ProductUpdateWithWhereUniqueWithoutCollectionInput | ProductUpdateWithWhereUniqueWithoutCollectionInput[]
     updateMany?: ProductUpdateManyWithWhereWithoutCollectionInput | ProductUpdateManyWithWhereWithoutCollectionInput[]
     deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  }
+
+  export type SectionUncheckedUpdateManyWithoutCollectionNestedInput = {
+    create?: XOR<SectionCreateWithoutCollectionInput, SectionUncheckedCreateWithoutCollectionInput> | SectionCreateWithoutCollectionInput[] | SectionUncheckedCreateWithoutCollectionInput[]
+    connectOrCreate?: SectionCreateOrConnectWithoutCollectionInput | SectionCreateOrConnectWithoutCollectionInput[]
+    upsert?: SectionUpsertWithWhereUniqueWithoutCollectionInput | SectionUpsertWithWhereUniqueWithoutCollectionInput[]
+    createMany?: SectionCreateManyCollectionInputEnvelope
+    set?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    disconnect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    delete?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    connect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    update?: SectionUpdateWithWhereUniqueWithoutCollectionInput | SectionUpdateWithWhereUniqueWithoutCollectionInput[]
+    updateMany?: SectionUpdateManyWithWhereWithoutCollectionInput | SectionUpdateManyWithWhereWithoutCollectionInput[]
+    deleteMany?: SectionScalarWhereInput | SectionScalarWhereInput[]
+  }
+
+  export type ContentUncheckedUpdateManyWithoutCollectionNestedInput = {
+    create?: XOR<ContentCreateWithoutCollectionInput, ContentUncheckedCreateWithoutCollectionInput> | ContentCreateWithoutCollectionInput[] | ContentUncheckedCreateWithoutCollectionInput[]
+    connectOrCreate?: ContentCreateOrConnectWithoutCollectionInput | ContentCreateOrConnectWithoutCollectionInput[]
+    upsert?: ContentUpsertWithWhereUniqueWithoutCollectionInput | ContentUpsertWithWhereUniqueWithoutCollectionInput[]
+    createMany?: ContentCreateManyCollectionInputEnvelope
+    set?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    disconnect?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    delete?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    connect?: ContentWhereUniqueInput | ContentWhereUniqueInput[]
+    update?: ContentUpdateWithWhereUniqueWithoutCollectionInput | ContentUpdateWithWhereUniqueWithoutCollectionInput[]
+    updateMany?: ContentUpdateManyWithWhereWithoutCollectionInput | ContentUpdateManyWithWhereWithoutCollectionInput[]
+    deleteMany?: ContentScalarWhereInput | ContentScalarWhereInput[]
   }
 
   export type MetaCreateNestedOneWithoutPagesInput = {
@@ -18023,6 +20208,64 @@ export namespace Prisma {
     connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
     update?: ImageUpdateWithWhereUniqueWithoutGalleryImagesInput | ImageUpdateWithWhereUniqueWithoutGalleryImagesInput[]
     updateMany?: ImageUpdateManyWithWhereWithoutGalleryImagesInput | ImageUpdateManyWithWhereWithoutGalleryImagesInput[]
+    deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[]
+  }
+
+  export type CollectionCreateNestedOneWithoutSectionInput = {
+    create?: XOR<CollectionCreateWithoutSectionInput, CollectionUncheckedCreateWithoutSectionInput>
+    connectOrCreate?: CollectionCreateOrConnectWithoutSectionInput
+    connect?: CollectionWhereUniqueInput
+  }
+
+  export type ImageCreateNestedManyWithoutSectionInput = {
+    create?: XOR<ImageCreateWithoutSectionInput, ImageUncheckedCreateWithoutSectionInput> | ImageCreateWithoutSectionInput[] | ImageUncheckedCreateWithoutSectionInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutSectionInput | ImageCreateOrConnectWithoutSectionInput[]
+    createMany?: ImageCreateManySectionInputEnvelope
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+  }
+
+  export type ImageUncheckedCreateNestedManyWithoutSectionInput = {
+    create?: XOR<ImageCreateWithoutSectionInput, ImageUncheckedCreateWithoutSectionInput> | ImageCreateWithoutSectionInput[] | ImageUncheckedCreateWithoutSectionInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutSectionInput | ImageCreateOrConnectWithoutSectionInput[]
+    createMany?: ImageCreateManySectionInputEnvelope
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+  }
+
+  export type CollectionUpdateOneWithoutSectionNestedInput = {
+    create?: XOR<CollectionCreateWithoutSectionInput, CollectionUncheckedCreateWithoutSectionInput>
+    connectOrCreate?: CollectionCreateOrConnectWithoutSectionInput
+    upsert?: CollectionUpsertWithoutSectionInput
+    disconnect?: CollectionWhereInput | boolean
+    delete?: CollectionWhereInput | boolean
+    connect?: CollectionWhereUniqueInput
+    update?: XOR<XOR<CollectionUpdateToOneWithWhereWithoutSectionInput, CollectionUpdateWithoutSectionInput>, CollectionUncheckedUpdateWithoutSectionInput>
+  }
+
+  export type ImageUpdateManyWithoutSectionNestedInput = {
+    create?: XOR<ImageCreateWithoutSectionInput, ImageUncheckedCreateWithoutSectionInput> | ImageCreateWithoutSectionInput[] | ImageUncheckedCreateWithoutSectionInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutSectionInput | ImageCreateOrConnectWithoutSectionInput[]
+    upsert?: ImageUpsertWithWhereUniqueWithoutSectionInput | ImageUpsertWithWhereUniqueWithoutSectionInput[]
+    createMany?: ImageCreateManySectionInputEnvelope
+    set?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    disconnect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    delete?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    update?: ImageUpdateWithWhereUniqueWithoutSectionInput | ImageUpdateWithWhereUniqueWithoutSectionInput[]
+    updateMany?: ImageUpdateManyWithWhereWithoutSectionInput | ImageUpdateManyWithWhereWithoutSectionInput[]
+    deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[]
+  }
+
+  export type ImageUncheckedUpdateManyWithoutSectionNestedInput = {
+    create?: XOR<ImageCreateWithoutSectionInput, ImageUncheckedCreateWithoutSectionInput> | ImageCreateWithoutSectionInput[] | ImageUncheckedCreateWithoutSectionInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutSectionInput | ImageCreateOrConnectWithoutSectionInput[]
+    upsert?: ImageUpsertWithWhereUniqueWithoutSectionInput | ImageUpsertWithWhereUniqueWithoutSectionInput[]
+    createMany?: ImageCreateManySectionInputEnvelope
+    set?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    disconnect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    delete?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    update?: ImageUpdateWithWhereUniqueWithoutSectionInput | ImageUpdateWithWhereUniqueWithoutSectionInput[]
+    updateMany?: ImageUpdateManyWithWhereWithoutSectionInput | ImageUpdateManyWithWhereWithoutSectionInput[]
     deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[]
   }
 
@@ -18186,6 +20429,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     pages?: PageCreateNestedManyWithoutMetaInput
     products?: ProductCreateNestedManyWithoutMetaInput
+    collections?: CollectionCreateNestedManyWithoutMetaInput
   }
 
   export type MetaUncheckedCreateWithoutCategoriesInput = {
@@ -18199,6 +20443,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     pages?: PageUncheckedCreateNestedManyWithoutMetaInput
     products?: ProductUncheckedCreateNestedManyWithoutMetaInput
+    collections?: CollectionUncheckedCreateNestedManyWithoutMetaInput
   }
 
   export type MetaCreateOrConnectWithoutCategoriesInput = {
@@ -18278,6 +20523,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     pages?: PageUpdateManyWithoutMetaNestedInput
     products?: ProductUpdateManyWithoutMetaNestedInput
+    collections?: CollectionUpdateManyWithoutMetaNestedInput
   }
 
   export type MetaUncheckedUpdateWithoutCategoriesInput = {
@@ -18291,6 +20537,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     pages?: PageUncheckedUpdateManyWithoutMetaNestedInput
     products?: ProductUncheckedUpdateManyWithoutMetaNestedInput
+    collections?: CollectionUncheckedUpdateManyWithoutMetaNestedInput
   }
 
   export type ProductUpsertWithWhereUniqueWithoutCategoryInput = {
@@ -18446,6 +20693,42 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CollectionCreateWithoutMetaInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductCreateNestedManyWithoutCollectionInput
+    cover?: ImageCreateNestedOneWithoutCollectionCoverInput
+    section?: SectionCreateNestedManyWithoutCollectionInput
+    contents?: ContentCreateNestedManyWithoutCollectionInput
+  }
+
+  export type CollectionUncheckedCreateWithoutMetaInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    coverId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductUncheckedCreateNestedManyWithoutCollectionInput
+    section?: SectionUncheckedCreateNestedManyWithoutCollectionInput
+    contents?: ContentUncheckedCreateNestedManyWithoutCollectionInput
+  }
+
+  export type CollectionCreateOrConnectWithoutMetaInput = {
+    where: CollectionWhereUniqueInput
+    create: XOR<CollectionCreateWithoutMetaInput, CollectionUncheckedCreateWithoutMetaInput>
+  }
+
+  export type CollectionCreateManyMetaInputEnvelope = {
+    data: CollectionCreateManyMetaInput | CollectionCreateManyMetaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CategoryUpsertWithWhereUniqueWithoutMetaInput = {
     where: CategoryWhereUniqueInput
     update: XOR<CategoryUpdateWithoutMetaInput, CategoryUncheckedUpdateWithoutMetaInput>
@@ -18523,6 +20806,36 @@ export namespace Prisma {
     data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutMetaInput>
   }
 
+  export type CollectionUpsertWithWhereUniqueWithoutMetaInput = {
+    where: CollectionWhereUniqueInput
+    update: XOR<CollectionUpdateWithoutMetaInput, CollectionUncheckedUpdateWithoutMetaInput>
+    create: XOR<CollectionCreateWithoutMetaInput, CollectionUncheckedCreateWithoutMetaInput>
+  }
+
+  export type CollectionUpdateWithWhereUniqueWithoutMetaInput = {
+    where: CollectionWhereUniqueInput
+    data: XOR<CollectionUpdateWithoutMetaInput, CollectionUncheckedUpdateWithoutMetaInput>
+  }
+
+  export type CollectionUpdateManyWithWhereWithoutMetaInput = {
+    where: CollectionScalarWhereInput
+    data: XOR<CollectionUpdateManyMutationInput, CollectionUncheckedUpdateManyWithoutMetaInput>
+  }
+
+  export type CollectionScalarWhereInput = {
+    AND?: CollectionScalarWhereInput | CollectionScalarWhereInput[]
+    OR?: CollectionScalarWhereInput[]
+    NOT?: CollectionScalarWhereInput | CollectionScalarWhereInput[]
+    id?: StringFilter<"Collection"> | string
+    locale?: StringFilter<"Collection"> | string
+    name?: StringFilter<"Collection"> | string
+    slug?: StringFilter<"Collection"> | string
+    metaId?: StringFilter<"Collection"> | string
+    coverId?: StringNullableFilter<"Collection"> | string | null
+    createdAt?: DateTimeFilter<"Collection"> | Date | string
+    updatedAt?: DateTimeFilter<"Collection"> | Date | string
+  }
+
   export type PageCreateWithoutContentInput = {
     id?: string
     locale: string
@@ -18550,6 +20863,37 @@ export namespace Prisma {
   export type PageCreateOrConnectWithoutContentInput = {
     where: PageWhereUniqueInput
     create: XOR<PageCreateWithoutContentInput, PageUncheckedCreateWithoutContentInput>
+  }
+
+  export type CollectionCreateWithoutContentsInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductCreateNestedManyWithoutCollectionInput
+    meta: MetaCreateNestedOneWithoutCollectionsInput
+    cover?: ImageCreateNestedOneWithoutCollectionCoverInput
+    section?: SectionCreateNestedManyWithoutCollectionInput
+  }
+
+  export type CollectionUncheckedCreateWithoutContentsInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    metaId: string
+    coverId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductUncheckedCreateNestedManyWithoutCollectionInput
+    section?: SectionUncheckedCreateNestedManyWithoutCollectionInput
+  }
+
+  export type CollectionCreateOrConnectWithoutContentsInput = {
+    where: CollectionWhereUniqueInput
+    create: XOR<CollectionCreateWithoutContentsInput, CollectionUncheckedCreateWithoutContentsInput>
   }
 
   export type PageUpsertWithoutContentInput = {
@@ -18587,6 +20931,43 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CollectionUpsertWithoutContentsInput = {
+    update: XOR<CollectionUpdateWithoutContentsInput, CollectionUncheckedUpdateWithoutContentsInput>
+    create: XOR<CollectionCreateWithoutContentsInput, CollectionUncheckedCreateWithoutContentsInput>
+    where?: CollectionWhereInput
+  }
+
+  export type CollectionUpdateToOneWithWhereWithoutContentsInput = {
+    where?: CollectionWhereInput
+    data: XOR<CollectionUpdateWithoutContentsInput, CollectionUncheckedUpdateWithoutContentsInput>
+  }
+
+  export type CollectionUpdateWithoutContentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUpdateManyWithoutCollectionNestedInput
+    meta?: MetaUpdateOneRequiredWithoutCollectionsNestedInput
+    cover?: ImageUpdateOneWithoutCollectionCoverNestedInput
+    section?: SectionUpdateManyWithoutCollectionNestedInput
+  }
+
+  export type CollectionUncheckedUpdateWithoutContentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    metaId?: StringFieldUpdateOperationsInput | string
+    coverId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUncheckedUpdateManyWithoutCollectionNestedInput
+    section?: SectionUncheckedUpdateManyWithoutCollectionNestedInput
+  }
+
   export type CategoryCreateWithoutProductsInput = {
     id?: string
     locale: string
@@ -18621,6 +21002,10 @@ export namespace Prisma {
     slug: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    meta: MetaCreateNestedOneWithoutCollectionsInput
+    cover?: ImageCreateNestedOneWithoutCollectionCoverInput
+    section?: SectionCreateNestedManyWithoutCollectionInput
+    contents?: ContentCreateNestedManyWithoutCollectionInput
   }
 
   export type CollectionUncheckedCreateWithoutProductsInput = {
@@ -18628,8 +21013,12 @@ export namespace Prisma {
     locale: string
     name: string
     slug: string
+    metaId: string
+    coverId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    section?: SectionUncheckedCreateNestedManyWithoutCollectionInput
+    contents?: ContentUncheckedCreateNestedManyWithoutCollectionInput
   }
 
   export type CollectionCreateOrConnectWithoutProductsInput = {
@@ -18642,10 +21031,13 @@ export namespace Prisma {
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    collectionId?: string | null
     imageMeta: ImageMetaCreateNestedOneWithoutImageInput
     TechnicalProducts?: ProductCreateNestedManyWithoutTechnicalInput
     ProductPromotions?: ProductPromotionCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryCreateNestedManyWithoutImagesInput
+    section?: SectionCreateNestedOneWithoutImagesInput
+    CollectionCover?: CollectionCreateNestedOneWithoutCoverInput
   }
 
   export type ImageUncheckedCreateWithoutProductCoverInput = {
@@ -18654,9 +21046,12 @@ export namespace Prisma {
     imageMetaId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    sectionId?: string | null
+    collectionId?: string | null
     TechnicalProducts?: ProductUncheckedCreateNestedManyWithoutTechnicalInput
     ProductPromotions?: ProductPromotionUncheckedCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryUncheckedCreateNestedManyWithoutImagesInput
+    CollectionCover?: CollectionUncheckedCreateNestedOneWithoutCoverInput
   }
 
   export type ImageCreateOrConnectWithoutProductCoverInput = {
@@ -18695,10 +21090,13 @@ export namespace Prisma {
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    collectionId?: string | null
     imageMeta: ImageMetaCreateNestedOneWithoutImageInput
     ProductCover?: ProductCreateNestedOneWithoutCoverInput
     ProductPromotions?: ProductPromotionCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryCreateNestedManyWithoutImagesInput
+    section?: SectionCreateNestedOneWithoutImagesInput
+    CollectionCover?: CollectionCreateNestedOneWithoutCoverInput
   }
 
   export type ImageUncheckedCreateWithoutTechnicalProductsInput = {
@@ -18707,9 +21105,12 @@ export namespace Prisma {
     imageMetaId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    sectionId?: string | null
+    collectionId?: string | null
     ProductCover?: ProductUncheckedCreateNestedOneWithoutCoverInput
     ProductPromotions?: ProductPromotionUncheckedCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryUncheckedCreateNestedManyWithoutImagesInput
+    CollectionCover?: CollectionUncheckedCreateNestedOneWithoutCoverInput
   }
 
   export type ImageCreateOrConnectWithoutTechnicalProductsInput = {
@@ -18752,6 +21153,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     categories?: CategoryCreateNestedManyWithoutMetaInput
     pages?: PageCreateNestedManyWithoutMetaInput
+    collections?: CollectionCreateNestedManyWithoutMetaInput
   }
 
   export type MetaUncheckedCreateWithoutProductsInput = {
@@ -18765,6 +21167,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     categories?: CategoryUncheckedCreateNestedManyWithoutMetaInput
     pages?: PageUncheckedCreateNestedManyWithoutMetaInput
+    collections?: CollectionUncheckedCreateNestedManyWithoutMetaInput
   }
 
   export type MetaCreateOrConnectWithoutProductsInput = {
@@ -18823,6 +21226,10 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    meta?: MetaUpdateOneRequiredWithoutCollectionsNestedInput
+    cover?: ImageUpdateOneWithoutCollectionCoverNestedInput
+    section?: SectionUpdateManyWithoutCollectionNestedInput
+    contents?: ContentUpdateManyWithoutCollectionNestedInput
   }
 
   export type CollectionUncheckedUpdateWithoutProductsInput = {
@@ -18830,8 +21237,12 @@ export namespace Prisma {
     locale?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    metaId?: StringFieldUpdateOperationsInput | string
+    coverId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    section?: SectionUncheckedUpdateManyWithoutCollectionNestedInput
+    contents?: ContentUncheckedUpdateManyWithoutCollectionNestedInput
   }
 
   export type ImageUpsertWithoutProductCoverInput = {
@@ -18850,10 +21261,13 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     imageMeta?: ImageMetaUpdateOneRequiredWithoutImageNestedInput
     TechnicalProducts?: ProductUpdateManyWithoutTechnicalNestedInput
     ProductPromotions?: ProductPromotionUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUpdateManyWithoutImagesNestedInput
+    section?: SectionUpdateOneWithoutImagesNestedInput
+    CollectionCover?: CollectionUpdateOneWithoutCoverNestedInput
   }
 
   export type ImageUncheckedUpdateWithoutProductCoverInput = {
@@ -18862,9 +21276,12 @@ export namespace Prisma {
     imageMetaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     TechnicalProducts?: ProductUncheckedUpdateManyWithoutTechnicalNestedInput
     ProductPromotions?: ProductPromotionUncheckedUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUncheckedUpdateManyWithoutImagesNestedInput
+    CollectionCover?: CollectionUncheckedUpdateOneWithoutCoverNestedInput
   }
 
   export type ProductPromotionUpsertWithWhereUniqueWithoutProductInput = {
@@ -18919,6 +21336,8 @@ export namespace Prisma {
     imageMetaId?: StringFilter<"Image"> | string
     createdAt?: DateTimeFilter<"Image"> | Date | string
     updatedAt?: DateTimeFilter<"Image"> | Date | string
+    sectionId?: StringNullableFilter<"Image"> | string | null
+    collectionId?: StringNullableFilter<"Image"> | string | null
   }
 
   export type FileUpsertWithWhereUniqueWithoutProductInput = {
@@ -18970,6 +21389,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categories?: CategoryUpdateManyWithoutMetaNestedInput
     pages?: PageUpdateManyWithoutMetaNestedInput
+    collections?: CollectionUpdateManyWithoutMetaNestedInput
   }
 
   export type MetaUncheckedUpdateWithoutProductsInput = {
@@ -18983,6 +21403,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categories?: CategoryUncheckedUpdateManyWithoutMetaNestedInput
     pages?: PageUncheckedUpdateManyWithoutMetaNestedInput
+    collections?: CollectionUncheckedUpdateManyWithoutMetaNestedInput
   }
 
   export type ImageCreateWithoutProductPromotionsInput = {
@@ -18990,10 +21411,13 @@ export namespace Prisma {
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    collectionId?: string | null
     imageMeta: ImageMetaCreateNestedOneWithoutImageInput
     ProductCover?: ProductCreateNestedOneWithoutCoverInput
     TechnicalProducts?: ProductCreateNestedManyWithoutTechnicalInput
     GalleryImages?: GalleryCreateNestedManyWithoutImagesInput
+    section?: SectionCreateNestedOneWithoutImagesInput
+    CollectionCover?: CollectionCreateNestedOneWithoutCoverInput
   }
 
   export type ImageUncheckedCreateWithoutProductPromotionsInput = {
@@ -19002,9 +21426,12 @@ export namespace Prisma {
     imageMetaId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    sectionId?: string | null
+    collectionId?: string | null
     ProductCover?: ProductUncheckedCreateNestedOneWithoutCoverInput
     TechnicalProducts?: ProductUncheckedCreateNestedManyWithoutTechnicalInput
     GalleryImages?: GalleryUncheckedCreateNestedManyWithoutImagesInput
+    CollectionCover?: CollectionUncheckedCreateNestedOneWithoutCoverInput
   }
 
   export type ImageCreateOrConnectWithoutProductPromotionsInput = {
@@ -19377,6 +21804,68 @@ export namespace Prisma {
     create: XOR<GalleryCreateWithoutImagesInput, GalleryUncheckedCreateWithoutImagesInput>
   }
 
+  export type SectionCreateWithoutImagesInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    layout?: string | null
+    title?: string | null
+    content?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    collection?: CollectionCreateNestedOneWithoutSectionInput
+  }
+
+  export type SectionUncheckedCreateWithoutImagesInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    layout?: string | null
+    title?: string | null
+    content?: string | null
+    collectionId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SectionCreateOrConnectWithoutImagesInput = {
+    where: SectionWhereUniqueInput
+    create: XOR<SectionCreateWithoutImagesInput, SectionUncheckedCreateWithoutImagesInput>
+  }
+
+  export type CollectionCreateWithoutCoverInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductCreateNestedManyWithoutCollectionInput
+    meta: MetaCreateNestedOneWithoutCollectionsInput
+    section?: SectionCreateNestedManyWithoutCollectionInput
+    contents?: ContentCreateNestedManyWithoutCollectionInput
+  }
+
+  export type CollectionUncheckedCreateWithoutCoverInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    metaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductUncheckedCreateNestedManyWithoutCollectionInput
+    section?: SectionUncheckedCreateNestedManyWithoutCollectionInput
+    contents?: ContentUncheckedCreateNestedManyWithoutCollectionInput
+  }
+
+  export type CollectionCreateOrConnectWithoutCoverInput = {
+    where: CollectionWhereUniqueInput
+    create: XOR<CollectionCreateWithoutCoverInput, CollectionUncheckedCreateWithoutCoverInput>
+  }
+
   export type ImageMetaUpsertWithoutImageInput = {
     update: XOR<ImageMetaUpdateWithoutImageInput, ImageMetaUncheckedUpdateWithoutImageInput>
     create: XOR<ImageMetaCreateWithoutImageInput, ImageMetaUncheckedCreateWithoutImageInput>
@@ -19517,15 +22006,92 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Gallery"> | Date | string
   }
 
+  export type SectionUpsertWithoutImagesInput = {
+    update: XOR<SectionUpdateWithoutImagesInput, SectionUncheckedUpdateWithoutImagesInput>
+    create: XOR<SectionCreateWithoutImagesInput, SectionUncheckedCreateWithoutImagesInput>
+    where?: SectionWhereInput
+  }
+
+  export type SectionUpdateToOneWithWhereWithoutImagesInput = {
+    where?: SectionWhereInput
+    data: XOR<SectionUpdateWithoutImagesInput, SectionUncheckedUpdateWithoutImagesInput>
+  }
+
+  export type SectionUpdateWithoutImagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    layout?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collection?: CollectionUpdateOneWithoutSectionNestedInput
+  }
+
+  export type SectionUncheckedUpdateWithoutImagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    layout?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CollectionUpsertWithoutCoverInput = {
+    update: XOR<CollectionUpdateWithoutCoverInput, CollectionUncheckedUpdateWithoutCoverInput>
+    create: XOR<CollectionCreateWithoutCoverInput, CollectionUncheckedCreateWithoutCoverInput>
+    where?: CollectionWhereInput
+  }
+
+  export type CollectionUpdateToOneWithWhereWithoutCoverInput = {
+    where?: CollectionWhereInput
+    data: XOR<CollectionUpdateWithoutCoverInput, CollectionUncheckedUpdateWithoutCoverInput>
+  }
+
+  export type CollectionUpdateWithoutCoverInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUpdateManyWithoutCollectionNestedInput
+    meta?: MetaUpdateOneRequiredWithoutCollectionsNestedInput
+    section?: SectionUpdateManyWithoutCollectionNestedInput
+    contents?: ContentUpdateManyWithoutCollectionNestedInput
+  }
+
+  export type CollectionUncheckedUpdateWithoutCoverInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    metaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUncheckedUpdateManyWithoutCollectionNestedInput
+    section?: SectionUncheckedUpdateManyWithoutCollectionNestedInput
+    contents?: ContentUncheckedUpdateManyWithoutCollectionNestedInput
+  }
+
   export type ImageCreateWithoutImageMetaInput = {
     id?: string
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    collectionId?: string | null
     ProductCover?: ProductCreateNestedOneWithoutCoverInput
     TechnicalProducts?: ProductCreateNestedManyWithoutTechnicalInput
     ProductPromotions?: ProductPromotionCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryCreateNestedManyWithoutImagesInput
+    section?: SectionCreateNestedOneWithoutImagesInput
+    CollectionCover?: CollectionCreateNestedOneWithoutCoverInput
   }
 
   export type ImageUncheckedCreateWithoutImageMetaInput = {
@@ -19533,10 +22099,13 @@ export namespace Prisma {
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    sectionId?: string | null
+    collectionId?: string | null
     ProductCover?: ProductUncheckedCreateNestedOneWithoutCoverInput
     TechnicalProducts?: ProductUncheckedCreateNestedManyWithoutTechnicalInput
     ProductPromotions?: ProductPromotionUncheckedCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryUncheckedCreateNestedManyWithoutImagesInput
+    CollectionCover?: CollectionUncheckedCreateNestedOneWithoutCoverInput
   }
 
   export type ImageCreateOrConnectWithoutImageMetaInput = {
@@ -19615,6 +22184,142 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MetaCreateWithoutCollectionsInput = {
+    id?: string
+    locale: string
+    title?: string | null
+    description?: string | null
+    keywords?: string | null
+    robots?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    categories?: CategoryCreateNestedManyWithoutMetaInput
+    pages?: PageCreateNestedManyWithoutMetaInput
+    products?: ProductCreateNestedManyWithoutMetaInput
+  }
+
+  export type MetaUncheckedCreateWithoutCollectionsInput = {
+    id?: string
+    locale: string
+    title?: string | null
+    description?: string | null
+    keywords?: string | null
+    robots?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    categories?: CategoryUncheckedCreateNestedManyWithoutMetaInput
+    pages?: PageUncheckedCreateNestedManyWithoutMetaInput
+    products?: ProductUncheckedCreateNestedManyWithoutMetaInput
+  }
+
+  export type MetaCreateOrConnectWithoutCollectionsInput = {
+    where: MetaWhereUniqueInput
+    create: XOR<MetaCreateWithoutCollectionsInput, MetaUncheckedCreateWithoutCollectionsInput>
+  }
+
+  export type ImageCreateWithoutCollectionCoverInput = {
+    id?: string
+    path: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    collectionId?: string | null
+    imageMeta: ImageMetaCreateNestedOneWithoutImageInput
+    ProductCover?: ProductCreateNestedOneWithoutCoverInput
+    TechnicalProducts?: ProductCreateNestedManyWithoutTechnicalInput
+    ProductPromotions?: ProductPromotionCreateNestedManyWithoutImagesInput
+    GalleryImages?: GalleryCreateNestedManyWithoutImagesInput
+    section?: SectionCreateNestedOneWithoutImagesInput
+  }
+
+  export type ImageUncheckedCreateWithoutCollectionCoverInput = {
+    id?: string
+    path: string
+    imageMetaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sectionId?: string | null
+    collectionId?: string | null
+    ProductCover?: ProductUncheckedCreateNestedOneWithoutCoverInput
+    TechnicalProducts?: ProductUncheckedCreateNestedManyWithoutTechnicalInput
+    ProductPromotions?: ProductPromotionUncheckedCreateNestedManyWithoutImagesInput
+    GalleryImages?: GalleryUncheckedCreateNestedManyWithoutImagesInput
+  }
+
+  export type ImageCreateOrConnectWithoutCollectionCoverInput = {
+    where: ImageWhereUniqueInput
+    create: XOR<ImageCreateWithoutCollectionCoverInput, ImageUncheckedCreateWithoutCollectionCoverInput>
+  }
+
+  export type SectionCreateWithoutCollectionInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    layout?: string | null
+    title?: string | null
+    content?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    images?: ImageCreateNestedManyWithoutSectionInput
+  }
+
+  export type SectionUncheckedCreateWithoutCollectionInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    layout?: string | null
+    title?: string | null
+    content?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    images?: ImageUncheckedCreateNestedManyWithoutSectionInput
+  }
+
+  export type SectionCreateOrConnectWithoutCollectionInput = {
+    where: SectionWhereUniqueInput
+    create: XOR<SectionCreateWithoutCollectionInput, SectionUncheckedCreateWithoutCollectionInput>
+  }
+
+  export type SectionCreateManyCollectionInputEnvelope = {
+    data: SectionCreateManyCollectionInput | SectionCreateManyCollectionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ContentCreateWithoutCollectionInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    title?: string | null
+    content?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    page?: PageCreateNestedOneWithoutContentInput
+  }
+
+  export type ContentUncheckedCreateWithoutCollectionInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    title?: string | null
+    content?: string | null
+    pageId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContentCreateOrConnectWithoutCollectionInput = {
+    where: ContentWhereUniqueInput
+    create: XOR<ContentCreateWithoutCollectionInput, ContentUncheckedCreateWithoutCollectionInput>
+  }
+
+  export type ContentCreateManyCollectionInputEnvelope = {
+    data: ContentCreateManyCollectionInput | ContentCreateManyCollectionInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ProductUpsertWithWhereUniqueWithoutCollectionInput = {
     where: ProductWhereUniqueInput
     update: XOR<ProductUpdateWithoutCollectionInput, ProductUncheckedUpdateWithoutCollectionInput>
@@ -19631,6 +22336,148 @@ export namespace Prisma {
     data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutCollectionInput>
   }
 
+  export type MetaUpsertWithoutCollectionsInput = {
+    update: XOR<MetaUpdateWithoutCollectionsInput, MetaUncheckedUpdateWithoutCollectionsInput>
+    create: XOR<MetaCreateWithoutCollectionsInput, MetaUncheckedCreateWithoutCollectionsInput>
+    where?: MetaWhereInput
+  }
+
+  export type MetaUpdateToOneWithWhereWithoutCollectionsInput = {
+    where?: MetaWhereInput
+    data: XOR<MetaUpdateWithoutCollectionsInput, MetaUncheckedUpdateWithoutCollectionsInput>
+  }
+
+  export type MetaUpdateWithoutCollectionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: NullableStringFieldUpdateOperationsInput | string | null
+    robots?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    categories?: CategoryUpdateManyWithoutMetaNestedInput
+    pages?: PageUpdateManyWithoutMetaNestedInput
+    products?: ProductUpdateManyWithoutMetaNestedInput
+  }
+
+  export type MetaUncheckedUpdateWithoutCollectionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: NullableStringFieldUpdateOperationsInput | string | null
+    robots?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    categories?: CategoryUncheckedUpdateManyWithoutMetaNestedInput
+    pages?: PageUncheckedUpdateManyWithoutMetaNestedInput
+    products?: ProductUncheckedUpdateManyWithoutMetaNestedInput
+  }
+
+  export type ImageUpsertWithoutCollectionCoverInput = {
+    update: XOR<ImageUpdateWithoutCollectionCoverInput, ImageUncheckedUpdateWithoutCollectionCoverInput>
+    create: XOR<ImageCreateWithoutCollectionCoverInput, ImageUncheckedCreateWithoutCollectionCoverInput>
+    where?: ImageWhereInput
+  }
+
+  export type ImageUpdateToOneWithWhereWithoutCollectionCoverInput = {
+    where?: ImageWhereInput
+    data: XOR<ImageUpdateWithoutCollectionCoverInput, ImageUncheckedUpdateWithoutCollectionCoverInput>
+  }
+
+  export type ImageUpdateWithoutCollectionCoverInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    imageMeta?: ImageMetaUpdateOneRequiredWithoutImageNestedInput
+    ProductCover?: ProductUpdateOneWithoutCoverNestedInput
+    TechnicalProducts?: ProductUpdateManyWithoutTechnicalNestedInput
+    ProductPromotions?: ProductPromotionUpdateManyWithoutImagesNestedInput
+    GalleryImages?: GalleryUpdateManyWithoutImagesNestedInput
+    section?: SectionUpdateOneWithoutImagesNestedInput
+  }
+
+  export type ImageUncheckedUpdateWithoutCollectionCoverInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    imageMetaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    ProductCover?: ProductUncheckedUpdateOneWithoutCoverNestedInput
+    TechnicalProducts?: ProductUncheckedUpdateManyWithoutTechnicalNestedInput
+    ProductPromotions?: ProductPromotionUncheckedUpdateManyWithoutImagesNestedInput
+    GalleryImages?: GalleryUncheckedUpdateManyWithoutImagesNestedInput
+  }
+
+  export type SectionUpsertWithWhereUniqueWithoutCollectionInput = {
+    where: SectionWhereUniqueInput
+    update: XOR<SectionUpdateWithoutCollectionInput, SectionUncheckedUpdateWithoutCollectionInput>
+    create: XOR<SectionCreateWithoutCollectionInput, SectionUncheckedCreateWithoutCollectionInput>
+  }
+
+  export type SectionUpdateWithWhereUniqueWithoutCollectionInput = {
+    where: SectionWhereUniqueInput
+    data: XOR<SectionUpdateWithoutCollectionInput, SectionUncheckedUpdateWithoutCollectionInput>
+  }
+
+  export type SectionUpdateManyWithWhereWithoutCollectionInput = {
+    where: SectionScalarWhereInput
+    data: XOR<SectionUpdateManyMutationInput, SectionUncheckedUpdateManyWithoutCollectionInput>
+  }
+
+  export type SectionScalarWhereInput = {
+    AND?: SectionScalarWhereInput | SectionScalarWhereInput[]
+    OR?: SectionScalarWhereInput[]
+    NOT?: SectionScalarWhereInput | SectionScalarWhereInput[]
+    id?: StringFilter<"Section"> | string
+    locale?: StringFilter<"Section"> | string
+    name?: StringFilter<"Section"> | string
+    slug?: StringFilter<"Section"> | string
+    layout?: StringNullableFilter<"Section"> | string | null
+    title?: StringNullableFilter<"Section"> | string | null
+    content?: StringNullableFilter<"Section"> | string | null
+    collectionId?: StringNullableFilter<"Section"> | string | null
+    createdAt?: DateTimeFilter<"Section"> | Date | string
+    updatedAt?: DateTimeFilter<"Section"> | Date | string
+  }
+
+  export type ContentUpsertWithWhereUniqueWithoutCollectionInput = {
+    where: ContentWhereUniqueInput
+    update: XOR<ContentUpdateWithoutCollectionInput, ContentUncheckedUpdateWithoutCollectionInput>
+    create: XOR<ContentCreateWithoutCollectionInput, ContentUncheckedCreateWithoutCollectionInput>
+  }
+
+  export type ContentUpdateWithWhereUniqueWithoutCollectionInput = {
+    where: ContentWhereUniqueInput
+    data: XOR<ContentUpdateWithoutCollectionInput, ContentUncheckedUpdateWithoutCollectionInput>
+  }
+
+  export type ContentUpdateManyWithWhereWithoutCollectionInput = {
+    where: ContentScalarWhereInput
+    data: XOR<ContentUpdateManyMutationInput, ContentUncheckedUpdateManyWithoutCollectionInput>
+  }
+
+  export type ContentScalarWhereInput = {
+    AND?: ContentScalarWhereInput | ContentScalarWhereInput[]
+    OR?: ContentScalarWhereInput[]
+    NOT?: ContentScalarWhereInput | ContentScalarWhereInput[]
+    id?: StringFilter<"Content"> | string
+    locale?: StringFilter<"Content"> | string
+    name?: StringFilter<"Content"> | string
+    slug?: StringFilter<"Content"> | string
+    title?: StringNullableFilter<"Content"> | string | null
+    content?: StringNullableFilter<"Content"> | string | null
+    pageId?: StringNullableFilter<"Content"> | string | null
+    collectionId?: StringNullableFilter<"Content"> | string | null
+    createdAt?: DateTimeFilter<"Content"> | Date | string
+    updatedAt?: DateTimeFilter<"Content"> | Date | string
+  }
+
   export type MetaCreateWithoutPagesInput = {
     id?: string
     locale: string
@@ -19642,6 +22489,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     categories?: CategoryCreateNestedManyWithoutMetaInput
     products?: ProductCreateNestedManyWithoutMetaInput
+    collections?: CollectionCreateNestedManyWithoutMetaInput
   }
 
   export type MetaUncheckedCreateWithoutPagesInput = {
@@ -19655,6 +22503,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     categories?: CategoryUncheckedCreateNestedManyWithoutMetaInput
     products?: ProductUncheckedCreateNestedManyWithoutMetaInput
+    collections?: CollectionUncheckedCreateNestedManyWithoutMetaInput
   }
 
   export type MetaCreateOrConnectWithoutPagesInput = {
@@ -19671,6 +22520,7 @@ export namespace Prisma {
     content?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    collection?: CollectionCreateNestedOneWithoutContentsInput
   }
 
   export type ContentUncheckedCreateWithoutPageInput = {
@@ -19680,6 +22530,7 @@ export namespace Prisma {
     slug: string
     title?: string | null
     content?: string | null
+    collectionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -19716,6 +22567,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categories?: CategoryUpdateManyWithoutMetaNestedInput
     products?: ProductUpdateManyWithoutMetaNestedInput
+    collections?: CollectionUpdateManyWithoutMetaNestedInput
   }
 
   export type MetaUncheckedUpdateWithoutPagesInput = {
@@ -19729,6 +22581,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categories?: CategoryUncheckedUpdateManyWithoutMetaNestedInput
     products?: ProductUncheckedUpdateManyWithoutMetaNestedInput
+    collections?: CollectionUncheckedUpdateManyWithoutMetaNestedInput
   }
 
   export type ContentUpsertWithWhereUniqueWithoutPageInput = {
@@ -19747,30 +22600,18 @@ export namespace Prisma {
     data: XOR<ContentUpdateManyMutationInput, ContentUncheckedUpdateManyWithoutPageInput>
   }
 
-  export type ContentScalarWhereInput = {
-    AND?: ContentScalarWhereInput | ContentScalarWhereInput[]
-    OR?: ContentScalarWhereInput[]
-    NOT?: ContentScalarWhereInput | ContentScalarWhereInput[]
-    id?: StringFilter<"Content"> | string
-    locale?: StringFilter<"Content"> | string
-    name?: StringFilter<"Content"> | string
-    slug?: StringFilter<"Content"> | string
-    title?: StringNullableFilter<"Content"> | string | null
-    content?: StringNullableFilter<"Content"> | string | null
-    pageId?: StringNullableFilter<"Content"> | string | null
-    createdAt?: DateTimeFilter<"Content"> | Date | string
-    updatedAt?: DateTimeFilter<"Content"> | Date | string
-  }
-
   export type ImageCreateWithoutGalleryImagesInput = {
     id?: string
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    collectionId?: string | null
     imageMeta: ImageMetaCreateNestedOneWithoutImageInput
     ProductCover?: ProductCreateNestedOneWithoutCoverInput
     TechnicalProducts?: ProductCreateNestedManyWithoutTechnicalInput
     ProductPromotions?: ProductPromotionCreateNestedManyWithoutImagesInput
+    section?: SectionCreateNestedOneWithoutImagesInput
+    CollectionCover?: CollectionCreateNestedOneWithoutCoverInput
   }
 
   export type ImageUncheckedCreateWithoutGalleryImagesInput = {
@@ -19779,9 +22620,12 @@ export namespace Prisma {
     imageMetaId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    sectionId?: string | null
+    collectionId?: string | null
     ProductCover?: ProductUncheckedCreateNestedOneWithoutCoverInput
     TechnicalProducts?: ProductUncheckedCreateNestedManyWithoutTechnicalInput
     ProductPromotions?: ProductPromotionUncheckedCreateNestedManyWithoutImagesInput
+    CollectionCover?: CollectionUncheckedCreateNestedOneWithoutCoverInput
   }
 
   export type ImageCreateOrConnectWithoutGalleryImagesInput = {
@@ -19803,6 +22647,128 @@ export namespace Prisma {
   export type ImageUpdateManyWithWhereWithoutGalleryImagesInput = {
     where: ImageScalarWhereInput
     data: XOR<ImageUpdateManyMutationInput, ImageUncheckedUpdateManyWithoutGalleryImagesInput>
+  }
+
+  export type CollectionCreateWithoutSectionInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductCreateNestedManyWithoutCollectionInput
+    meta: MetaCreateNestedOneWithoutCollectionsInput
+    cover?: ImageCreateNestedOneWithoutCollectionCoverInput
+    contents?: ContentCreateNestedManyWithoutCollectionInput
+  }
+
+  export type CollectionUncheckedCreateWithoutSectionInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    metaId: string
+    coverId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductUncheckedCreateNestedManyWithoutCollectionInput
+    contents?: ContentUncheckedCreateNestedManyWithoutCollectionInput
+  }
+
+  export type CollectionCreateOrConnectWithoutSectionInput = {
+    where: CollectionWhereUniqueInput
+    create: XOR<CollectionCreateWithoutSectionInput, CollectionUncheckedCreateWithoutSectionInput>
+  }
+
+  export type ImageCreateWithoutSectionInput = {
+    id?: string
+    path: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    collectionId?: string | null
+    imageMeta: ImageMetaCreateNestedOneWithoutImageInput
+    ProductCover?: ProductCreateNestedOneWithoutCoverInput
+    TechnicalProducts?: ProductCreateNestedManyWithoutTechnicalInput
+    ProductPromotions?: ProductPromotionCreateNestedManyWithoutImagesInput
+    GalleryImages?: GalleryCreateNestedManyWithoutImagesInput
+    CollectionCover?: CollectionCreateNestedOneWithoutCoverInput
+  }
+
+  export type ImageUncheckedCreateWithoutSectionInput = {
+    id?: string
+    path: string
+    imageMetaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    collectionId?: string | null
+    ProductCover?: ProductUncheckedCreateNestedOneWithoutCoverInput
+    TechnicalProducts?: ProductUncheckedCreateNestedManyWithoutTechnicalInput
+    ProductPromotions?: ProductPromotionUncheckedCreateNestedManyWithoutImagesInput
+    GalleryImages?: GalleryUncheckedCreateNestedManyWithoutImagesInput
+    CollectionCover?: CollectionUncheckedCreateNestedOneWithoutCoverInput
+  }
+
+  export type ImageCreateOrConnectWithoutSectionInput = {
+    where: ImageWhereUniqueInput
+    create: XOR<ImageCreateWithoutSectionInput, ImageUncheckedCreateWithoutSectionInput>
+  }
+
+  export type ImageCreateManySectionInputEnvelope = {
+    data: ImageCreateManySectionInput | ImageCreateManySectionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CollectionUpsertWithoutSectionInput = {
+    update: XOR<CollectionUpdateWithoutSectionInput, CollectionUncheckedUpdateWithoutSectionInput>
+    create: XOR<CollectionCreateWithoutSectionInput, CollectionUncheckedCreateWithoutSectionInput>
+    where?: CollectionWhereInput
+  }
+
+  export type CollectionUpdateToOneWithWhereWithoutSectionInput = {
+    where?: CollectionWhereInput
+    data: XOR<CollectionUpdateWithoutSectionInput, CollectionUncheckedUpdateWithoutSectionInput>
+  }
+
+  export type CollectionUpdateWithoutSectionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUpdateManyWithoutCollectionNestedInput
+    meta?: MetaUpdateOneRequiredWithoutCollectionsNestedInput
+    cover?: ImageUpdateOneWithoutCollectionCoverNestedInput
+    contents?: ContentUpdateManyWithoutCollectionNestedInput
+  }
+
+  export type CollectionUncheckedUpdateWithoutSectionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    metaId?: StringFieldUpdateOperationsInput | string
+    coverId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUncheckedUpdateManyWithoutCollectionNestedInput
+    contents?: ContentUncheckedUpdateManyWithoutCollectionNestedInput
+  }
+
+  export type ImageUpsertWithWhereUniqueWithoutSectionInput = {
+    where: ImageWhereUniqueInput
+    update: XOR<ImageUpdateWithoutSectionInput, ImageUncheckedUpdateWithoutSectionInput>
+    create: XOR<ImageCreateWithoutSectionInput, ImageUncheckedCreateWithoutSectionInput>
+  }
+
+  export type ImageUpdateWithWhereUniqueWithoutSectionInput = {
+    where: ImageWhereUniqueInput
+    data: XOR<ImageUpdateWithoutSectionInput, ImageUncheckedUpdateWithoutSectionInput>
+  }
+
+  export type ImageUpdateManyWithWhereWithoutSectionInput = {
+    where: ImageScalarWhereInput
+    data: XOR<ImageUpdateManyMutationInput, ImageUncheckedUpdateManyWithoutSectionInput>
   }
 
   export type ProductCreateManyCategoryInput = {
@@ -19913,6 +22879,16 @@ export namespace Prisma {
     top: boolean
     showroom: boolean
     price?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CollectionCreateManyMetaInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    coverId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20041,6 +23017,42 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CollectionUpdateWithoutMetaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUpdateManyWithoutCollectionNestedInput
+    cover?: ImageUpdateOneWithoutCollectionCoverNestedInput
+    section?: SectionUpdateManyWithoutCollectionNestedInput
+    contents?: ContentUpdateManyWithoutCollectionNestedInput
+  }
+
+  export type CollectionUncheckedUpdateWithoutMetaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    coverId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUncheckedUpdateManyWithoutCollectionNestedInput
+    section?: SectionUncheckedUpdateManyWithoutCollectionNestedInput
+    contents?: ContentUncheckedUpdateManyWithoutCollectionNestedInput
+  }
+
+  export type CollectionUncheckedUpdateManyWithoutMetaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    coverId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ProductPromotionCreateManyProductInput = {
     id?: string
     layout: string
@@ -20083,10 +23095,13 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     imageMeta?: ImageMetaUpdateOneRequiredWithoutImageNestedInput
     ProductCover?: ProductUpdateOneWithoutCoverNestedInput
     ProductPromotions?: ProductPromotionUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUpdateManyWithoutImagesNestedInput
+    section?: SectionUpdateOneWithoutImagesNestedInput
+    CollectionCover?: CollectionUpdateOneWithoutCoverNestedInput
   }
 
   export type ImageUncheckedUpdateWithoutTechnicalProductsInput = {
@@ -20095,9 +23110,12 @@ export namespace Prisma {
     imageMetaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     ProductCover?: ProductUncheckedUpdateOneWithoutCoverNestedInput
     ProductPromotions?: ProductPromotionUncheckedUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUncheckedUpdateManyWithoutImagesNestedInput
+    CollectionCover?: CollectionUncheckedUpdateOneWithoutCoverNestedInput
   }
 
   export type ImageUncheckedUpdateManyWithoutTechnicalProductsInput = {
@@ -20106,6 +23124,8 @@ export namespace Prisma {
     imageMetaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FileUpdateWithoutProductInput = {
@@ -20134,10 +23154,13 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     imageMeta?: ImageMetaUpdateOneRequiredWithoutImageNestedInput
     ProductCover?: ProductUpdateOneWithoutCoverNestedInput
     TechnicalProducts?: ProductUpdateManyWithoutTechnicalNestedInput
     GalleryImages?: GalleryUpdateManyWithoutImagesNestedInput
+    section?: SectionUpdateOneWithoutImagesNestedInput
+    CollectionCover?: CollectionUpdateOneWithoutCoverNestedInput
   }
 
   export type ImageUncheckedUpdateWithoutProductPromotionsInput = {
@@ -20146,9 +23169,12 @@ export namespace Prisma {
     imageMetaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     ProductCover?: ProductUncheckedUpdateOneWithoutCoverNestedInput
     TechnicalProducts?: ProductUncheckedUpdateManyWithoutTechnicalNestedInput
     GalleryImages?: GalleryUncheckedUpdateManyWithoutImagesNestedInput
+    CollectionCover?: CollectionUncheckedUpdateOneWithoutCoverNestedInput
   }
 
   export type ImageUncheckedUpdateManyWithoutProductPromotionsInput = {
@@ -20157,6 +23183,8 @@ export namespace Prisma {
     imageMetaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProductUpdateWithoutTechnicalInput = {
@@ -20273,6 +23301,8 @@ export namespace Prisma {
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    sectionId?: string | null
+    collectionId?: string | null
   }
 
   export type ImageUpdateWithoutImageMetaInput = {
@@ -20280,10 +23310,13 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     ProductCover?: ProductUpdateOneWithoutCoverNestedInput
     TechnicalProducts?: ProductUpdateManyWithoutTechnicalNestedInput
     ProductPromotions?: ProductPromotionUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUpdateManyWithoutImagesNestedInput
+    section?: SectionUpdateOneWithoutImagesNestedInput
+    CollectionCover?: CollectionUpdateOneWithoutCoverNestedInput
   }
 
   export type ImageUncheckedUpdateWithoutImageMetaInput = {
@@ -20291,10 +23324,13 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     ProductCover?: ProductUncheckedUpdateOneWithoutCoverNestedInput
     TechnicalProducts?: ProductUncheckedUpdateManyWithoutTechnicalNestedInput
     ProductPromotions?: ProductPromotionUncheckedUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUncheckedUpdateManyWithoutImagesNestedInput
+    CollectionCover?: CollectionUncheckedUpdateOneWithoutCoverNestedInput
   }
 
   export type ImageUncheckedUpdateManyWithoutImageMetaInput = {
@@ -20302,6 +23338,8 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProductCreateManyCollectionInput = {
@@ -20317,6 +23355,30 @@ export namespace Prisma {
     showroom: boolean
     price?: number | null
     metaId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SectionCreateManyCollectionInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    layout?: string | null
+    title?: string | null
+    content?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContentCreateManyCollectionInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    title?: string | null
+    content?: string | null
+    pageId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20378,6 +23440,80 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SectionUpdateWithoutCollectionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    layout?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    images?: ImageUpdateManyWithoutSectionNestedInput
+  }
+
+  export type SectionUncheckedUpdateWithoutCollectionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    layout?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    images?: ImageUncheckedUpdateManyWithoutSectionNestedInput
+  }
+
+  export type SectionUncheckedUpdateManyWithoutCollectionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    layout?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContentUpdateWithoutCollectionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    page?: PageUpdateOneWithoutContentNestedInput
+  }
+
+  export type ContentUncheckedUpdateWithoutCollectionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    pageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContentUncheckedUpdateManyWithoutCollectionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    pageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ContentCreateManyPageInput = {
     id?: string
     locale: string
@@ -20385,6 +23521,7 @@ export namespace Prisma {
     slug: string
     title?: string | null
     content?: string | null
+    collectionId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -20398,6 +23535,7 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collection?: CollectionUpdateOneWithoutContentsNestedInput
   }
 
   export type ContentUncheckedUpdateWithoutPageInput = {
@@ -20407,6 +23545,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     content?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20418,6 +23557,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     content?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20427,10 +23567,13 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     imageMeta?: ImageMetaUpdateOneRequiredWithoutImageNestedInput
     ProductCover?: ProductUpdateOneWithoutCoverNestedInput
     TechnicalProducts?: ProductUpdateManyWithoutTechnicalNestedInput
     ProductPromotions?: ProductPromotionUpdateManyWithoutImagesNestedInput
+    section?: SectionUpdateOneWithoutImagesNestedInput
+    CollectionCover?: CollectionUpdateOneWithoutCoverNestedInput
   }
 
   export type ImageUncheckedUpdateWithoutGalleryImagesInput = {
@@ -20439,9 +23582,12 @@ export namespace Prisma {
     imageMetaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
     ProductCover?: ProductUncheckedUpdateOneWithoutCoverNestedInput
     TechnicalProducts?: ProductUncheckedUpdateManyWithoutTechnicalNestedInput
     ProductPromotions?: ProductPromotionUncheckedUpdateManyWithoutImagesNestedInput
+    CollectionCover?: CollectionUncheckedUpdateOneWithoutCoverNestedInput
   }
 
   export type ImageUncheckedUpdateManyWithoutGalleryImagesInput = {
@@ -20450,6 +23596,54 @@ export namespace Prisma {
     imageMetaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ImageCreateManySectionInput = {
+    id?: string
+    path: string
+    imageMetaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    collectionId?: string | null
+  }
+
+  export type ImageUpdateWithoutSectionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    imageMeta?: ImageMetaUpdateOneRequiredWithoutImageNestedInput
+    ProductCover?: ProductUpdateOneWithoutCoverNestedInput
+    TechnicalProducts?: ProductUpdateManyWithoutTechnicalNestedInput
+    ProductPromotions?: ProductPromotionUpdateManyWithoutImagesNestedInput
+    GalleryImages?: GalleryUpdateManyWithoutImagesNestedInput
+    CollectionCover?: CollectionUpdateOneWithoutCoverNestedInput
+  }
+
+  export type ImageUncheckedUpdateWithoutSectionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    imageMetaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    ProductCover?: ProductUncheckedUpdateOneWithoutCoverNestedInput
+    TechnicalProducts?: ProductUncheckedUpdateManyWithoutTechnicalNestedInput
+    ProductPromotions?: ProductPromotionUncheckedUpdateManyWithoutImagesNestedInput
+    GalleryImages?: GalleryUncheckedUpdateManyWithoutImagesNestedInput
+    CollectionCover?: CollectionUncheckedUpdateOneWithoutCoverNestedInput
+  }
+
+  export type ImageUncheckedUpdateManyWithoutSectionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    imageMetaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

@@ -13,6 +13,9 @@ router.get("/:locale", async (req, res) => {
   const { locale } = req.params;
   const category = await prisma.category.findMany({
     where: { locale },
+    include: {
+      meta: true,
+    },
   });
   res.json(category);
 });
@@ -21,6 +24,9 @@ router.get("/:slug", async (req, res) => {
   const { slug } = req.params;
   const category = await prisma.category.findMany({
     where: { slug },
+    include: {
+      meta: true,
+    },
   });
   res.json(category);
 });
@@ -29,6 +35,9 @@ router.get("/:slug/:locale", async (req, res) => {
   const { slug, locale } = req.params;
   const category = await prisma.category.findFirst({
     where: { slug, locale },
+    include: {
+      meta: true,
+    },
   });
   res.json(category);
 });
