@@ -73,6 +73,16 @@ export type Gallery = $Result.DefaultSelection<Prisma.$GalleryPayload>
  * 
  */
 export type Section = $Result.DefaultSelection<Prisma.$SectionPayload>
+/**
+ * Model MaterialCategory
+ * 
+ */
+export type MaterialCategory = $Result.DefaultSelection<Prisma.$MaterialCategoryPayload>
+/**
+ * Model Material
+ * 
+ */
+export type Material = $Result.DefaultSelection<Prisma.$MaterialPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -318,6 +328,26 @@ export class PrismaClient<
     * ```
     */
   get section(): Prisma.SectionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.materialCategory`: Exposes CRUD operations for the **MaterialCategory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MaterialCategories
+    * const materialCategories = await prisma.materialCategory.findMany()
+    * ```
+    */
+  get materialCategory(): Prisma.MaterialCategoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.material`: Exposes CRUD operations for the **Material** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Materials
+    * const materials = await prisma.material.findMany()
+    * ```
+    */
+  get material(): Prisma.MaterialDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -769,7 +799,9 @@ export namespace Prisma {
     Collection: 'Collection',
     Page: 'Page',
     Gallery: 'Gallery',
-    Section: 'Section'
+    Section: 'Section',
+    MaterialCategory: 'MaterialCategory',
+    Material: 'Material'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -788,7 +820,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "category" | "meta" | "content" | "product" | "productPromotion" | "file" | "image" | "imageMeta" | "collection" | "page" | "gallery" | "section"
+      modelProps: "category" | "meta" | "content" | "product" | "productPromotion" | "file" | "image" | "imageMeta" | "collection" | "page" | "gallery" | "section" | "materialCategory" | "material"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1680,6 +1712,154 @@ export namespace Prisma {
           }
         }
       }
+      MaterialCategory: {
+        payload: Prisma.$MaterialCategoryPayload<ExtArgs>
+        fields: Prisma.MaterialCategoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MaterialCategoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialCategoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MaterialCategoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialCategoryPayload>
+          }
+          findFirst: {
+            args: Prisma.MaterialCategoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialCategoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MaterialCategoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialCategoryPayload>
+          }
+          findMany: {
+            args: Prisma.MaterialCategoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialCategoryPayload>[]
+          }
+          create: {
+            args: Prisma.MaterialCategoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialCategoryPayload>
+          }
+          createMany: {
+            args: Prisma.MaterialCategoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MaterialCategoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialCategoryPayload>[]
+          }
+          delete: {
+            args: Prisma.MaterialCategoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialCategoryPayload>
+          }
+          update: {
+            args: Prisma.MaterialCategoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialCategoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.MaterialCategoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MaterialCategoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MaterialCategoryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialCategoryPayload>[]
+          }
+          upsert: {
+            args: Prisma.MaterialCategoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialCategoryPayload>
+          }
+          aggregate: {
+            args: Prisma.MaterialCategoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMaterialCategory>
+          }
+          groupBy: {
+            args: Prisma.MaterialCategoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MaterialCategoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MaterialCategoryCountArgs<ExtArgs>
+            result: $Utils.Optional<MaterialCategoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      Material: {
+        payload: Prisma.$MaterialPayload<ExtArgs>
+        fields: Prisma.MaterialFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MaterialFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MaterialFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialPayload>
+          }
+          findFirst: {
+            args: Prisma.MaterialFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MaterialFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialPayload>
+          }
+          findMany: {
+            args: Prisma.MaterialFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialPayload>[]
+          }
+          create: {
+            args: Prisma.MaterialCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialPayload>
+          }
+          createMany: {
+            args: Prisma.MaterialCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MaterialCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialPayload>[]
+          }
+          delete: {
+            args: Prisma.MaterialDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialPayload>
+          }
+          update: {
+            args: Prisma.MaterialUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialPayload>
+          }
+          deleteMany: {
+            args: Prisma.MaterialDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MaterialUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MaterialUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialPayload>[]
+          }
+          upsert: {
+            args: Prisma.MaterialUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MaterialPayload>
+          }
+          aggregate: {
+            args: Prisma.MaterialAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMaterial>
+          }
+          groupBy: {
+            args: Prisma.MaterialGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MaterialGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MaterialCountArgs<ExtArgs>
+            result: $Utils.Optional<MaterialCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1776,6 +1956,8 @@ export namespace Prisma {
     page?: PageOmit
     gallery?: GalleryOmit
     section?: SectionOmit
+    materialCategory?: MaterialCategoryOmit
+    material?: MaterialOmit
   }
 
   /* Types for Logging */
@@ -2042,12 +2224,14 @@ export namespace Prisma {
     TechnicalProducts: number
     ProductPromotions: number
     GalleryImages: number
+    Material: number
   }
 
   export type ImageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     TechnicalProducts?: boolean | ImageCountOutputTypeCountTechnicalProductsArgs
     ProductPromotions?: boolean | ImageCountOutputTypeCountProductPromotionsArgs
     GalleryImages?: boolean | ImageCountOutputTypeCountGalleryImagesArgs
+    Material?: boolean | ImageCountOutputTypeCountMaterialArgs
   }
 
   // Custom InputTypes
@@ -2080,6 +2264,13 @@ export namespace Prisma {
    */
   export type ImageCountOutputTypeCountGalleryImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GalleryWhereInput
+  }
+
+  /**
+   * ImageCountOutputType without action
+   */
+  export type ImageCountOutputTypeCountMaterialArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MaterialWhereInput
   }
 
 
@@ -2253,6 +2444,37 @@ export namespace Prisma {
    */
   export type SectionCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ImageWhereInput
+  }
+
+
+  /**
+   * Count Type MaterialCategoryCountOutputType
+   */
+
+  export type MaterialCategoryCountOutputType = {
+    materials: number
+  }
+
+  export type MaterialCategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    materials?: boolean | MaterialCategoryCountOutputTypeCountMaterialsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MaterialCategoryCountOutputType without action
+   */
+  export type MaterialCategoryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialCategoryCountOutputType
+     */
+    select?: MaterialCategoryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MaterialCategoryCountOutputType without action
+   */
+  export type MaterialCategoryCountOutputTypeCountMaterialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MaterialWhereInput
   }
 
 
@@ -9528,6 +9750,7 @@ export namespace Prisma {
     GalleryImages?: boolean | Image$GalleryImagesArgs<ExtArgs>
     section?: boolean | Image$sectionArgs<ExtArgs>
     CollectionCover?: boolean | Image$CollectionCoverArgs<ExtArgs>
+    Material?: boolean | Image$MaterialArgs<ExtArgs>
     _count?: boolean | ImageCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["image"]>
 
@@ -9574,6 +9797,7 @@ export namespace Prisma {
     GalleryImages?: boolean | Image$GalleryImagesArgs<ExtArgs>
     section?: boolean | Image$sectionArgs<ExtArgs>
     CollectionCover?: boolean | Image$CollectionCoverArgs<ExtArgs>
+    Material?: boolean | Image$MaterialArgs<ExtArgs>
     _count?: boolean | ImageCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ImageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9595,6 +9819,7 @@ export namespace Prisma {
       GalleryImages: Prisma.$GalleryPayload<ExtArgs>[]
       section: Prisma.$SectionPayload<ExtArgs> | null
       CollectionCover: Prisma.$CollectionPayload<ExtArgs> | null
+      Material: Prisma.$MaterialPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -10005,6 +10230,7 @@ export namespace Prisma {
     GalleryImages<T extends Image$GalleryImagesArgs<ExtArgs> = {}>(args?: Subset<T, Image$GalleryImagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GalleryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     section<T extends Image$sectionArgs<ExtArgs> = {}>(args?: Subset<T, Image$sectionArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     CollectionCover<T extends Image$CollectionCoverArgs<ExtArgs> = {}>(args?: Subset<T, Image$CollectionCoverArgs<ExtArgs>>): Prisma__CollectionClient<$Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Material<T extends Image$MaterialArgs<ExtArgs> = {}>(args?: Subset<T, Image$MaterialArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10563,6 +10789,30 @@ export namespace Prisma {
      */
     include?: CollectionInclude<ExtArgs> | null
     where?: CollectionWhereInput
+  }
+
+  /**
+   * Image.Material
+   */
+  export type Image$MaterialArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Material
+     */
+    select?: MaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: MaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialInclude<ExtArgs> | null
+    where?: MaterialWhereInput
+    orderBy?: MaterialOrderByWithRelationInput | MaterialOrderByWithRelationInput[]
+    cursor?: MaterialWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MaterialScalarFieldEnum | MaterialScalarFieldEnum[]
   }
 
   /**
@@ -16273,6 +16523,2226 @@ export namespace Prisma {
 
 
   /**
+   * Model MaterialCategory
+   */
+
+  export type AggregateMaterialCategory = {
+    _count: MaterialCategoryCountAggregateOutputType | null
+    _min: MaterialCategoryMinAggregateOutputType | null
+    _max: MaterialCategoryMaxAggregateOutputType | null
+  }
+
+  export type MaterialCategoryMinAggregateOutputType = {
+    id: string | null
+    locale: string | null
+    name: string | null
+    slug: string | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MaterialCategoryMaxAggregateOutputType = {
+    id: string | null
+    locale: string | null
+    name: string | null
+    slug: string | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MaterialCategoryCountAggregateOutputType = {
+    id: number
+    locale: number
+    name: number
+    slug: number
+    description: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MaterialCategoryMinAggregateInputType = {
+    id?: true
+    locale?: true
+    name?: true
+    slug?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MaterialCategoryMaxAggregateInputType = {
+    id?: true
+    locale?: true
+    name?: true
+    slug?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MaterialCategoryCountAggregateInputType = {
+    id?: true
+    locale?: true
+    name?: true
+    slug?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MaterialCategoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MaterialCategory to aggregate.
+     */
+    where?: MaterialCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MaterialCategories to fetch.
+     */
+    orderBy?: MaterialCategoryOrderByWithRelationInput | MaterialCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MaterialCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MaterialCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MaterialCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MaterialCategories
+    **/
+    _count?: true | MaterialCategoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MaterialCategoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MaterialCategoryMaxAggregateInputType
+  }
+
+  export type GetMaterialCategoryAggregateType<T extends MaterialCategoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateMaterialCategory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMaterialCategory[P]>
+      : GetScalarType<T[P], AggregateMaterialCategory[P]>
+  }
+
+
+
+
+  export type MaterialCategoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MaterialCategoryWhereInput
+    orderBy?: MaterialCategoryOrderByWithAggregationInput | MaterialCategoryOrderByWithAggregationInput[]
+    by: MaterialCategoryScalarFieldEnum[] | MaterialCategoryScalarFieldEnum
+    having?: MaterialCategoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MaterialCategoryCountAggregateInputType | true
+    _min?: MaterialCategoryMinAggregateInputType
+    _max?: MaterialCategoryMaxAggregateInputType
+  }
+
+  export type MaterialCategoryGroupByOutputType = {
+    id: string
+    locale: string
+    name: string
+    slug: string
+    description: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: MaterialCategoryCountAggregateOutputType | null
+    _min: MaterialCategoryMinAggregateOutputType | null
+    _max: MaterialCategoryMaxAggregateOutputType | null
+  }
+
+  type GetMaterialCategoryGroupByPayload<T extends MaterialCategoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MaterialCategoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MaterialCategoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MaterialCategoryGroupByOutputType[P]>
+            : GetScalarType<T[P], MaterialCategoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MaterialCategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    locale?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    materials?: boolean | MaterialCategory$materialsArgs<ExtArgs>
+    _count?: boolean | MaterialCategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["materialCategory"]>
+
+  export type MaterialCategorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    locale?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["materialCategory"]>
+
+  export type MaterialCategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    locale?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["materialCategory"]>
+
+  export type MaterialCategorySelectScalar = {
+    id?: boolean
+    locale?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MaterialCategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locale" | "name" | "slug" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["materialCategory"]>
+  export type MaterialCategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    materials?: boolean | MaterialCategory$materialsArgs<ExtArgs>
+    _count?: boolean | MaterialCategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type MaterialCategoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type MaterialCategoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $MaterialCategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MaterialCategory"
+    objects: {
+      materials: Prisma.$MaterialPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      locale: string
+      name: string
+      slug: string
+      description: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["materialCategory"]>
+    composites: {}
+  }
+
+  type MaterialCategoryGetPayload<S extends boolean | null | undefined | MaterialCategoryDefaultArgs> = $Result.GetResult<Prisma.$MaterialCategoryPayload, S>
+
+  type MaterialCategoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MaterialCategoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MaterialCategoryCountAggregateInputType | true
+    }
+
+  export interface MaterialCategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MaterialCategory'], meta: { name: 'MaterialCategory' } }
+    /**
+     * Find zero or one MaterialCategory that matches the filter.
+     * @param {MaterialCategoryFindUniqueArgs} args - Arguments to find a MaterialCategory
+     * @example
+     * // Get one MaterialCategory
+     * const materialCategory = await prisma.materialCategory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MaterialCategoryFindUniqueArgs>(args: SelectSubset<T, MaterialCategoryFindUniqueArgs<ExtArgs>>): Prisma__MaterialCategoryClient<$Result.GetResult<Prisma.$MaterialCategoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MaterialCategory that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MaterialCategoryFindUniqueOrThrowArgs} args - Arguments to find a MaterialCategory
+     * @example
+     * // Get one MaterialCategory
+     * const materialCategory = await prisma.materialCategory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MaterialCategoryFindUniqueOrThrowArgs>(args: SelectSubset<T, MaterialCategoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MaterialCategoryClient<$Result.GetResult<Prisma.$MaterialCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MaterialCategory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialCategoryFindFirstArgs} args - Arguments to find a MaterialCategory
+     * @example
+     * // Get one MaterialCategory
+     * const materialCategory = await prisma.materialCategory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MaterialCategoryFindFirstArgs>(args?: SelectSubset<T, MaterialCategoryFindFirstArgs<ExtArgs>>): Prisma__MaterialCategoryClient<$Result.GetResult<Prisma.$MaterialCategoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MaterialCategory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialCategoryFindFirstOrThrowArgs} args - Arguments to find a MaterialCategory
+     * @example
+     * // Get one MaterialCategory
+     * const materialCategory = await prisma.materialCategory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MaterialCategoryFindFirstOrThrowArgs>(args?: SelectSubset<T, MaterialCategoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__MaterialCategoryClient<$Result.GetResult<Prisma.$MaterialCategoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MaterialCategories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialCategoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MaterialCategories
+     * const materialCategories = await prisma.materialCategory.findMany()
+     * 
+     * // Get first 10 MaterialCategories
+     * const materialCategories = await prisma.materialCategory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const materialCategoryWithIdOnly = await prisma.materialCategory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MaterialCategoryFindManyArgs>(args?: SelectSubset<T, MaterialCategoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MaterialCategory.
+     * @param {MaterialCategoryCreateArgs} args - Arguments to create a MaterialCategory.
+     * @example
+     * // Create one MaterialCategory
+     * const MaterialCategory = await prisma.materialCategory.create({
+     *   data: {
+     *     // ... data to create a MaterialCategory
+     *   }
+     * })
+     * 
+     */
+    create<T extends MaterialCategoryCreateArgs>(args: SelectSubset<T, MaterialCategoryCreateArgs<ExtArgs>>): Prisma__MaterialCategoryClient<$Result.GetResult<Prisma.$MaterialCategoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MaterialCategories.
+     * @param {MaterialCategoryCreateManyArgs} args - Arguments to create many MaterialCategories.
+     * @example
+     * // Create many MaterialCategories
+     * const materialCategory = await prisma.materialCategory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MaterialCategoryCreateManyArgs>(args?: SelectSubset<T, MaterialCategoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MaterialCategories and returns the data saved in the database.
+     * @param {MaterialCategoryCreateManyAndReturnArgs} args - Arguments to create many MaterialCategories.
+     * @example
+     * // Create many MaterialCategories
+     * const materialCategory = await prisma.materialCategory.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MaterialCategories and only return the `id`
+     * const materialCategoryWithIdOnly = await prisma.materialCategory.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MaterialCategoryCreateManyAndReturnArgs>(args?: SelectSubset<T, MaterialCategoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialCategoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MaterialCategory.
+     * @param {MaterialCategoryDeleteArgs} args - Arguments to delete one MaterialCategory.
+     * @example
+     * // Delete one MaterialCategory
+     * const MaterialCategory = await prisma.materialCategory.delete({
+     *   where: {
+     *     // ... filter to delete one MaterialCategory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MaterialCategoryDeleteArgs>(args: SelectSubset<T, MaterialCategoryDeleteArgs<ExtArgs>>): Prisma__MaterialCategoryClient<$Result.GetResult<Prisma.$MaterialCategoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MaterialCategory.
+     * @param {MaterialCategoryUpdateArgs} args - Arguments to update one MaterialCategory.
+     * @example
+     * // Update one MaterialCategory
+     * const materialCategory = await prisma.materialCategory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MaterialCategoryUpdateArgs>(args: SelectSubset<T, MaterialCategoryUpdateArgs<ExtArgs>>): Prisma__MaterialCategoryClient<$Result.GetResult<Prisma.$MaterialCategoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MaterialCategories.
+     * @param {MaterialCategoryDeleteManyArgs} args - Arguments to filter MaterialCategories to delete.
+     * @example
+     * // Delete a few MaterialCategories
+     * const { count } = await prisma.materialCategory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MaterialCategoryDeleteManyArgs>(args?: SelectSubset<T, MaterialCategoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MaterialCategories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialCategoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MaterialCategories
+     * const materialCategory = await prisma.materialCategory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MaterialCategoryUpdateManyArgs>(args: SelectSubset<T, MaterialCategoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MaterialCategories and returns the data updated in the database.
+     * @param {MaterialCategoryUpdateManyAndReturnArgs} args - Arguments to update many MaterialCategories.
+     * @example
+     * // Update many MaterialCategories
+     * const materialCategory = await prisma.materialCategory.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MaterialCategories and only return the `id`
+     * const materialCategoryWithIdOnly = await prisma.materialCategory.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MaterialCategoryUpdateManyAndReturnArgs>(args: SelectSubset<T, MaterialCategoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialCategoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MaterialCategory.
+     * @param {MaterialCategoryUpsertArgs} args - Arguments to update or create a MaterialCategory.
+     * @example
+     * // Update or create a MaterialCategory
+     * const materialCategory = await prisma.materialCategory.upsert({
+     *   create: {
+     *     // ... data to create a MaterialCategory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MaterialCategory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MaterialCategoryUpsertArgs>(args: SelectSubset<T, MaterialCategoryUpsertArgs<ExtArgs>>): Prisma__MaterialCategoryClient<$Result.GetResult<Prisma.$MaterialCategoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MaterialCategories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialCategoryCountArgs} args - Arguments to filter MaterialCategories to count.
+     * @example
+     * // Count the number of MaterialCategories
+     * const count = await prisma.materialCategory.count({
+     *   where: {
+     *     // ... the filter for the MaterialCategories we want to count
+     *   }
+     * })
+    **/
+    count<T extends MaterialCategoryCountArgs>(
+      args?: Subset<T, MaterialCategoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MaterialCategoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MaterialCategory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialCategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MaterialCategoryAggregateArgs>(args: Subset<T, MaterialCategoryAggregateArgs>): Prisma.PrismaPromise<GetMaterialCategoryAggregateType<T>>
+
+    /**
+     * Group by MaterialCategory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialCategoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MaterialCategoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MaterialCategoryGroupByArgs['orderBy'] }
+        : { orderBy?: MaterialCategoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MaterialCategoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMaterialCategoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MaterialCategory model
+   */
+  readonly fields: MaterialCategoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MaterialCategory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MaterialCategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    materials<T extends MaterialCategory$materialsArgs<ExtArgs> = {}>(args?: Subset<T, MaterialCategory$materialsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MaterialCategory model
+   */
+  interface MaterialCategoryFieldRefs {
+    readonly id: FieldRef<"MaterialCategory", 'String'>
+    readonly locale: FieldRef<"MaterialCategory", 'String'>
+    readonly name: FieldRef<"MaterialCategory", 'String'>
+    readonly slug: FieldRef<"MaterialCategory", 'String'>
+    readonly description: FieldRef<"MaterialCategory", 'String'>
+    readonly createdAt: FieldRef<"MaterialCategory", 'DateTime'>
+    readonly updatedAt: FieldRef<"MaterialCategory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MaterialCategory findUnique
+   */
+  export type MaterialCategoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialCategory
+     */
+    select?: MaterialCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialCategory
+     */
+    omit?: MaterialCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which MaterialCategory to fetch.
+     */
+    where: MaterialCategoryWhereUniqueInput
+  }
+
+  /**
+   * MaterialCategory findUniqueOrThrow
+   */
+  export type MaterialCategoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialCategory
+     */
+    select?: MaterialCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialCategory
+     */
+    omit?: MaterialCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which MaterialCategory to fetch.
+     */
+    where: MaterialCategoryWhereUniqueInput
+  }
+
+  /**
+   * MaterialCategory findFirst
+   */
+  export type MaterialCategoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialCategory
+     */
+    select?: MaterialCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialCategory
+     */
+    omit?: MaterialCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which MaterialCategory to fetch.
+     */
+    where?: MaterialCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MaterialCategories to fetch.
+     */
+    orderBy?: MaterialCategoryOrderByWithRelationInput | MaterialCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MaterialCategories.
+     */
+    cursor?: MaterialCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MaterialCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MaterialCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MaterialCategories.
+     */
+    distinct?: MaterialCategoryScalarFieldEnum | MaterialCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * MaterialCategory findFirstOrThrow
+   */
+  export type MaterialCategoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialCategory
+     */
+    select?: MaterialCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialCategory
+     */
+    omit?: MaterialCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which MaterialCategory to fetch.
+     */
+    where?: MaterialCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MaterialCategories to fetch.
+     */
+    orderBy?: MaterialCategoryOrderByWithRelationInput | MaterialCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MaterialCategories.
+     */
+    cursor?: MaterialCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MaterialCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MaterialCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MaterialCategories.
+     */
+    distinct?: MaterialCategoryScalarFieldEnum | MaterialCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * MaterialCategory findMany
+   */
+  export type MaterialCategoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialCategory
+     */
+    select?: MaterialCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialCategory
+     */
+    omit?: MaterialCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which MaterialCategories to fetch.
+     */
+    where?: MaterialCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MaterialCategories to fetch.
+     */
+    orderBy?: MaterialCategoryOrderByWithRelationInput | MaterialCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MaterialCategories.
+     */
+    cursor?: MaterialCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MaterialCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MaterialCategories.
+     */
+    skip?: number
+    distinct?: MaterialCategoryScalarFieldEnum | MaterialCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * MaterialCategory create
+   */
+  export type MaterialCategoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialCategory
+     */
+    select?: MaterialCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialCategory
+     */
+    omit?: MaterialCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialCategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MaterialCategory.
+     */
+    data: XOR<MaterialCategoryCreateInput, MaterialCategoryUncheckedCreateInput>
+  }
+
+  /**
+   * MaterialCategory createMany
+   */
+  export type MaterialCategoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MaterialCategories.
+     */
+    data: MaterialCategoryCreateManyInput | MaterialCategoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MaterialCategory createManyAndReturn
+   */
+  export type MaterialCategoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialCategory
+     */
+    select?: MaterialCategorySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialCategory
+     */
+    omit?: MaterialCategoryOmit<ExtArgs> | null
+    /**
+     * The data used to create many MaterialCategories.
+     */
+    data: MaterialCategoryCreateManyInput | MaterialCategoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MaterialCategory update
+   */
+  export type MaterialCategoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialCategory
+     */
+    select?: MaterialCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialCategory
+     */
+    omit?: MaterialCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialCategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MaterialCategory.
+     */
+    data: XOR<MaterialCategoryUpdateInput, MaterialCategoryUncheckedUpdateInput>
+    /**
+     * Choose, which MaterialCategory to update.
+     */
+    where: MaterialCategoryWhereUniqueInput
+  }
+
+  /**
+   * MaterialCategory updateMany
+   */
+  export type MaterialCategoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MaterialCategories.
+     */
+    data: XOR<MaterialCategoryUpdateManyMutationInput, MaterialCategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which MaterialCategories to update
+     */
+    where?: MaterialCategoryWhereInput
+    /**
+     * Limit how many MaterialCategories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MaterialCategory updateManyAndReturn
+   */
+  export type MaterialCategoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialCategory
+     */
+    select?: MaterialCategorySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialCategory
+     */
+    omit?: MaterialCategoryOmit<ExtArgs> | null
+    /**
+     * The data used to update MaterialCategories.
+     */
+    data: XOR<MaterialCategoryUpdateManyMutationInput, MaterialCategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which MaterialCategories to update
+     */
+    where?: MaterialCategoryWhereInput
+    /**
+     * Limit how many MaterialCategories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MaterialCategory upsert
+   */
+  export type MaterialCategoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialCategory
+     */
+    select?: MaterialCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialCategory
+     */
+    omit?: MaterialCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialCategoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MaterialCategory to update in case it exists.
+     */
+    where: MaterialCategoryWhereUniqueInput
+    /**
+     * In case the MaterialCategory found by the `where` argument doesn't exist, create a new MaterialCategory with this data.
+     */
+    create: XOR<MaterialCategoryCreateInput, MaterialCategoryUncheckedCreateInput>
+    /**
+     * In case the MaterialCategory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MaterialCategoryUpdateInput, MaterialCategoryUncheckedUpdateInput>
+  }
+
+  /**
+   * MaterialCategory delete
+   */
+  export type MaterialCategoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialCategory
+     */
+    select?: MaterialCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialCategory
+     */
+    omit?: MaterialCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialCategoryInclude<ExtArgs> | null
+    /**
+     * Filter which MaterialCategory to delete.
+     */
+    where: MaterialCategoryWhereUniqueInput
+  }
+
+  /**
+   * MaterialCategory deleteMany
+   */
+  export type MaterialCategoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MaterialCategories to delete
+     */
+    where?: MaterialCategoryWhereInput
+    /**
+     * Limit how many MaterialCategories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MaterialCategory.materials
+   */
+  export type MaterialCategory$materialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Material
+     */
+    select?: MaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: MaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialInclude<ExtArgs> | null
+    where?: MaterialWhereInput
+    orderBy?: MaterialOrderByWithRelationInput | MaterialOrderByWithRelationInput[]
+    cursor?: MaterialWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MaterialScalarFieldEnum | MaterialScalarFieldEnum[]
+  }
+
+  /**
+   * MaterialCategory without action
+   */
+  export type MaterialCategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MaterialCategory
+     */
+    select?: MaterialCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MaterialCategory
+     */
+    omit?: MaterialCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialCategoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Material
+   */
+
+  export type AggregateMaterial = {
+    _count: MaterialCountAggregateOutputType | null
+    _min: MaterialMinAggregateOutputType | null
+    _max: MaterialMaxAggregateOutputType | null
+  }
+
+  export type MaterialMinAggregateOutputType = {
+    id: string | null
+    locale: string | null
+    name: string | null
+    slug: string | null
+    categoryId: string | null
+    imageId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MaterialMaxAggregateOutputType = {
+    id: string | null
+    locale: string | null
+    name: string | null
+    slug: string | null
+    categoryId: string | null
+    imageId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MaterialCountAggregateOutputType = {
+    id: number
+    locale: number
+    name: number
+    slug: number
+    categoryId: number
+    imageId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MaterialMinAggregateInputType = {
+    id?: true
+    locale?: true
+    name?: true
+    slug?: true
+    categoryId?: true
+    imageId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MaterialMaxAggregateInputType = {
+    id?: true
+    locale?: true
+    name?: true
+    slug?: true
+    categoryId?: true
+    imageId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MaterialCountAggregateInputType = {
+    id?: true
+    locale?: true
+    name?: true
+    slug?: true
+    categoryId?: true
+    imageId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MaterialAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Material to aggregate.
+     */
+    where?: MaterialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Materials to fetch.
+     */
+    orderBy?: MaterialOrderByWithRelationInput | MaterialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MaterialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Materials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Materials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Materials
+    **/
+    _count?: true | MaterialCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MaterialMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MaterialMaxAggregateInputType
+  }
+
+  export type GetMaterialAggregateType<T extends MaterialAggregateArgs> = {
+        [P in keyof T & keyof AggregateMaterial]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMaterial[P]>
+      : GetScalarType<T[P], AggregateMaterial[P]>
+  }
+
+
+
+
+  export type MaterialGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MaterialWhereInput
+    orderBy?: MaterialOrderByWithAggregationInput | MaterialOrderByWithAggregationInput[]
+    by: MaterialScalarFieldEnum[] | MaterialScalarFieldEnum
+    having?: MaterialScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MaterialCountAggregateInputType | true
+    _min?: MaterialMinAggregateInputType
+    _max?: MaterialMaxAggregateInputType
+  }
+
+  export type MaterialGroupByOutputType = {
+    id: string
+    locale: string
+    name: string
+    slug: string
+    categoryId: string
+    imageId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: MaterialCountAggregateOutputType | null
+    _min: MaterialMinAggregateOutputType | null
+    _max: MaterialMaxAggregateOutputType | null
+  }
+
+  type GetMaterialGroupByPayload<T extends MaterialGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MaterialGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MaterialGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MaterialGroupByOutputType[P]>
+            : GetScalarType<T[P], MaterialGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MaterialSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    locale?: boolean
+    name?: boolean
+    slug?: boolean
+    categoryId?: boolean
+    imageId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    category?: boolean | MaterialCategoryDefaultArgs<ExtArgs>
+    image?: boolean | Material$imageArgs<ExtArgs>
+  }, ExtArgs["result"]["material"]>
+
+  export type MaterialSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    locale?: boolean
+    name?: boolean
+    slug?: boolean
+    categoryId?: boolean
+    imageId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    category?: boolean | MaterialCategoryDefaultArgs<ExtArgs>
+    image?: boolean | Material$imageArgs<ExtArgs>
+  }, ExtArgs["result"]["material"]>
+
+  export type MaterialSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    locale?: boolean
+    name?: boolean
+    slug?: boolean
+    categoryId?: boolean
+    imageId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    category?: boolean | MaterialCategoryDefaultArgs<ExtArgs>
+    image?: boolean | Material$imageArgs<ExtArgs>
+  }, ExtArgs["result"]["material"]>
+
+  export type MaterialSelectScalar = {
+    id?: boolean
+    locale?: boolean
+    name?: boolean
+    slug?: boolean
+    categoryId?: boolean
+    imageId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MaterialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locale" | "name" | "slug" | "categoryId" | "imageId" | "createdAt" | "updatedAt", ExtArgs["result"]["material"]>
+  export type MaterialInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | MaterialCategoryDefaultArgs<ExtArgs>
+    image?: boolean | Material$imageArgs<ExtArgs>
+  }
+  export type MaterialIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | MaterialCategoryDefaultArgs<ExtArgs>
+    image?: boolean | Material$imageArgs<ExtArgs>
+  }
+  export type MaterialIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | MaterialCategoryDefaultArgs<ExtArgs>
+    image?: boolean | Material$imageArgs<ExtArgs>
+  }
+
+  export type $MaterialPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Material"
+    objects: {
+      category: Prisma.$MaterialCategoryPayload<ExtArgs>
+      image: Prisma.$ImagePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      locale: string
+      name: string
+      slug: string
+      categoryId: string
+      imageId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["material"]>
+    composites: {}
+  }
+
+  type MaterialGetPayload<S extends boolean | null | undefined | MaterialDefaultArgs> = $Result.GetResult<Prisma.$MaterialPayload, S>
+
+  type MaterialCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MaterialFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MaterialCountAggregateInputType | true
+    }
+
+  export interface MaterialDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Material'], meta: { name: 'Material' } }
+    /**
+     * Find zero or one Material that matches the filter.
+     * @param {MaterialFindUniqueArgs} args - Arguments to find a Material
+     * @example
+     * // Get one Material
+     * const material = await prisma.material.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MaterialFindUniqueArgs>(args: SelectSubset<T, MaterialFindUniqueArgs<ExtArgs>>): Prisma__MaterialClient<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Material that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MaterialFindUniqueOrThrowArgs} args - Arguments to find a Material
+     * @example
+     * // Get one Material
+     * const material = await prisma.material.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MaterialFindUniqueOrThrowArgs>(args: SelectSubset<T, MaterialFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MaterialClient<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Material that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialFindFirstArgs} args - Arguments to find a Material
+     * @example
+     * // Get one Material
+     * const material = await prisma.material.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MaterialFindFirstArgs>(args?: SelectSubset<T, MaterialFindFirstArgs<ExtArgs>>): Prisma__MaterialClient<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Material that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialFindFirstOrThrowArgs} args - Arguments to find a Material
+     * @example
+     * // Get one Material
+     * const material = await prisma.material.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MaterialFindFirstOrThrowArgs>(args?: SelectSubset<T, MaterialFindFirstOrThrowArgs<ExtArgs>>): Prisma__MaterialClient<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Materials that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Materials
+     * const materials = await prisma.material.findMany()
+     * 
+     * // Get first 10 Materials
+     * const materials = await prisma.material.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const materialWithIdOnly = await prisma.material.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MaterialFindManyArgs>(args?: SelectSubset<T, MaterialFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Material.
+     * @param {MaterialCreateArgs} args - Arguments to create a Material.
+     * @example
+     * // Create one Material
+     * const Material = await prisma.material.create({
+     *   data: {
+     *     // ... data to create a Material
+     *   }
+     * })
+     * 
+     */
+    create<T extends MaterialCreateArgs>(args: SelectSubset<T, MaterialCreateArgs<ExtArgs>>): Prisma__MaterialClient<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Materials.
+     * @param {MaterialCreateManyArgs} args - Arguments to create many Materials.
+     * @example
+     * // Create many Materials
+     * const material = await prisma.material.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MaterialCreateManyArgs>(args?: SelectSubset<T, MaterialCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Materials and returns the data saved in the database.
+     * @param {MaterialCreateManyAndReturnArgs} args - Arguments to create many Materials.
+     * @example
+     * // Create many Materials
+     * const material = await prisma.material.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Materials and only return the `id`
+     * const materialWithIdOnly = await prisma.material.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MaterialCreateManyAndReturnArgs>(args?: SelectSubset<T, MaterialCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Material.
+     * @param {MaterialDeleteArgs} args - Arguments to delete one Material.
+     * @example
+     * // Delete one Material
+     * const Material = await prisma.material.delete({
+     *   where: {
+     *     // ... filter to delete one Material
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MaterialDeleteArgs>(args: SelectSubset<T, MaterialDeleteArgs<ExtArgs>>): Prisma__MaterialClient<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Material.
+     * @param {MaterialUpdateArgs} args - Arguments to update one Material.
+     * @example
+     * // Update one Material
+     * const material = await prisma.material.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MaterialUpdateArgs>(args: SelectSubset<T, MaterialUpdateArgs<ExtArgs>>): Prisma__MaterialClient<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Materials.
+     * @param {MaterialDeleteManyArgs} args - Arguments to filter Materials to delete.
+     * @example
+     * // Delete a few Materials
+     * const { count } = await prisma.material.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MaterialDeleteManyArgs>(args?: SelectSubset<T, MaterialDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Materials.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Materials
+     * const material = await prisma.material.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MaterialUpdateManyArgs>(args: SelectSubset<T, MaterialUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Materials and returns the data updated in the database.
+     * @param {MaterialUpdateManyAndReturnArgs} args - Arguments to update many Materials.
+     * @example
+     * // Update many Materials
+     * const material = await prisma.material.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Materials and only return the `id`
+     * const materialWithIdOnly = await prisma.material.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MaterialUpdateManyAndReturnArgs>(args: SelectSubset<T, MaterialUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Material.
+     * @param {MaterialUpsertArgs} args - Arguments to update or create a Material.
+     * @example
+     * // Update or create a Material
+     * const material = await prisma.material.upsert({
+     *   create: {
+     *     // ... data to create a Material
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Material we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MaterialUpsertArgs>(args: SelectSubset<T, MaterialUpsertArgs<ExtArgs>>): Prisma__MaterialClient<$Result.GetResult<Prisma.$MaterialPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Materials.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialCountArgs} args - Arguments to filter Materials to count.
+     * @example
+     * // Count the number of Materials
+     * const count = await prisma.material.count({
+     *   where: {
+     *     // ... the filter for the Materials we want to count
+     *   }
+     * })
+    **/
+    count<T extends MaterialCountArgs>(
+      args?: Subset<T, MaterialCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MaterialCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Material.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MaterialAggregateArgs>(args: Subset<T, MaterialAggregateArgs>): Prisma.PrismaPromise<GetMaterialAggregateType<T>>
+
+    /**
+     * Group by Material.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MaterialGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MaterialGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MaterialGroupByArgs['orderBy'] }
+        : { orderBy?: MaterialGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MaterialGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMaterialGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Material model
+   */
+  readonly fields: MaterialFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Material.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MaterialClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    category<T extends MaterialCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MaterialCategoryDefaultArgs<ExtArgs>>): Prisma__MaterialCategoryClient<$Result.GetResult<Prisma.$MaterialCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    image<T extends Material$imageArgs<ExtArgs> = {}>(args?: Subset<T, Material$imageArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Material model
+   */
+  interface MaterialFieldRefs {
+    readonly id: FieldRef<"Material", 'String'>
+    readonly locale: FieldRef<"Material", 'String'>
+    readonly name: FieldRef<"Material", 'String'>
+    readonly slug: FieldRef<"Material", 'String'>
+    readonly categoryId: FieldRef<"Material", 'String'>
+    readonly imageId: FieldRef<"Material", 'String'>
+    readonly createdAt: FieldRef<"Material", 'DateTime'>
+    readonly updatedAt: FieldRef<"Material", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Material findUnique
+   */
+  export type MaterialFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Material
+     */
+    select?: MaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: MaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialInclude<ExtArgs> | null
+    /**
+     * Filter, which Material to fetch.
+     */
+    where: MaterialWhereUniqueInput
+  }
+
+  /**
+   * Material findUniqueOrThrow
+   */
+  export type MaterialFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Material
+     */
+    select?: MaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: MaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialInclude<ExtArgs> | null
+    /**
+     * Filter, which Material to fetch.
+     */
+    where: MaterialWhereUniqueInput
+  }
+
+  /**
+   * Material findFirst
+   */
+  export type MaterialFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Material
+     */
+    select?: MaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: MaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialInclude<ExtArgs> | null
+    /**
+     * Filter, which Material to fetch.
+     */
+    where?: MaterialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Materials to fetch.
+     */
+    orderBy?: MaterialOrderByWithRelationInput | MaterialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Materials.
+     */
+    cursor?: MaterialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Materials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Materials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Materials.
+     */
+    distinct?: MaterialScalarFieldEnum | MaterialScalarFieldEnum[]
+  }
+
+  /**
+   * Material findFirstOrThrow
+   */
+  export type MaterialFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Material
+     */
+    select?: MaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: MaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialInclude<ExtArgs> | null
+    /**
+     * Filter, which Material to fetch.
+     */
+    where?: MaterialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Materials to fetch.
+     */
+    orderBy?: MaterialOrderByWithRelationInput | MaterialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Materials.
+     */
+    cursor?: MaterialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Materials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Materials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Materials.
+     */
+    distinct?: MaterialScalarFieldEnum | MaterialScalarFieldEnum[]
+  }
+
+  /**
+   * Material findMany
+   */
+  export type MaterialFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Material
+     */
+    select?: MaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: MaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialInclude<ExtArgs> | null
+    /**
+     * Filter, which Materials to fetch.
+     */
+    where?: MaterialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Materials to fetch.
+     */
+    orderBy?: MaterialOrderByWithRelationInput | MaterialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Materials.
+     */
+    cursor?: MaterialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Materials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Materials.
+     */
+    skip?: number
+    distinct?: MaterialScalarFieldEnum | MaterialScalarFieldEnum[]
+  }
+
+  /**
+   * Material create
+   */
+  export type MaterialCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Material
+     */
+    select?: MaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: MaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Material.
+     */
+    data: XOR<MaterialCreateInput, MaterialUncheckedCreateInput>
+  }
+
+  /**
+   * Material createMany
+   */
+  export type MaterialCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Materials.
+     */
+    data: MaterialCreateManyInput | MaterialCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Material createManyAndReturn
+   */
+  export type MaterialCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Material
+     */
+    select?: MaterialSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: MaterialOmit<ExtArgs> | null
+    /**
+     * The data used to create many Materials.
+     */
+    data: MaterialCreateManyInput | MaterialCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Material update
+   */
+  export type MaterialUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Material
+     */
+    select?: MaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: MaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Material.
+     */
+    data: XOR<MaterialUpdateInput, MaterialUncheckedUpdateInput>
+    /**
+     * Choose, which Material to update.
+     */
+    where: MaterialWhereUniqueInput
+  }
+
+  /**
+   * Material updateMany
+   */
+  export type MaterialUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Materials.
+     */
+    data: XOR<MaterialUpdateManyMutationInput, MaterialUncheckedUpdateManyInput>
+    /**
+     * Filter which Materials to update
+     */
+    where?: MaterialWhereInput
+    /**
+     * Limit how many Materials to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Material updateManyAndReturn
+   */
+  export type MaterialUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Material
+     */
+    select?: MaterialSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: MaterialOmit<ExtArgs> | null
+    /**
+     * The data used to update Materials.
+     */
+    data: XOR<MaterialUpdateManyMutationInput, MaterialUncheckedUpdateManyInput>
+    /**
+     * Filter which Materials to update
+     */
+    where?: MaterialWhereInput
+    /**
+     * Limit how many Materials to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Material upsert
+   */
+  export type MaterialUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Material
+     */
+    select?: MaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: MaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Material to update in case it exists.
+     */
+    where: MaterialWhereUniqueInput
+    /**
+     * In case the Material found by the `where` argument doesn't exist, create a new Material with this data.
+     */
+    create: XOR<MaterialCreateInput, MaterialUncheckedCreateInput>
+    /**
+     * In case the Material was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MaterialUpdateInput, MaterialUncheckedUpdateInput>
+  }
+
+  /**
+   * Material delete
+   */
+  export type MaterialDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Material
+     */
+    select?: MaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: MaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialInclude<ExtArgs> | null
+    /**
+     * Filter which Material to delete.
+     */
+    where: MaterialWhereUniqueInput
+  }
+
+  /**
+   * Material deleteMany
+   */
+  export type MaterialDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Materials to delete
+     */
+    where?: MaterialWhereInput
+    /**
+     * Limit how many Materials to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Material.image
+   */
+  export type Material$imageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    where?: ImageWhereInput
+  }
+
+  /**
+   * Material without action
+   */
+  export type MaterialDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Material
+     */
+    select?: MaterialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Material
+     */
+    omit?: MaterialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MaterialInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -16453,6 +18923,33 @@ export namespace Prisma {
   };
 
   export type SectionScalarFieldEnum = (typeof SectionScalarFieldEnum)[keyof typeof SectionScalarFieldEnum]
+
+
+  export const MaterialCategoryScalarFieldEnum: {
+    id: 'id',
+    locale: 'locale',
+    name: 'name',
+    slug: 'slug',
+    description: 'description',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MaterialCategoryScalarFieldEnum = (typeof MaterialCategoryScalarFieldEnum)[keyof typeof MaterialCategoryScalarFieldEnum]
+
+
+  export const MaterialScalarFieldEnum: {
+    id: 'id',
+    locale: 'locale',
+    name: 'name',
+    slug: 'slug',
+    categoryId: 'categoryId',
+    imageId: 'imageId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MaterialScalarFieldEnum = (typeof MaterialScalarFieldEnum)[keyof typeof MaterialScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -17043,6 +19540,7 @@ export namespace Prisma {
     GalleryImages?: GalleryListRelationFilter
     section?: XOR<SectionNullableScalarRelationFilter, SectionWhereInput> | null
     CollectionCover?: XOR<CollectionNullableScalarRelationFilter, CollectionWhereInput> | null
+    Material?: MaterialListRelationFilter
   }
 
   export type ImageOrderByWithRelationInput = {
@@ -17060,6 +19558,7 @@ export namespace Prisma {
     GalleryImages?: GalleryOrderByRelationAggregateInput
     section?: SectionOrderByWithRelationInput
     CollectionCover?: CollectionOrderByWithRelationInput
+    Material?: MaterialOrderByRelationAggregateInput
   }
 
   export type ImageWhereUniqueInput = Prisma.AtLeast<{
@@ -17081,6 +19580,7 @@ export namespace Prisma {
     GalleryImages?: GalleryListRelationFilter
     section?: XOR<SectionNullableScalarRelationFilter, SectionWhereInput> | null
     CollectionCover?: XOR<CollectionNullableScalarRelationFilter, CollectionWhereInput> | null
+    Material?: MaterialListRelationFilter
   }, "id" | "id_imageMetaId">
 
   export type ImageOrderByWithAggregationInput = {
@@ -17470,6 +19970,144 @@ export namespace Prisma {
     collectionId?: StringNullableWithAggregatesFilter<"Section"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Section"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Section"> | Date | string
+  }
+
+  export type MaterialCategoryWhereInput = {
+    AND?: MaterialCategoryWhereInput | MaterialCategoryWhereInput[]
+    OR?: MaterialCategoryWhereInput[]
+    NOT?: MaterialCategoryWhereInput | MaterialCategoryWhereInput[]
+    id?: StringFilter<"MaterialCategory"> | string
+    locale?: StringFilter<"MaterialCategory"> | string
+    name?: StringFilter<"MaterialCategory"> | string
+    slug?: StringFilter<"MaterialCategory"> | string
+    description?: StringNullableFilter<"MaterialCategory"> | string | null
+    createdAt?: DateTimeFilter<"MaterialCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"MaterialCategory"> | Date | string
+    materials?: MaterialListRelationFilter
+  }
+
+  export type MaterialCategoryOrderByWithRelationInput = {
+    id?: SortOrder
+    locale?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    materials?: MaterialOrderByRelationAggregateInput
+  }
+
+  export type MaterialCategoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MaterialCategoryWhereInput | MaterialCategoryWhereInput[]
+    OR?: MaterialCategoryWhereInput[]
+    NOT?: MaterialCategoryWhereInput | MaterialCategoryWhereInput[]
+    locale?: StringFilter<"MaterialCategory"> | string
+    name?: StringFilter<"MaterialCategory"> | string
+    slug?: StringFilter<"MaterialCategory"> | string
+    description?: StringNullableFilter<"MaterialCategory"> | string | null
+    createdAt?: DateTimeFilter<"MaterialCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"MaterialCategory"> | Date | string
+    materials?: MaterialListRelationFilter
+  }, "id" | "id">
+
+  export type MaterialCategoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    locale?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MaterialCategoryCountOrderByAggregateInput
+    _max?: MaterialCategoryMaxOrderByAggregateInput
+    _min?: MaterialCategoryMinOrderByAggregateInput
+  }
+
+  export type MaterialCategoryScalarWhereWithAggregatesInput = {
+    AND?: MaterialCategoryScalarWhereWithAggregatesInput | MaterialCategoryScalarWhereWithAggregatesInput[]
+    OR?: MaterialCategoryScalarWhereWithAggregatesInput[]
+    NOT?: MaterialCategoryScalarWhereWithAggregatesInput | MaterialCategoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MaterialCategory"> | string
+    locale?: StringWithAggregatesFilter<"MaterialCategory"> | string
+    name?: StringWithAggregatesFilter<"MaterialCategory"> | string
+    slug?: StringWithAggregatesFilter<"MaterialCategory"> | string
+    description?: StringNullableWithAggregatesFilter<"MaterialCategory"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"MaterialCategory"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MaterialCategory"> | Date | string
+  }
+
+  export type MaterialWhereInput = {
+    AND?: MaterialWhereInput | MaterialWhereInput[]
+    OR?: MaterialWhereInput[]
+    NOT?: MaterialWhereInput | MaterialWhereInput[]
+    id?: StringFilter<"Material"> | string
+    locale?: StringFilter<"Material"> | string
+    name?: StringFilter<"Material"> | string
+    slug?: StringFilter<"Material"> | string
+    categoryId?: StringFilter<"Material"> | string
+    imageId?: StringNullableFilter<"Material"> | string | null
+    createdAt?: DateTimeFilter<"Material"> | Date | string
+    updatedAt?: DateTimeFilter<"Material"> | Date | string
+    category?: XOR<MaterialCategoryScalarRelationFilter, MaterialCategoryWhereInput>
+    image?: XOR<ImageNullableScalarRelationFilter, ImageWhereInput> | null
+  }
+
+  export type MaterialOrderByWithRelationInput = {
+    id?: SortOrder
+    locale?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    categoryId?: SortOrder
+    imageId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    category?: MaterialCategoryOrderByWithRelationInput
+    image?: ImageOrderByWithRelationInput
+  }
+
+  export type MaterialWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MaterialWhereInput | MaterialWhereInput[]
+    OR?: MaterialWhereInput[]
+    NOT?: MaterialWhereInput | MaterialWhereInput[]
+    locale?: StringFilter<"Material"> | string
+    name?: StringFilter<"Material"> | string
+    slug?: StringFilter<"Material"> | string
+    categoryId?: StringFilter<"Material"> | string
+    imageId?: StringNullableFilter<"Material"> | string | null
+    createdAt?: DateTimeFilter<"Material"> | Date | string
+    updatedAt?: DateTimeFilter<"Material"> | Date | string
+    category?: XOR<MaterialCategoryScalarRelationFilter, MaterialCategoryWhereInput>
+    image?: XOR<ImageNullableScalarRelationFilter, ImageWhereInput> | null
+  }, "id" | "id">
+
+  export type MaterialOrderByWithAggregationInput = {
+    id?: SortOrder
+    locale?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    categoryId?: SortOrder
+    imageId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MaterialCountOrderByAggregateInput
+    _max?: MaterialMaxOrderByAggregateInput
+    _min?: MaterialMinOrderByAggregateInput
+  }
+
+  export type MaterialScalarWhereWithAggregatesInput = {
+    AND?: MaterialScalarWhereWithAggregatesInput | MaterialScalarWhereWithAggregatesInput[]
+    OR?: MaterialScalarWhereWithAggregatesInput[]
+    NOT?: MaterialScalarWhereWithAggregatesInput | MaterialScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Material"> | string
+    locale?: StringWithAggregatesFilter<"Material"> | string
+    name?: StringWithAggregatesFilter<"Material"> | string
+    slug?: StringWithAggregatesFilter<"Material"> | string
+    categoryId?: StringWithAggregatesFilter<"Material"> | string
+    imageId?: StringNullableWithAggregatesFilter<"Material"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Material"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Material"> | Date | string
   }
 
   export type CategoryCreateInput = {
@@ -17995,6 +20633,7 @@ export namespace Prisma {
     GalleryImages?: GalleryCreateNestedManyWithoutImagesInput
     section?: SectionCreateNestedOneWithoutImagesInput
     CollectionCover?: CollectionCreateNestedOneWithoutCoverInput
+    Material?: MaterialCreateNestedManyWithoutImageInput
   }
 
   export type ImageUncheckedCreateInput = {
@@ -18010,6 +20649,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionUncheckedCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryUncheckedCreateNestedManyWithoutImagesInput
     CollectionCover?: CollectionUncheckedCreateNestedOneWithoutCoverInput
+    Material?: MaterialUncheckedCreateNestedManyWithoutImageInput
   }
 
   export type ImageUpdateInput = {
@@ -18025,6 +20665,7 @@ export namespace Prisma {
     GalleryImages?: GalleryUpdateManyWithoutImagesNestedInput
     section?: SectionUpdateOneWithoutImagesNestedInput
     CollectionCover?: CollectionUpdateOneWithoutCoverNestedInput
+    Material?: MaterialUpdateManyWithoutImageNestedInput
   }
 
   export type ImageUncheckedUpdateInput = {
@@ -18040,6 +20681,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionUncheckedUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUncheckedUpdateManyWithoutImagesNestedInput
     CollectionCover?: CollectionUncheckedUpdateOneWithoutCoverNestedInput
+    Material?: MaterialUncheckedUpdateManyWithoutImageNestedInput
   }
 
   export type ImageCreateManyInput = {
@@ -18468,6 +21110,155 @@ export namespace Prisma {
     title?: NullableStringFieldUpdateOperationsInput | string | null
     content?: NullableStringFieldUpdateOperationsInput | string | null
     collectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MaterialCategoryCreateInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    materials?: MaterialCreateNestedManyWithoutCategoryInput
+  }
+
+  export type MaterialCategoryUncheckedCreateInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    materials?: MaterialUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type MaterialCategoryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    materials?: MaterialUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type MaterialCategoryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    materials?: MaterialUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type MaterialCategoryCreateManyInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MaterialCategoryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MaterialCategoryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MaterialCreateInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: MaterialCategoryCreateNestedOneWithoutMaterialsInput
+    image?: ImageCreateNestedOneWithoutMaterialInput
+  }
+
+  export type MaterialUncheckedCreateInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    categoryId: string
+    imageId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MaterialUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: MaterialCategoryUpdateOneRequiredWithoutMaterialsNestedInput
+    image?: ImageUpdateOneWithoutMaterialNestedInput
+  }
+
+  export type MaterialUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    imageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MaterialCreateManyInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    categoryId: string
+    imageId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MaterialUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MaterialUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    imageId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18954,7 +21745,17 @@ export namespace Prisma {
     isNot?: SectionWhereInput | null
   }
 
+  export type MaterialListRelationFilter = {
+    every?: MaterialWhereInput
+    some?: MaterialWhereInput
+    none?: MaterialWhereInput
+  }
+
   export type GalleryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MaterialOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -19171,6 +21972,74 @@ export namespace Prisma {
     title?: SortOrder
     content?: SortOrder
     collectionId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MaterialCategoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    locale?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MaterialCategoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    locale?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MaterialCategoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    locale?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MaterialCategoryScalarRelationFilter = {
+    is?: MaterialCategoryWhereInput
+    isNot?: MaterialCategoryWhereInput
+  }
+
+  export type MaterialCountOrderByAggregateInput = {
+    id?: SortOrder
+    locale?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    categoryId?: SortOrder
+    imageId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MaterialMaxOrderByAggregateInput = {
+    id?: SortOrder
+    locale?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    categoryId?: SortOrder
+    imageId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MaterialMinOrderByAggregateInput = {
+    id?: SortOrder
+    locale?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    categoryId?: SortOrder
+    imageId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -19753,6 +22622,13 @@ export namespace Prisma {
     connect?: CollectionWhereUniqueInput
   }
 
+  export type MaterialCreateNestedManyWithoutImageInput = {
+    create?: XOR<MaterialCreateWithoutImageInput, MaterialUncheckedCreateWithoutImageInput> | MaterialCreateWithoutImageInput[] | MaterialUncheckedCreateWithoutImageInput[]
+    connectOrCreate?: MaterialCreateOrConnectWithoutImageInput | MaterialCreateOrConnectWithoutImageInput[]
+    createMany?: MaterialCreateManyImageInputEnvelope
+    connect?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+  }
+
   export type ProductUncheckedCreateNestedOneWithoutCoverInput = {
     create?: XOR<ProductCreateWithoutCoverInput, ProductUncheckedCreateWithoutCoverInput>
     connectOrCreate?: ProductCreateOrConnectWithoutCoverInput
@@ -19781,6 +22657,13 @@ export namespace Prisma {
     create?: XOR<CollectionCreateWithoutCoverInput, CollectionUncheckedCreateWithoutCoverInput>
     connectOrCreate?: CollectionCreateOrConnectWithoutCoverInput
     connect?: CollectionWhereUniqueInput
+  }
+
+  export type MaterialUncheckedCreateNestedManyWithoutImageInput = {
+    create?: XOR<MaterialCreateWithoutImageInput, MaterialUncheckedCreateWithoutImageInput> | MaterialCreateWithoutImageInput[] | MaterialUncheckedCreateWithoutImageInput[]
+    connectOrCreate?: MaterialCreateOrConnectWithoutImageInput | MaterialCreateOrConnectWithoutImageInput[]
+    createMany?: MaterialCreateManyImageInputEnvelope
+    connect?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
   }
 
   export type ImageMetaUpdateOneRequiredWithoutImageNestedInput = {
@@ -19860,6 +22743,20 @@ export namespace Prisma {
     update?: XOR<XOR<CollectionUpdateToOneWithWhereWithoutCoverInput, CollectionUpdateWithoutCoverInput>, CollectionUncheckedUpdateWithoutCoverInput>
   }
 
+  export type MaterialUpdateManyWithoutImageNestedInput = {
+    create?: XOR<MaterialCreateWithoutImageInput, MaterialUncheckedCreateWithoutImageInput> | MaterialCreateWithoutImageInput[] | MaterialUncheckedCreateWithoutImageInput[]
+    connectOrCreate?: MaterialCreateOrConnectWithoutImageInput | MaterialCreateOrConnectWithoutImageInput[]
+    upsert?: MaterialUpsertWithWhereUniqueWithoutImageInput | MaterialUpsertWithWhereUniqueWithoutImageInput[]
+    createMany?: MaterialCreateManyImageInputEnvelope
+    set?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    disconnect?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    delete?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    connect?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    update?: MaterialUpdateWithWhereUniqueWithoutImageInput | MaterialUpdateWithWhereUniqueWithoutImageInput[]
+    updateMany?: MaterialUpdateManyWithWhereWithoutImageInput | MaterialUpdateManyWithWhereWithoutImageInput[]
+    deleteMany?: MaterialScalarWhereInput | MaterialScalarWhereInput[]
+  }
+
   export type ProductUncheckedUpdateOneWithoutCoverNestedInput = {
     create?: XOR<ProductCreateWithoutCoverInput, ProductUncheckedCreateWithoutCoverInput>
     connectOrCreate?: ProductCreateOrConnectWithoutCoverInput
@@ -19917,6 +22814,20 @@ export namespace Prisma {
     delete?: CollectionWhereInput | boolean
     connect?: CollectionWhereUniqueInput
     update?: XOR<XOR<CollectionUpdateToOneWithWhereWithoutCoverInput, CollectionUpdateWithoutCoverInput>, CollectionUncheckedUpdateWithoutCoverInput>
+  }
+
+  export type MaterialUncheckedUpdateManyWithoutImageNestedInput = {
+    create?: XOR<MaterialCreateWithoutImageInput, MaterialUncheckedCreateWithoutImageInput> | MaterialCreateWithoutImageInput[] | MaterialUncheckedCreateWithoutImageInput[]
+    connectOrCreate?: MaterialCreateOrConnectWithoutImageInput | MaterialCreateOrConnectWithoutImageInput[]
+    upsert?: MaterialUpsertWithWhereUniqueWithoutImageInput | MaterialUpsertWithWhereUniqueWithoutImageInput[]
+    createMany?: MaterialCreateManyImageInputEnvelope
+    set?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    disconnect?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    delete?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    connect?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    update?: MaterialUpdateWithWhereUniqueWithoutImageInput | MaterialUpdateWithWhereUniqueWithoutImageInput[]
+    updateMany?: MaterialUpdateManyWithWhereWithoutImageInput | MaterialUpdateManyWithWhereWithoutImageInput[]
+    deleteMany?: MaterialScalarWhereInput | MaterialScalarWhereInput[]
   }
 
   export type ImageCreateNestedManyWithoutImageMetaInput = {
@@ -20267,6 +23178,78 @@ export namespace Prisma {
     update?: ImageUpdateWithWhereUniqueWithoutSectionInput | ImageUpdateWithWhereUniqueWithoutSectionInput[]
     updateMany?: ImageUpdateManyWithWhereWithoutSectionInput | ImageUpdateManyWithWhereWithoutSectionInput[]
     deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[]
+  }
+
+  export type MaterialCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<MaterialCreateWithoutCategoryInput, MaterialUncheckedCreateWithoutCategoryInput> | MaterialCreateWithoutCategoryInput[] | MaterialUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: MaterialCreateOrConnectWithoutCategoryInput | MaterialCreateOrConnectWithoutCategoryInput[]
+    createMany?: MaterialCreateManyCategoryInputEnvelope
+    connect?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+  }
+
+  export type MaterialUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<MaterialCreateWithoutCategoryInput, MaterialUncheckedCreateWithoutCategoryInput> | MaterialCreateWithoutCategoryInput[] | MaterialUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: MaterialCreateOrConnectWithoutCategoryInput | MaterialCreateOrConnectWithoutCategoryInput[]
+    createMany?: MaterialCreateManyCategoryInputEnvelope
+    connect?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+  }
+
+  export type MaterialUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<MaterialCreateWithoutCategoryInput, MaterialUncheckedCreateWithoutCategoryInput> | MaterialCreateWithoutCategoryInput[] | MaterialUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: MaterialCreateOrConnectWithoutCategoryInput | MaterialCreateOrConnectWithoutCategoryInput[]
+    upsert?: MaterialUpsertWithWhereUniqueWithoutCategoryInput | MaterialUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: MaterialCreateManyCategoryInputEnvelope
+    set?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    disconnect?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    delete?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    connect?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    update?: MaterialUpdateWithWhereUniqueWithoutCategoryInput | MaterialUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: MaterialUpdateManyWithWhereWithoutCategoryInput | MaterialUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: MaterialScalarWhereInput | MaterialScalarWhereInput[]
+  }
+
+  export type MaterialUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<MaterialCreateWithoutCategoryInput, MaterialUncheckedCreateWithoutCategoryInput> | MaterialCreateWithoutCategoryInput[] | MaterialUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: MaterialCreateOrConnectWithoutCategoryInput | MaterialCreateOrConnectWithoutCategoryInput[]
+    upsert?: MaterialUpsertWithWhereUniqueWithoutCategoryInput | MaterialUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: MaterialCreateManyCategoryInputEnvelope
+    set?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    disconnect?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    delete?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    connect?: MaterialWhereUniqueInput | MaterialWhereUniqueInput[]
+    update?: MaterialUpdateWithWhereUniqueWithoutCategoryInput | MaterialUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: MaterialUpdateManyWithWhereWithoutCategoryInput | MaterialUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: MaterialScalarWhereInput | MaterialScalarWhereInput[]
+  }
+
+  export type MaterialCategoryCreateNestedOneWithoutMaterialsInput = {
+    create?: XOR<MaterialCategoryCreateWithoutMaterialsInput, MaterialCategoryUncheckedCreateWithoutMaterialsInput>
+    connectOrCreate?: MaterialCategoryCreateOrConnectWithoutMaterialsInput
+    connect?: MaterialCategoryWhereUniqueInput
+  }
+
+  export type ImageCreateNestedOneWithoutMaterialInput = {
+    create?: XOR<ImageCreateWithoutMaterialInput, ImageUncheckedCreateWithoutMaterialInput>
+    connectOrCreate?: ImageCreateOrConnectWithoutMaterialInput
+    connect?: ImageWhereUniqueInput
+  }
+
+  export type MaterialCategoryUpdateOneRequiredWithoutMaterialsNestedInput = {
+    create?: XOR<MaterialCategoryCreateWithoutMaterialsInput, MaterialCategoryUncheckedCreateWithoutMaterialsInput>
+    connectOrCreate?: MaterialCategoryCreateOrConnectWithoutMaterialsInput
+    upsert?: MaterialCategoryUpsertWithoutMaterialsInput
+    connect?: MaterialCategoryWhereUniqueInput
+    update?: XOR<XOR<MaterialCategoryUpdateToOneWithWhereWithoutMaterialsInput, MaterialCategoryUpdateWithoutMaterialsInput>, MaterialCategoryUncheckedUpdateWithoutMaterialsInput>
+  }
+
+  export type ImageUpdateOneWithoutMaterialNestedInput = {
+    create?: XOR<ImageCreateWithoutMaterialInput, ImageUncheckedCreateWithoutMaterialInput>
+    connectOrCreate?: ImageCreateOrConnectWithoutMaterialInput
+    upsert?: ImageUpsertWithoutMaterialInput
+    disconnect?: ImageWhereInput | boolean
+    delete?: ImageWhereInput | boolean
+    connect?: ImageWhereUniqueInput
+    update?: XOR<XOR<ImageUpdateToOneWithWhereWithoutMaterialInput, ImageUpdateWithoutMaterialInput>, ImageUncheckedUpdateWithoutMaterialInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -21038,6 +24021,7 @@ export namespace Prisma {
     GalleryImages?: GalleryCreateNestedManyWithoutImagesInput
     section?: SectionCreateNestedOneWithoutImagesInput
     CollectionCover?: CollectionCreateNestedOneWithoutCoverInput
+    Material?: MaterialCreateNestedManyWithoutImageInput
   }
 
   export type ImageUncheckedCreateWithoutProductCoverInput = {
@@ -21052,6 +24036,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionUncheckedCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryUncheckedCreateNestedManyWithoutImagesInput
     CollectionCover?: CollectionUncheckedCreateNestedOneWithoutCoverInput
+    Material?: MaterialUncheckedCreateNestedManyWithoutImageInput
   }
 
   export type ImageCreateOrConnectWithoutProductCoverInput = {
@@ -21097,6 +24082,7 @@ export namespace Prisma {
     GalleryImages?: GalleryCreateNestedManyWithoutImagesInput
     section?: SectionCreateNestedOneWithoutImagesInput
     CollectionCover?: CollectionCreateNestedOneWithoutCoverInput
+    Material?: MaterialCreateNestedManyWithoutImageInput
   }
 
   export type ImageUncheckedCreateWithoutTechnicalProductsInput = {
@@ -21111,6 +24097,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionUncheckedCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryUncheckedCreateNestedManyWithoutImagesInput
     CollectionCover?: CollectionUncheckedCreateNestedOneWithoutCoverInput
+    Material?: MaterialUncheckedCreateNestedManyWithoutImageInput
   }
 
   export type ImageCreateOrConnectWithoutTechnicalProductsInput = {
@@ -21268,6 +24255,7 @@ export namespace Prisma {
     GalleryImages?: GalleryUpdateManyWithoutImagesNestedInput
     section?: SectionUpdateOneWithoutImagesNestedInput
     CollectionCover?: CollectionUpdateOneWithoutCoverNestedInput
+    Material?: MaterialUpdateManyWithoutImageNestedInput
   }
 
   export type ImageUncheckedUpdateWithoutProductCoverInput = {
@@ -21282,6 +24270,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionUncheckedUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUncheckedUpdateManyWithoutImagesNestedInput
     CollectionCover?: CollectionUncheckedUpdateOneWithoutCoverNestedInput
+    Material?: MaterialUncheckedUpdateManyWithoutImageNestedInput
   }
 
   export type ProductPromotionUpsertWithWhereUniqueWithoutProductInput = {
@@ -21418,6 +24407,7 @@ export namespace Prisma {
     GalleryImages?: GalleryCreateNestedManyWithoutImagesInput
     section?: SectionCreateNestedOneWithoutImagesInput
     CollectionCover?: CollectionCreateNestedOneWithoutCoverInput
+    Material?: MaterialCreateNestedManyWithoutImageInput
   }
 
   export type ImageUncheckedCreateWithoutProductPromotionsInput = {
@@ -21432,6 +24422,7 @@ export namespace Prisma {
     TechnicalProducts?: ProductUncheckedCreateNestedManyWithoutTechnicalInput
     GalleryImages?: GalleryUncheckedCreateNestedManyWithoutImagesInput
     CollectionCover?: CollectionUncheckedCreateNestedOneWithoutCoverInput
+    Material?: MaterialUncheckedCreateNestedManyWithoutImageInput
   }
 
   export type ImageCreateOrConnectWithoutProductPromotionsInput = {
@@ -21866,6 +24857,36 @@ export namespace Prisma {
     create: XOR<CollectionCreateWithoutCoverInput, CollectionUncheckedCreateWithoutCoverInput>
   }
 
+  export type MaterialCreateWithoutImageInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: MaterialCategoryCreateNestedOneWithoutMaterialsInput
+  }
+
+  export type MaterialUncheckedCreateWithoutImageInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    categoryId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MaterialCreateOrConnectWithoutImageInput = {
+    where: MaterialWhereUniqueInput
+    create: XOR<MaterialCreateWithoutImageInput, MaterialUncheckedCreateWithoutImageInput>
+  }
+
+  export type MaterialCreateManyImageInputEnvelope = {
+    data: MaterialCreateManyImageInput | MaterialCreateManyImageInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ImageMetaUpsertWithoutImageInput = {
     update: XOR<ImageMetaUpdateWithoutImageInput, ImageMetaUncheckedUpdateWithoutImageInput>
     create: XOR<ImageMetaCreateWithoutImageInput, ImageMetaUncheckedCreateWithoutImageInput>
@@ -22080,6 +25101,36 @@ export namespace Prisma {
     contents?: ContentUncheckedUpdateManyWithoutCollectionNestedInput
   }
 
+  export type MaterialUpsertWithWhereUniqueWithoutImageInput = {
+    where: MaterialWhereUniqueInput
+    update: XOR<MaterialUpdateWithoutImageInput, MaterialUncheckedUpdateWithoutImageInput>
+    create: XOR<MaterialCreateWithoutImageInput, MaterialUncheckedCreateWithoutImageInput>
+  }
+
+  export type MaterialUpdateWithWhereUniqueWithoutImageInput = {
+    where: MaterialWhereUniqueInput
+    data: XOR<MaterialUpdateWithoutImageInput, MaterialUncheckedUpdateWithoutImageInput>
+  }
+
+  export type MaterialUpdateManyWithWhereWithoutImageInput = {
+    where: MaterialScalarWhereInput
+    data: XOR<MaterialUpdateManyMutationInput, MaterialUncheckedUpdateManyWithoutImageInput>
+  }
+
+  export type MaterialScalarWhereInput = {
+    AND?: MaterialScalarWhereInput | MaterialScalarWhereInput[]
+    OR?: MaterialScalarWhereInput[]
+    NOT?: MaterialScalarWhereInput | MaterialScalarWhereInput[]
+    id?: StringFilter<"Material"> | string
+    locale?: StringFilter<"Material"> | string
+    name?: StringFilter<"Material"> | string
+    slug?: StringFilter<"Material"> | string
+    categoryId?: StringFilter<"Material"> | string
+    imageId?: StringNullableFilter<"Material"> | string | null
+    createdAt?: DateTimeFilter<"Material"> | Date | string
+    updatedAt?: DateTimeFilter<"Material"> | Date | string
+  }
+
   export type ImageCreateWithoutImageMetaInput = {
     id?: string
     path: string
@@ -22092,6 +25143,7 @@ export namespace Prisma {
     GalleryImages?: GalleryCreateNestedManyWithoutImagesInput
     section?: SectionCreateNestedOneWithoutImagesInput
     CollectionCover?: CollectionCreateNestedOneWithoutCoverInput
+    Material?: MaterialCreateNestedManyWithoutImageInput
   }
 
   export type ImageUncheckedCreateWithoutImageMetaInput = {
@@ -22106,6 +25158,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionUncheckedCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryUncheckedCreateNestedManyWithoutImagesInput
     CollectionCover?: CollectionUncheckedCreateNestedOneWithoutCoverInput
+    Material?: MaterialUncheckedCreateNestedManyWithoutImageInput
   }
 
   export type ImageCreateOrConnectWithoutImageMetaInput = {
@@ -22229,6 +25282,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryCreateNestedManyWithoutImagesInput
     section?: SectionCreateNestedOneWithoutImagesInput
+    Material?: MaterialCreateNestedManyWithoutImageInput
   }
 
   export type ImageUncheckedCreateWithoutCollectionCoverInput = {
@@ -22243,6 +25297,7 @@ export namespace Prisma {
     TechnicalProducts?: ProductUncheckedCreateNestedManyWithoutTechnicalInput
     ProductPromotions?: ProductPromotionUncheckedCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryUncheckedCreateNestedManyWithoutImagesInput
+    Material?: MaterialUncheckedCreateNestedManyWithoutImageInput
   }
 
   export type ImageCreateOrConnectWithoutCollectionCoverInput = {
@@ -22398,6 +25453,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUpdateManyWithoutImagesNestedInput
     section?: SectionUpdateOneWithoutImagesNestedInput
+    Material?: MaterialUpdateManyWithoutImageNestedInput
   }
 
   export type ImageUncheckedUpdateWithoutCollectionCoverInput = {
@@ -22412,6 +25468,7 @@ export namespace Prisma {
     TechnicalProducts?: ProductUncheckedUpdateManyWithoutTechnicalNestedInput
     ProductPromotions?: ProductPromotionUncheckedUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUncheckedUpdateManyWithoutImagesNestedInput
+    Material?: MaterialUncheckedUpdateManyWithoutImageNestedInput
   }
 
   export type SectionUpsertWithWhereUniqueWithoutCollectionInput = {
@@ -22612,6 +25669,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionCreateNestedManyWithoutImagesInput
     section?: SectionCreateNestedOneWithoutImagesInput
     CollectionCover?: CollectionCreateNestedOneWithoutCoverInput
+    Material?: MaterialCreateNestedManyWithoutImageInput
   }
 
   export type ImageUncheckedCreateWithoutGalleryImagesInput = {
@@ -22626,6 +25684,7 @@ export namespace Prisma {
     TechnicalProducts?: ProductUncheckedCreateNestedManyWithoutTechnicalInput
     ProductPromotions?: ProductPromotionUncheckedCreateNestedManyWithoutImagesInput
     CollectionCover?: CollectionUncheckedCreateNestedOneWithoutCoverInput
+    Material?: MaterialUncheckedCreateNestedManyWithoutImageInput
   }
 
   export type ImageCreateOrConnectWithoutGalleryImagesInput = {
@@ -22692,6 +25751,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryCreateNestedManyWithoutImagesInput
     CollectionCover?: CollectionCreateNestedOneWithoutCoverInput
+    Material?: MaterialCreateNestedManyWithoutImageInput
   }
 
   export type ImageUncheckedCreateWithoutSectionInput = {
@@ -22706,6 +25766,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionUncheckedCreateNestedManyWithoutImagesInput
     GalleryImages?: GalleryUncheckedCreateNestedManyWithoutImagesInput
     CollectionCover?: CollectionUncheckedCreateNestedOneWithoutCoverInput
+    Material?: MaterialUncheckedCreateNestedManyWithoutImageInput
   }
 
   export type ImageCreateOrConnectWithoutSectionInput = {
@@ -22769,6 +25830,184 @@ export namespace Prisma {
   export type ImageUpdateManyWithWhereWithoutSectionInput = {
     where: ImageScalarWhereInput
     data: XOR<ImageUpdateManyMutationInput, ImageUncheckedUpdateManyWithoutSectionInput>
+  }
+
+  export type MaterialCreateWithoutCategoryInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    image?: ImageCreateNestedOneWithoutMaterialInput
+  }
+
+  export type MaterialUncheckedCreateWithoutCategoryInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    imageId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MaterialCreateOrConnectWithoutCategoryInput = {
+    where: MaterialWhereUniqueInput
+    create: XOR<MaterialCreateWithoutCategoryInput, MaterialUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type MaterialCreateManyCategoryInputEnvelope = {
+    data: MaterialCreateManyCategoryInput | MaterialCreateManyCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MaterialUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: MaterialWhereUniqueInput
+    update: XOR<MaterialUpdateWithoutCategoryInput, MaterialUncheckedUpdateWithoutCategoryInput>
+    create: XOR<MaterialCreateWithoutCategoryInput, MaterialUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type MaterialUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: MaterialWhereUniqueInput
+    data: XOR<MaterialUpdateWithoutCategoryInput, MaterialUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type MaterialUpdateManyWithWhereWithoutCategoryInput = {
+    where: MaterialScalarWhereInput
+    data: XOR<MaterialUpdateManyMutationInput, MaterialUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type MaterialCategoryCreateWithoutMaterialsInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MaterialCategoryUncheckedCreateWithoutMaterialsInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MaterialCategoryCreateOrConnectWithoutMaterialsInput = {
+    where: MaterialCategoryWhereUniqueInput
+    create: XOR<MaterialCategoryCreateWithoutMaterialsInput, MaterialCategoryUncheckedCreateWithoutMaterialsInput>
+  }
+
+  export type ImageCreateWithoutMaterialInput = {
+    id?: string
+    path: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    collectionId?: string | null
+    imageMeta: ImageMetaCreateNestedOneWithoutImageInput
+    ProductCover?: ProductCreateNestedOneWithoutCoverInput
+    TechnicalProducts?: ProductCreateNestedManyWithoutTechnicalInput
+    ProductPromotions?: ProductPromotionCreateNestedManyWithoutImagesInput
+    GalleryImages?: GalleryCreateNestedManyWithoutImagesInput
+    section?: SectionCreateNestedOneWithoutImagesInput
+    CollectionCover?: CollectionCreateNestedOneWithoutCoverInput
+  }
+
+  export type ImageUncheckedCreateWithoutMaterialInput = {
+    id?: string
+    path: string
+    imageMetaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sectionId?: string | null
+    collectionId?: string | null
+    ProductCover?: ProductUncheckedCreateNestedOneWithoutCoverInput
+    TechnicalProducts?: ProductUncheckedCreateNestedManyWithoutTechnicalInput
+    ProductPromotions?: ProductPromotionUncheckedCreateNestedManyWithoutImagesInput
+    GalleryImages?: GalleryUncheckedCreateNestedManyWithoutImagesInput
+    CollectionCover?: CollectionUncheckedCreateNestedOneWithoutCoverInput
+  }
+
+  export type ImageCreateOrConnectWithoutMaterialInput = {
+    where: ImageWhereUniqueInput
+    create: XOR<ImageCreateWithoutMaterialInput, ImageUncheckedCreateWithoutMaterialInput>
+  }
+
+  export type MaterialCategoryUpsertWithoutMaterialsInput = {
+    update: XOR<MaterialCategoryUpdateWithoutMaterialsInput, MaterialCategoryUncheckedUpdateWithoutMaterialsInput>
+    create: XOR<MaterialCategoryCreateWithoutMaterialsInput, MaterialCategoryUncheckedCreateWithoutMaterialsInput>
+    where?: MaterialCategoryWhereInput
+  }
+
+  export type MaterialCategoryUpdateToOneWithWhereWithoutMaterialsInput = {
+    where?: MaterialCategoryWhereInput
+    data: XOR<MaterialCategoryUpdateWithoutMaterialsInput, MaterialCategoryUncheckedUpdateWithoutMaterialsInput>
+  }
+
+  export type MaterialCategoryUpdateWithoutMaterialsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MaterialCategoryUncheckedUpdateWithoutMaterialsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ImageUpsertWithoutMaterialInput = {
+    update: XOR<ImageUpdateWithoutMaterialInput, ImageUncheckedUpdateWithoutMaterialInput>
+    create: XOR<ImageCreateWithoutMaterialInput, ImageUncheckedCreateWithoutMaterialInput>
+    where?: ImageWhereInput
+  }
+
+  export type ImageUpdateToOneWithWhereWithoutMaterialInput = {
+    where?: ImageWhereInput
+    data: XOR<ImageUpdateWithoutMaterialInput, ImageUncheckedUpdateWithoutMaterialInput>
+  }
+
+  export type ImageUpdateWithoutMaterialInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    imageMeta?: ImageMetaUpdateOneRequiredWithoutImageNestedInput
+    ProductCover?: ProductUpdateOneWithoutCoverNestedInput
+    TechnicalProducts?: ProductUpdateManyWithoutTechnicalNestedInput
+    ProductPromotions?: ProductPromotionUpdateManyWithoutImagesNestedInput
+    GalleryImages?: GalleryUpdateManyWithoutImagesNestedInput
+    section?: SectionUpdateOneWithoutImagesNestedInput
+    CollectionCover?: CollectionUpdateOneWithoutCoverNestedInput
+  }
+
+  export type ImageUncheckedUpdateWithoutMaterialInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    imageMetaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    collectionId?: NullableStringFieldUpdateOperationsInput | string | null
+    ProductCover?: ProductUncheckedUpdateOneWithoutCoverNestedInput
+    TechnicalProducts?: ProductUncheckedUpdateManyWithoutTechnicalNestedInput
+    ProductPromotions?: ProductPromotionUncheckedUpdateManyWithoutImagesNestedInput
+    GalleryImages?: GalleryUncheckedUpdateManyWithoutImagesNestedInput
+    CollectionCover?: CollectionUncheckedUpdateOneWithoutCoverNestedInput
   }
 
   export type ProductCreateManyCategoryInput = {
@@ -23102,6 +26341,7 @@ export namespace Prisma {
     GalleryImages?: GalleryUpdateManyWithoutImagesNestedInput
     section?: SectionUpdateOneWithoutImagesNestedInput
     CollectionCover?: CollectionUpdateOneWithoutCoverNestedInput
+    Material?: MaterialUpdateManyWithoutImageNestedInput
   }
 
   export type ImageUncheckedUpdateWithoutTechnicalProductsInput = {
@@ -23116,6 +26356,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionUncheckedUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUncheckedUpdateManyWithoutImagesNestedInput
     CollectionCover?: CollectionUncheckedUpdateOneWithoutCoverNestedInput
+    Material?: MaterialUncheckedUpdateManyWithoutImageNestedInput
   }
 
   export type ImageUncheckedUpdateManyWithoutTechnicalProductsInput = {
@@ -23161,6 +26402,7 @@ export namespace Prisma {
     GalleryImages?: GalleryUpdateManyWithoutImagesNestedInput
     section?: SectionUpdateOneWithoutImagesNestedInput
     CollectionCover?: CollectionUpdateOneWithoutCoverNestedInput
+    Material?: MaterialUpdateManyWithoutImageNestedInput
   }
 
   export type ImageUncheckedUpdateWithoutProductPromotionsInput = {
@@ -23175,6 +26417,7 @@ export namespace Prisma {
     TechnicalProducts?: ProductUncheckedUpdateManyWithoutTechnicalNestedInput
     GalleryImages?: GalleryUncheckedUpdateManyWithoutImagesNestedInput
     CollectionCover?: CollectionUncheckedUpdateOneWithoutCoverNestedInput
+    Material?: MaterialUncheckedUpdateManyWithoutImageNestedInput
   }
 
   export type ImageUncheckedUpdateManyWithoutProductPromotionsInput = {
@@ -23185,6 +26428,16 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sectionId?: NullableStringFieldUpdateOperationsInput | string | null
     collectionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MaterialCreateManyImageInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    categoryId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ProductUpdateWithoutTechnicalInput = {
@@ -23296,6 +26549,36 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MaterialUpdateWithoutImageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: MaterialCategoryUpdateOneRequiredWithoutMaterialsNestedInput
+  }
+
+  export type MaterialUncheckedUpdateWithoutImageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MaterialUncheckedUpdateManyWithoutImageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ImageCreateManyImageMetaInput = {
     id?: string
     path: string
@@ -23317,6 +26600,7 @@ export namespace Prisma {
     GalleryImages?: GalleryUpdateManyWithoutImagesNestedInput
     section?: SectionUpdateOneWithoutImagesNestedInput
     CollectionCover?: CollectionUpdateOneWithoutCoverNestedInput
+    Material?: MaterialUpdateManyWithoutImageNestedInput
   }
 
   export type ImageUncheckedUpdateWithoutImageMetaInput = {
@@ -23331,6 +26615,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionUncheckedUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUncheckedUpdateManyWithoutImagesNestedInput
     CollectionCover?: CollectionUncheckedUpdateOneWithoutCoverNestedInput
+    Material?: MaterialUncheckedUpdateManyWithoutImageNestedInput
   }
 
   export type ImageUncheckedUpdateManyWithoutImageMetaInput = {
@@ -23574,6 +26859,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionUpdateManyWithoutImagesNestedInput
     section?: SectionUpdateOneWithoutImagesNestedInput
     CollectionCover?: CollectionUpdateOneWithoutCoverNestedInput
+    Material?: MaterialUpdateManyWithoutImageNestedInput
   }
 
   export type ImageUncheckedUpdateWithoutGalleryImagesInput = {
@@ -23588,6 +26874,7 @@ export namespace Prisma {
     TechnicalProducts?: ProductUncheckedUpdateManyWithoutTechnicalNestedInput
     ProductPromotions?: ProductPromotionUncheckedUpdateManyWithoutImagesNestedInput
     CollectionCover?: CollectionUncheckedUpdateOneWithoutCoverNestedInput
+    Material?: MaterialUncheckedUpdateManyWithoutImageNestedInput
   }
 
   export type ImageUncheckedUpdateManyWithoutGalleryImagesInput = {
@@ -23621,6 +26908,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUpdateManyWithoutImagesNestedInput
     CollectionCover?: CollectionUpdateOneWithoutCoverNestedInput
+    Material?: MaterialUpdateManyWithoutImageNestedInput
   }
 
   export type ImageUncheckedUpdateWithoutSectionInput = {
@@ -23635,6 +26923,7 @@ export namespace Prisma {
     ProductPromotions?: ProductPromotionUncheckedUpdateManyWithoutImagesNestedInput
     GalleryImages?: GalleryUncheckedUpdateManyWithoutImagesNestedInput
     CollectionCover?: CollectionUncheckedUpdateOneWithoutCoverNestedInput
+    Material?: MaterialUncheckedUpdateManyWithoutImageNestedInput
   }
 
   export type ImageUncheckedUpdateManyWithoutSectionInput = {
@@ -23644,6 +26933,46 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     collectionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MaterialCreateManyCategoryInput = {
+    id?: string
+    locale: string
+    name: string
+    slug: string
+    imageId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MaterialUpdateWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    image?: ImageUpdateOneWithoutMaterialNestedInput
+  }
+
+  export type MaterialUncheckedUpdateWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    imageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MaterialUncheckedUpdateManyWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    locale?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    imageId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

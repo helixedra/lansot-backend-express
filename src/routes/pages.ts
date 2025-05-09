@@ -5,35 +5,26 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 router.get("/", async (req, res) => {
+  const { locale } = req.query;
   const pages = await prisma.page.findMany({
     include: {
       meta: true,
       content: true,
     },
+    where: locale ? { locale: locale as string } : undefined,
   });
   res.json(pages);
 });
 
 router.get("/:slug", async (req, res) => {
   const { slug } = req.params;
+  const { locale } = req.query;
   const page = await prisma.page.findMany({
     include: {
       meta: true,
       content: true,
     },
-    where: { slug },
-  });
-  res.json(page);
-});
-
-router.get("/:slug/:locale", async (req, res) => {
-  const { slug, locale } = req.params;
-  const page = await prisma.page.findFirst({
-    include: {
-      meta: true,
-      content: true,
-    },
-    where: { slug, locale },
+    where: { slug, locale: locale ? (locale as string) : undefined },
   });
   res.json(page);
 });

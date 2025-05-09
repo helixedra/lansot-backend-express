@@ -253,6 +253,27 @@ exports.Prisma.SectionScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.MaterialCategoryScalarFieldEnum = {
+  id: 'id',
+  locale: 'locale',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MaterialScalarFieldEnum = {
+  id: 'id',
+  locale: 'locale',
+  name: 'name',
+  slug: 'slug',
+  categoryId: 'categoryId',
+  imageId: 'imageId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -281,7 +302,9 @@ exports.Prisma.ModelName = {
   Collection: 'Collection',
   Page: 'Page',
   Gallery: 'Gallery',
-  Section: 'Section'
+  Section: 'Section',
+  MaterialCategory: 'MaterialCategory',
+  Material: 'Material'
 };
 
 /**

@@ -6,6 +6,7 @@ const prisma = new PrismaClient();
 
 router.get("/", async (req, res) => {
   const { category } = req.query;
+  const { locale } = req.query;
   const pages = await prisma.product.findMany({
     include: {
       cover: {
@@ -34,86 +35,15 @@ router.get("/", async (req, res) => {
     },
     where: {
       category: category ? { slug: category as string } : undefined,
+      locale: locale ? (locale as string) : undefined,
     },
   });
   res.json(pages);
 });
-router.get("/:locale", async (req, res) => {
-  const { locale } = req.params;
-  const { category } = req.query;
-  const page = await prisma.product.findMany({
-    include: {
-      cover: {
-        include: {
-          imageMeta: true,
-        },
-      },
-      meta: true,
-      category: true,
-      collection: true,
-      promotion: {
-        include: {
-          images: {
-            include: {
-              imageMeta: true,
-            },
-          },
-        },
-      },
-      technical: {
-        include: {
-          imageMeta: true,
-        },
-      },
-      files: true,
-    },
-    where: {
-      locale,
-      category: category ? { slug: category as string } : undefined,
-    },
-  });
-  res.json(page);
-});
 
 router.get("/:slug", async (req, res) => {
   const { slug } = req.params;
-  const { category } = req.query;
-  const page = await prisma.product.findMany({
-    include: {
-      cover: {
-        include: {
-          imageMeta: true,
-        },
-      },
-      meta: true,
-      category: true,
-      collection: true,
-      promotion: {
-        include: {
-          images: {
-            include: {
-              imageMeta: true,
-            },
-          },
-        },
-      },
-      technical: {
-        include: {
-          imageMeta: true,
-        },
-      },
-      files: true,
-    },
-    where: {
-      slug,
-      category: category ? { slug: category as string } : undefined,
-    },
-  });
-  res.json(page);
-});
-
-router.get("/:slug/:locale", async (req, res) => {
-  const { slug, locale } = req.params;
+  const { locale } = req.query;
   const { category } = req.query;
   const page = await prisma.product.findFirst({
     include: {
@@ -143,7 +73,7 @@ router.get("/:slug/:locale", async (req, res) => {
     },
     where: {
       slug,
-      locale,
+      locale: locale ? (locale as string) : undefined,
       category: category ? { slug: category as string } : undefined,
     },
   });

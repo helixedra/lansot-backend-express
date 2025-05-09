@@ -8,6 +8,7 @@ import contentRoutes from "./routes/contents";
 import galleryRoutes from "./routes/galleries";
 import staticRoutes from "./routes/static";
 import collectionRoutes from "./routes/collections";
+import materialRoutes from "./routes/materials";
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use("/api/contents", contentRoutes);
 app.use("/api/galleries", galleryRoutes);
 app.use("/api/static", staticRoutes);
 app.use("/api/collections", collectionRoutes);
+app.use("/api/materials", materialRoutes);
 
 const port = 4040;
 app.listen(port, () =>

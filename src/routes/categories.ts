@@ -5,14 +5,9 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 router.get("/", async (req, res) => {
-  const categories = await prisma.category.findMany();
-  res.json(categories);
-});
-
-router.get("/:locale", async (req, res) => {
-  const { locale } = req.params;
+  const { locale } = req.query;
   const category = await prisma.category.findMany({
-    where: { locale },
+    where: locale ? { locale: locale as string } : undefined,
     include: {
       meta: true,
     },
@@ -22,19 +17,9 @@ router.get("/:locale", async (req, res) => {
 
 router.get("/:slug", async (req, res) => {
   const { slug } = req.params;
+  const { locale } = req.query;
   const category = await prisma.category.findMany({
-    where: { slug },
-    include: {
-      meta: true,
-    },
-  });
-  res.json(category);
-});
-
-router.get("/:slug/:locale", async (req, res) => {
-  const { slug, locale } = req.params;
-  const category = await prisma.category.findFirst({
-    where: { slug, locale },
+    where: { slug, locale: locale ? (locale as string) : undefined },
     include: {
       meta: true,
     },

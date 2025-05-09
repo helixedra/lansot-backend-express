@@ -118,6 +118,7 @@ model Image {
   sectionId         String?
   CollectionCover   Collection?        @relation("CollectionCover")
   collectionId      String?
+  Material          Material[]         @relation("MaterialImage")
 
   @@unique([id, imageMetaId])
 }
@@ -193,6 +194,34 @@ model Section {
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @default(now())
   images       Image[]
+
+  @@unique([id])
+}
+
+model MaterialCategory {
+  id          String     @id @default(cuid())
+  locale      String
+  name        String
+  slug        String
+  description String?
+  materials   Material[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @default(now())
+
+  @@unique([id])
+}
+
+model Material {
+  id         String           @id @default(cuid())
+  locale     String
+  name       String
+  slug       String
+  category   MaterialCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId String
+  image      Image?           @relation("MaterialImage", fields: [imageId], references: [id], onDelete: Cascade)
+  imageId    String?
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @default(now())
 
   @@unique([id])
 }

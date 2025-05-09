@@ -5,7 +5,9 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 router.get("/", async (req, res) => {
+  const { locale } = req.query;
   const galleries = await prisma.gallery.findMany({
+    where: locale ? { locale: locale as string } : undefined,
     include: {
       images: {
         include: {
@@ -19,23 +21,9 @@ router.get("/", async (req, res) => {
 
 router.get("/:slug", async (req, res) => {
   const { slug } = req.params;
+  const { locale } = req.query;
   const gallery = await prisma.gallery.findMany({
-    where: { slug },
-    include: {
-      images: {
-        include: {
-          imageMeta: true,
-        },
-      },
-    },
-  });
-  res.json(gallery);
-});
-
-router.get("/:slug/:locale", async (req, res) => {
-  const { slug, locale } = req.params;
-  const gallery = await prisma.gallery.findFirst({
-    where: { slug, locale },
+    where: { slug, locale: locale ? (locale as string) : undefined },
     include: {
       images: {
         include: {
