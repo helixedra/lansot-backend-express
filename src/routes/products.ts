@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 router.get("/", async (req, res) => {
   const { category } = req.query;
-  const { locale } = req.query;
+  const { locale, top } = req.query;
   const pages = await prisma.product.findMany({
     include: {
       cover: {
@@ -36,6 +36,7 @@ router.get("/", async (req, res) => {
     where: {
       category: category ? { slug: category as string } : undefined,
       locale: locale ? (locale as string) : undefined,
+      top: top ? (top as string) === "true" : undefined,
     },
   });
   res.json(pages);

@@ -29,4 +29,14 @@ router.get("/collections", async (req, res) => {
   res.json(result);
 });
 
+router.get("/articles", async (req, res) => {
+  const result = await prisma.article.findMany({
+    select: {
+      slug: true,
+      locale: true,
+    },
+  });
+  res.json(result);
+});
+
 export default router;

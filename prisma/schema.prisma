@@ -34,6 +34,7 @@ model Meta {
   pages       Page[]
   products    Product[]
   collections Collection[]
+  articles    Article[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @default(now())
 
@@ -222,6 +223,22 @@ model Material {
   imageId    String?
   createdAt  DateTime         @default(now())
   updatedAt  DateTime         @default(now())
+
+  @@unique([id])
+}
+
+model Article {
+  id        String   @id @default(cuid())
+  locale    String
+  slug      String
+  title     String?
+  subtitle  String?
+  meta      Meta     @relation(fields: [metaId], references: [id], onDelete: Cascade)
+  metaId    String
+  preview   String?
+  content   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 
   @@unique([id])
 }

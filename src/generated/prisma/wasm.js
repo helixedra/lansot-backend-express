@@ -274,6 +274,19 @@ exports.Prisma.MaterialScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ArticleScalarFieldEnum = {
+  id: 'id',
+  locale: 'locale',
+  slug: 'slug',
+  title: 'title',
+  subtitle: 'subtitle',
+  metaId: 'metaId',
+  preview: 'preview',
+  content: 'content',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -304,7 +317,8 @@ exports.Prisma.ModelName = {
   Gallery: 'Gallery',
   Section: 'Section',
   MaterialCategory: 'MaterialCategory',
-  Material: 'Material'
+  Material: 'Material',
+  Article: 'Article'
 };
 
 /**
