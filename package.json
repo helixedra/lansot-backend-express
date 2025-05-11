@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --respawn src/index.ts",
-    "build": "tsc && cpx \"prisma/**/*\" dist/",
+    "build": "tsc && copyfiles -u 1 \"src/generated/**/*\" \"dist/\"",
     "start": "node dist/index.js",
     "prisma": "prisma"
   },
@@ -18,13 +18,11 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1",
     "@types/node": "^22.13.10",
-    "cpx": "^1.5.0",
+    "copyfiles": "^2.4.1",
     "prisma": "^6.7.0",
     "ts-node": "10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.2"
   },
-  "prisma": {
-    "seed": "ts-node prisma/seed.ts"
-  }
+  "prisma": {}
 }
